@@ -290,7 +290,7 @@
         }
         
         .nav-tabs .nav-link.active {
-            color: #7366ff;
+            color: oklch(50.8% 0.118 165.612);
             background-color: #fff;
             border-color: #dee2e6 #dee2e6 #fff;
         }
@@ -298,7 +298,7 @@
         /* Badge styling */
         .badge.badge-light-primary {
             background-color: rgba(115, 102, 255, 0.15);
-            color: #7366ff;
+            color: oklch(50.8% 0.118 165.612);
         }
     </style>
     @endpush
