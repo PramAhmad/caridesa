@@ -130,7 +130,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Create Role</h4>
+                    <h4>Tambah Role</h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
@@ -140,11 +140,11 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('tenant.roles.index') }}">
-                                Roles
+                            <a href="{{ route('roles.index') }}">
+                                Role
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">Create</li>
+                        <li class="breadcrumb-item active">Tambah</li>
                     </ol>
                 </div>
             </div>
@@ -157,20 +157,20 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Create New Role</h4>
+                        <h4>Tambah Role Baru</h4>
                         <p class="f-m-light mt-1">
-                            Fill in the form below to create a new role. All fields with <span class="text-danger">*</span> are required.
+                            Isi formulir di bawah ini untuk membuat role baru. Semua kolom yang diberi tanda <span class="text-danger">*</span> wajib diisi.
                         </p>
                     </div>
                     <div class="card-body">
                         <form class="row g-3 needs-validation custom-input position-relative" 
-                            action="{{ route('tenant.roles.store') }}" 
+                            action="{{ route('roles.store') }}" 
                             method="POST" 
                             novalidate>
                             @csrf
                             
                             <div class="col-md-12 position-relative">
-                                <label class="form-label" for="validationTooltipName">Role Name <span class="text-danger">*</span></label>
+                                <label class="form-label" for="validationTooltipName">Nama Role <span class="text-danger">*</span></label>
                                 <input class="form-control @error('name') is-invalid @enderror" 
                                     id="validationTooltipName" 
                                     type="text" 
@@ -178,21 +178,21 @@
                                     value="{{ old('name') }}"
                                     placeholder="admin" 
                                     required>
-                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="valid-tooltip">Data Valid!</div>
                                 @error('name')
                                     <div class="invalid-tooltip">{{ $message }}</div>
                                 @enderror
-                                <small class="text-muted">Role name should be lowercase and without spaces (e.g., admin, editor, manager)</small>
+                                <small class="text-muted">Nama role harus huruf kecil dan tanpa spasi (contoh: admin, editor, manager)</small>
                             </div>
                             
                             <div class="col-md-12 position-relative mt-4">
-                                <label class="form-label mb-3">Role Permissions <span class="text-danger">*</span></label>
+                                <label class="form-label mb-3">Izin Role <span class="text-danger">*</span></label>
                                 
                                 <div class="mb-3">
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="checkbox" id="selectAllPermissions">
                                         <label class="form-check-label select-all-label" for="selectAllPermissions">
-                                            Select All Permissions
+                                            Pilih Semua Izin
                                         </label>
                                     </div>
                                 </div>
@@ -202,14 +202,14 @@
                                     <div class="col-lg-4 col-md-6">
                                         <div class="card permission-card">
                                             <div class="card-header bg-light">
-                                                <h5 class="module-title">{{ $module ?? 'Uncategorized' }}</h5>
+                                                <h5 class="module-title">{{ $module ?? 'Tidak Dikategorikan' }}</h5>
                                                 <div class="form-check">
                                                     <input class="form-check-input module-checkbox" 
                                                         type="checkbox" 
                                                         id="module-{{ Str::slug($module) }}"
                                                         data-module="{{ Str::slug($module) }}">
                                                     <label class="form-check-label" for="module-{{ Str::slug($module) }}">
-                                                        Select All
+                                                        Pilih Semua
                                                     </label>
                                                 </div>
                                             </div>
@@ -228,7 +228,7 @@
                                                             <label class="form-check-label" for="permission-{{ $permission->id }}">
                                                                 {{ $permission->name }}
                                                                 <div class="permission-description">
-                                                                    {{ $permission->description ?? 'No description available' }}
+                                                                    {{ $permission->description ?? 'Tidak ada deskripsi tersedia' }}
                                                                 </div>
                                                             </label>
                                                         </div>
@@ -248,10 +248,10 @@
                             
                             <div class="col-12 mt-4 border-top pt-3">
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="{{ route('tenant.roles.index') }}" class="btn btn-light">
-                                        Cancel
+                                    <a href="{{ route('roles.index') }}" class="btn btn-light">
+                                        Batal
                                     </a>
-                                    <button class="btn btn-primary" type="submit">Create Role</button>
+                                    <button class="btn btn-primary" type="submit">Buat Role</button>
                                 </div>
                             </div>
                         </form>

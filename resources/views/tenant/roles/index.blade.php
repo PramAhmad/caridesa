@@ -7,7 +7,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Roles Management</h4>
+                    <h4>Kelola Role</h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                                 <i data-feather="home"></i>
                             </x-tenant-link>
                         </li>
-                        <li class="breadcrumb-item active">Roles</li>
+                        <li class="breadcrumb-item active">Role</li>
                     </ol>
                 </div>
             </div>
@@ -29,11 +29,11 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header pb-0 card-no-border">
-                        <h4>Roles List</h4>
-                        <span>Manage all roles and their permissions in your tenant account.</span>
+                        <h4>Daftar Role</h4>
+                        <span>Kelola semua role dan izin mereka di akun tenant Anda.</span>
                         <div class="header-right text-end mt-2">
-                            <a href="{{ route('tenant.roles.create')}}" class="btn btn-primary">
-                                <i class="fa fa-plus-circle me-2"></i> Add New Role
+                            <a href="{{ route('roles.create')}}" class="btn btn-primary">
+                                <i class="fa fa-plus-circle me-2"></i> Tambah Role Baru
                             </a>
                         </div>
                     </div>
@@ -41,19 +41,19 @@
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}
-                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Tutup"></button>
                             </div>
                         @endif
                         
                         <div class="table-responsive custom-scrollbar">
-                            <table class="display" id="basic-1">
+                            <table class="display" id="rolesTable">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Permissions</th>
-                                        <th>Created Date</th>
-                                        <th>Action</th>
+                                        <th>Nama</th>
+                                        <th>Izin</th>
+                                        <th>Tanggal Dibuat</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,23 +75,23 @@
                                                 @endforeach
                                                 
                                                 @if($role->permissions->count() > 3)
-                                                    <span class="badge rounded-pill badge-light">+{{ $role->permissions->count() - 3 }} more</span>
+                                                    <span class="badge rounded-pill badge-light">+{{ $role->permissions->count() - 3 }} lagi</span>
                                                 @endif
                                             </div>
                                         </td>
-                                        <td>{{ $role->created_at->format('Y/m/d') }}</td>
+                                        <td>{{ $role->created_at->format('d/m/Y') }}</td>
                                         <td>
                                             <ul class="action">
                                                 <li class="edit">
-                                                    <a href="{{ route('tenant.roles.edit', $role->id) }}">
+                                                    <a href="{{ route('roles.edit', $role->id) }}" title="Edit">
                                                         <i class="icon-pencil-alt"></i>
                                                     </a>
                                                 </li>
                                                 <li class="delete">
-                                                    <a href="#" onclick="confirmDelete({{ $role->id }})">
+                                                    <a href="#" onclick="confirmDelete({{ $role->id }})" title="Hapus">
                                                         <i class="icon-trash"></i>
                                                     </a>
-                                                    <form id="delete-form-{{ $role->id }}" action="{{ route('tenant.roles.destroy', $role->id) }}" method="POST" style="display: none;">
+                                                    <form id="delete-form-{{ $role->id }}" action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>
@@ -115,11 +115,15 @@
     <script src="{{ asset('tenant/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#basic-1').DataTable();
+            $('#rolesTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+                }
+            });
         });
         
         function confirmDelete(roleId) {
-            if (confirm('Are you sure you want to delete this role?')) {
+            if (confirm('Apakah Anda yakin ingin menghapus role ini?')) {
                 document.getElementById('delete-form-' + roleId).submit();
             }
         }
