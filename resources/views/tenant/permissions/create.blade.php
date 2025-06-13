@@ -3,7 +3,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Create Permission</h4>
+                    <h4>Tambah Izin</h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
@@ -13,11 +13,11 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('tenant.permissions.index') }}">
-                                Permissions
+                            <a href="{{ route('permissions.index') }}">
+                                Kelola Izin
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">Create</li>
+                        <li class="breadcrumb-item active">Tambah</li>
                     </ol>
                 </div>
             </div>
@@ -30,43 +30,43 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Create New Permission</h4>
+                        <h4>Tambah Izin Baru</h4>
                         <p class="f-m-light mt-1">
-                            Fill in the form below to create a new permission. All fields with <span class="text-danger">*</span> are required.
+                            Isi formulir di bawah ini untuk membuat izin baru. Semua kolom yang diberi tanda <span class="text-danger">*</span> wajib diisi.
                         </p>
                     </div>
                     <div class="card-body">
                         <form class="row g-3 needs-validation custom-input position-relative" 
-                            action="{{ route('tenant.permissions.store') }}" 
+                            action="{{ route('permissions.store') }}" 
                             method="POST" 
                             novalidate>
                             @csrf
                             
                             <div class="col-md-6 position-relative">
-                                <label class="form-label" for="validationTooltipName">Permission Name <span class="text-danger">*</span></label>
+                                <label class="form-label" for="validationTooltipName">Nama Izin <span class="text-danger">*</span></label>
                                 <input class="form-control @error('name') is-invalid @enderror" 
                                     id="validationTooltipName" 
                                     type="text" 
                                     name="name"
                                     value="{{ old('name') }}"
-                                    placeholder="view-users" 
+                                    placeholder="lihat-pengguna" 
                                     required>
-                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="valid-tooltip">Data Valid!</div>
                                 @error('name')
                                     <div class="invalid-tooltip">{{ $message }}</div>
                                 @enderror
-                                <small class="text-muted">Permission name should follow a clear pattern like "action-resource" (e.g., create-users, edit-products)</small>
+                                <small class="text-muted">Nama izin harus mengikuti pola yang jelas seperti "aksi-sumber" (contoh: buat-pengguna, edit-produk)</small>
                             </div>
                             
                             <div class="col-md-6 position-relative">
-                                <label class="form-label" for="validationTooltipModule">Module <span class="text-danger">*</span></label>
+                                <label class="form-label" for="validationTooltipModule">Modul <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <input list="module-list" class="form-control @error('module') is-invalid @enderror" 
                                         id="validationTooltipModule" 
                                         type="text" 
                                         name="module"
                                         value="{{ old('module') }}"
-                                        placeholder="users" 
+                                        placeholder="pengguna" 
                                         required>
                                     <datalist id="module-list">
                                         @foreach($modules as $module)
@@ -74,34 +74,34 @@
                                         @endforeach
                                     </datalist>
                                 </div>
-                                <div class="valid-tooltip">Looks good!</div>
+                                <div class="valid-tooltip">Data Valid!</div>
                                 @error('module')
                                     <div class="invalid-tooltip">{{ $message }}</div>
                                 @enderror
-                                <small class="text-muted">Group permissions by module (e.g., users, roles, settings)</small>
+                                <small class="text-muted">Kelompokkan izin berdasarkan modul (contoh: pengguna, peran, pengaturan)</small>
                             </div>
                             
                             <div class="col-md-12 position-relative">
-                                <label class="form-label" for="validationTooltipDescription">Description</label>
+                                <label class="form-label" for="validationTooltipDescription">Deskripsi</label>
                                 <input class="form-control @error('description') is-invalid @enderror" 
                                     id="validationTooltipDescription" 
                                     type="text" 
                                     name="description"
                                     value="{{ old('description') }}"
-                                    placeholder="Allows viewing the list of users">
-                                <div class="valid-tooltip">Looks good!</div>
+                                    placeholder="Memungkinkan melihat daftar pengguna">
+                                <div class="valid-tooltip">Data Valid!</div>
                                 @error('description')
                                     <div class="invalid-tooltip">{{ $message }}</div>
                                 @enderror
-                                <small class="text-muted">A brief description of what this permission allows users to do</small>
+                                <small class="text-muted">Deskripsi singkat tentang apa yang diizinkan oleh izin ini kepada pengguna</small>
                             </div>
                             
                             <div class="col-12 mt-4 border-top pt-3">
                                 <div class="d-flex justify-content-end gap-2">
-                                    <a href="{{ route('tenant.permissions.index') }}" class="btn btn-light">
-                                        Cancel
+                                    <a href="{{ route('permissions.index') }}" class="btn btn-light">
+                                        Batal
                                     </a>
-                                    <button class="btn btn-primary" type="submit">Create Permission</button>
+                                    <button class="btn btn-primary" type="submit">Buat Izin</button>
                                 </div>
                             </div>
                         </form>
