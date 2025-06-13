@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pixelstrap - Admin Document">
+  <meta name="keywords" content="Pixelstrap - Admin Document">
+  <meta name="author" content="pixelstrap">
+  <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+  <title>Pixelstrap - Admin Document</title>
+  <!-- Google font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/prism.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/date-picker.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/select2.css">
+  <!-- Font Awesome-->
+  <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
+  <!-- Feather icon-->
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+  <!-- animate-->
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/animate.css">
+  <!-- Bootstrap css-->
+  <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+  <!-- App css-->
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
+
+<body class="document full-width-doc sticky-nav-doc" data-bs-spy="scroll" data-bs-target="#myScrollspy"
+  data-bs-offset="0">
+  <!-- tap on top starts-->
+  <div class="tap-top"><i data-feather="chevrons-up"></i>
+    <p>Top</p>
+  </div>
+  <!-- tap on tap ends-->
+  <div>
+    <div class="home-section">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container custom-container">
+          <div class="main-menu"><a class="navbar-brand" href="index.html"> <img src="../assets/images/logo/logo.png"
+                alt=""></a>
+            <div>
+              <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><i class="fa fa-bars"> </i></button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav menu">
+                  <li class="nav-item active"><a class="nav-link" href="https://themeforest.net/user/pixelstrap/portfolio" role="button"
+                      aria-haspopup="true" aria-expanded="false" target="_blank">Purchase</a></li>
+                  <li class="nav-item"><a class="nav-link" href="https://pixelstrap.freshdesk.com/" role="button"
+                      aria-haspopup="true" aria-expanded="false" target="_blank">Support</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                      href="https://admin.pixelstrap.net/riho/template/landing-page.html" role="button" aria-haspopup="true"
+                      aria-expanded="false" target="_blank">Demo</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                      href="https://admin.pixelstrap.net/riho/template/landing-page.html#frameworks" role="button"
+                      aria-haspopup="true" aria-expanded="false" target="_blank">Feature </a></li>
+                </ul>
+              </div>
+            </div>
+            <ul class="nav-right">
+              <li>
+                <div class="d-lg-none d-block"><a class="toggle-sidebar" href="#"><i class="fa fa-sliders"></i></a>
+                </div>
+              </li>
+              <li>
+                <div class="btn-group"><a class="decrease btn btn-doc" href="#" title="Decrease font size">A-</a><a
+                    class="reset btn btn-doc" href="#" title="Default font size">A</a><a class="increase btn btn-doc"
+                    href="#" title="Increase font size">A+</a></div>
+              </li>
+              <li><a class="btn btn-light mode" href="#" title="Dark"><i class="fa fa-moon-o"></i><span>Dark</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container custom-container">
+        <div class="search-input">
+          <div class="input-group mb-md-3 mb-0">
+            <input type="text" class="form-control" placeholder="search anything here" aria-label="Recipient's username"
+              aria-describedby="basic-addon2">
+            <span class="input-group-text" id="basic-addon2"><i data-feather="search"></i></span>
+          </div>
+          <div class="popular-search">
+            <span>Popular Search:</span>
+            <ul>
+              <li><a href="index.html"><span class="badge bg-primary">Starter kit</span></a></li>
+              <li><a href="basic-ui.html"><span class="badge bg-primary">Element</span></a></li>
+              <li><a href="advance-ui.html"><span class="badge bg-primary">components</span></a></li>
+              <li><a href="forms.html"><span class="badge bg-primary">forms</span></a></li>
+              <li><a href="tables.html"><span class="badge bg-primary">tables</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="effect-sec">
+        <img src="../assets/images/document.gif" class="img-fluid document-gif" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="container custom-container">
+    <div class="document-main">
+      <div class="left-sidebar">
+        <aside>
+          <ul class="list-unstyled nav-sidebar doc-nav">
+            <li class="nav-item">
+              <div class="title"><a class="nav-link" href="index.html"><img src="../assets/images/document/html.png"
+                    alt="" />Getting Started</a></div>
+              <ul class="dropdown-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html">Getting Started</a></li>
+                <li class="nav-item"><a class="nav-link" href="tree.html">Our
+                    Structure</a></li>
+                <li class="nav-item"><a class="nav-link" href="feature-list.html">Avaiable Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="customer-review.html">Customer Reviews</a> </li>
+                <li class="nav-item"><a class="nav-link" href="options.html">Our Layouts</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="title">
+                <a href="structure.html" class="nav-link px-0">
+                  <img src="../assets/images/document/html.png" alt="" />
+                  HTML structure
+                </a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="title">
+                <a href="dark-mode.html" class="nav-link px-0">
+                  <img src="../assets/images/document/html.png" alt="" />
+                  Dark Layout
+                </a>
+              </div>
+            </li>
+            <li class="nav-item mb-2">
+              <div class="title">
+                <a href="rtl.html" class="nav-link px-0">
+                  <img src="../assets/images/document/html.png" alt="" />
+                  RTL Layout
+                </a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="title"><a class="nav-link" href="page-customizer.html"><img
+                    src="../assets/images/document/html.png" alt="" />Customization</a></div>
+              <ul class="dropdown-nav">
+                <li class="nav-item"><a class="nav-link" href="page-customizer.html">Customizer</a></li>
+                <li class="nav-item"><a class="nav-link" href="page-color.html">Color</a></li>
+                <li class="nav-item"><a class="nav-link" href="page-css.html">CSS</a></li>
+                <li class="nav-item"><a class="nav-link" href="page-scss.html">SCSS</a> </li>
+                <li class="nav-item"><a class="nav-link" href="page-javascript.html">javascript</a> </li>
+                <li class="nav-item"><a class="nav-link" href="sidebar-type.html">Sidebar type</a> </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="title"><a class="nav-link" href="basic-ui.html"><img src="../assets/images/document/html.png"
+                    alt="" />Components </a></div>
+              <ul class="dropdown-nav">
+                <li class="nav-item"><a class="nav-link" href="basic-ui.html">Basic UI Elements</a></li>
+                <li class="nav-item"><a class="nav-link" href="advance-ui.html">Advance UI Elements</a></li>
+                <li class="nav-item"><a class="nav-link" href="animations.html">Animations</a></li>
+                <li class="nav-item"><a class="nav-link" href="icons.html">Icons</a></li>
+                <li class="nav-item"><a class="nav-link" href="forms.html">Forms</a></li>
+                <li class="nav-item"><a class="nav-link" href="tables.html">Tables</a></li>
+                <li class="nav-item"><a class="nav-link" href="cards.html">Cards</a></li>
+                <li class="nav-item"><a class="nav-link" href="timeline.html">Timeline</a></li>
+                <li class="nav-item"><a class="nav-link" href="charts.html">Charts</a></li>
+                <li class="nav-item"><a class="nav-link" href="maps.html">Maps</a></li>
+                <li class="nav-item"><a class="nav-link" href="editors.html">Editors</a></li>
+                <li class="nav-item"><a class="nav-link" href="app.html">Applications</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div class="title">
+                <a class="nav-link" href="accordian.html"><img src="../assets/images/document/html.png" alt="" />Faq</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="title">
+                <a class="nav-link" href="credits.html"><img src="../assets/images/document/html.png"
+                    alt="" />Credits</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <div class="title">
+                <a class="nav-link" href="change-log.html"><img src="../assets/images/document/html.png" alt="" />Change
+                  log</a>
+              </div>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div class="content">
+        <div id="section-1">
+          <h4 class="main-title mb-0">Forms</h4>
+          <hr>
+          <div id="section-1-1">
+            <h4 class="sub-title mb-0 title-with-link">Validation form
+              <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/form-validation.html"
+                target="_blank">Preview
+                link
+                <i data-feather="arrow-up-right"></i></a>
+            </h4>
+            <div class="fluid-container pt-3">
+              <form class="needs-validation" novalidate="">
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <label class="form-label" for="validationCustom01">First name</label>
+                    <input class="form-control" id="validationCustom01" type="text" value="Mark" required=""
+                      data-bs-original-title="" title="">
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label" for="validationCustom02">Last name</label>
+                    <input class="form-control" id="validationCustom02" type="text" value="Otto" required=""
+                      data-bs-original-title="" title="">
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label class="form-label" for="validationCustomUsername">Username</label>
+                    <div class="input-group"><span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input class="form-control" id="validationCustomUsername" type="text" placeholder="Username"
+                        aria-describedby="inputGroupPrepend" required="" data-bs-original-title="" title="">
+                      <div class="invalid-feedback">Please choose a username.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label" for="validationCustom03">City</label>
+                    <input class="form-control" id="validationCustom03" type="text" placeholder="City" required=""
+                      data-bs-original-title="" title="">
+                    <div class="invalid-feedback">Please provide a valid city.</div>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label" for="validationCustom04">State</label>
+                    <select class="form-select" id="validationCustom04" required="">
+                      <option selected="" disabled="" value="">Choose...</option>
+                      <option>...</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a valid state.</div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label class="form-label" for="validationCustom05">Zip</label>
+                    <input class="form-control" id="validationCustom05" type="text" placeholder="Zip" required=""
+                      data-bs-original-title="" title="">
+                    <div class="invalid-feedback">Please provide a valid zip.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <div class="checkbox p-0">
+                      <input class="form-check-input" id="invalidCheck" type="checkbox" required=""
+                        data-bs-original-title="" title="">
+                      <label class="form-check-label" for="invalidCheck">Agree to terms and conditions</label>
+                    </div>
+                    <div class="invalid-feedback">You must agree before submitting.</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary" type="submit" data-bs-original-title="" title="">Submit
+                  form</button>
+              </form>
+              <div class="code-box-copy mt-3">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#validaitonform" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="validaitonform">&lt;form class="needs-validation" novalidate=""&gt;
+  &lt;div class="row g-3"&gt;
+   &lt;div class="col-md-4"&gt;
+    &lt;label class="form-label" for="validationCustom01"&gt;First name&lt;/label&gt;
+    &lt;input class="form-control" id="validationCustom01" type="text" value="Mark" required="" data-bs-original-title="" title=""&gt;
+    &lt;div class="valid-feedback"&gt;Looks good!&lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div class="col-md-4"&gt;
+    &lt;label class="form-label" for="validationCustom02"&gt;Last name&lt;/label&gt;
+    &lt;input class="form-control" id="validationCustom02" type="text" value="Otto" required="" data-bs-original-title="" title=""&gt;
+    &lt;div class="valid-feedback"&gt;Looks good!&lt;/div&gt;
+   &lt;/div&gt;
+  &lt;div class="col-md-4 mb-3"&gt;
+   &lt;label class="form-label" for="validationCustomUsername"&gt;Username&lt;/label&gt;
+   &lt;div class="input-group"&gt;
+    &lt;span class="input-group-text" id="inputGroupPrepend"&gt;@&lt;/span&gt;
+    &lt;input class="form-control" id="validationCustomUsername" type="text" placeholder="Username" aria-describedby="inputGroupPrepend" required="" data-bs-original-title="" title=""&gt;
+    &lt;div class="invalid-feedback"&gt;Please choose a username.&lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row g-3"&gt;
+  &lt;div class="col-md-6"&gt;
+   &lt;label class="form-label" for="validationCustom03"&gt;City&lt;/label&gt;
+   &lt;input class="form-control" id="validationCustom03" type="text" placeholder="City" required="" data-bs-original-title="" title=""&gt;
+   &lt;div class="invalid-feedback"&gt;Please provide a valid city.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-3"&gt;
+   &lt;label class="form-label" for="validationCustom04"&gt;State&lt;/label&gt;
+   &lt;select class="form-select" id="validationCustom04" required=""&gt;
+    &lt;option selected="" disabled="" value=""&gt;Choose...&lt;/option&gt;
+    &lt;option&gt;...&lt;/option&gt;
+   &lt;/select&gt;
+   &lt;div class="invalid-feedback"&gt;Please select a valid state.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-md-3 mb-3"&gt;
+   &lt;label class="form-label" for="validationCustom05"&gt;Zip&lt;/label&gt;
+   &lt;input class="form-control" id="validationCustom05" type="text" placeholder="Zip" required="" data-bs-original-title="" title=""&gt;
+   &lt;div class="invalid-feedback"&gt;Please provide a valid zip.&lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="mb-3"&gt;
+  &lt;div class="form-check"&gt;
+   &lt;div class="checkbox p-0"&gt;
+    &lt;input class="form-check-input" id="invalidCheck" type="checkbox" required="" data-bs-original-title="" title=""&gt;
+    &lt;label class="form-check-label" for="invalidCheck"&gt;Agree to terms and conditions&lt;/label&gt;
+   &lt;/div&gt;
+   &lt;div class="invalid-feedback"&gt;You must agree before submitting.&lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;button class="btn btn-primary" type="submit" data-bs-original-title="" title=""&gt;Submit form&lt;/button&gt;
+&lt;/form&gt;</p></code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">To use validation you have to add the following script tag</h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#validationjs" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="validationjs">&lt;!-- Validation JS --&gt;
+&lt;script src=&quot;../assets/js/form-validation-custom.js&quot; &gt;&lt;/script&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-2">
+            <h4 class="sub-title mb-0 title-with-link">Base input
+              <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/base-input.html"
+                target="_blank">Preview
+                link
+                <i data-feather="arrow-up-right"></i></a>
+            </h4>
+            <div class="fluid-container pt-3">
+              <form class="form theme-form">
+                <div class="card-body p-0">
+                  <div class="row">
+                    <div class="col">
+                      <label class="form-label" for="exampleFormControlInput1">Email address</label>
+                      <input class="form-control" id="exampleFormControlInput1" type="email"
+                        placeholder="name@example.com" data-bs-original-title="" title="">
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="code-box-copy mt-4">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#basicinput" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="basicinput">&lt;form class="form theme-form"&gt;
+ &lt;div class="card-body p-0"&gt;
+  &lt;div class="row"&gt;
+   &lt;div class="col"&gt;
+    &lt;div class="mb-3"&gt;
+      &lt;label class="form-label" for="exampleFormControlInput1"&gt;Email address&lt;/label&gt;
+      &lt;input class="form-control" id="exampleFormControlInput1" type="email" placeholder="name@example.com" data-bs-original-title="" title=""&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-3">
+            <h4 class="sub-title mb-0 title-with-link">Checkbox & Radio
+              <a class="badge badge-primary-light"
+                href="https://admin.pixelstrap.net/riho/template/radio-checkbox-control.html" target="_blank">Preview
+                link
+                <i data-feather="arrow-up-right"></i></a>
+            </h4>
+            <div class="fluid-container pt-3">
+              <div class="row">
+                <div class="custom-radio-ml col-lg-3 col-md-6">
+                  <div class="form-check radio radio-primary">
+                    <input class="form-check-input" id="radio1" type="radio" name="radio1" value="option1"
+                      data-bs-original-title="" title="">
+                    <label class="form-check-label" for="radio1">Option<span class="digits"> 1</span></label>
+                  </div>
+                  <div class="form-check radio radio-primary">
+                    <input class="form-check-input" id="radio3" type="radio" name="radio1" value="option1" disabled=""
+                      data-bs-original-title="" title="">
+                    <label class="form-check-label" for="radio3">Disabled</label>
+                  </div>
+                  <div class="form-check radio radio-primary">
+                    <input class="form-check-input" id="radio4" type="radio" name="radio1" value="option1" checked=""
+                      data-bs-original-title="" title="">
+                    <label class="form-check-label" for="radio4">Checked</label>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-check checkbox mb-0">
+                    <input class="form-check-input" id="checkbox1" type="checkbox" data-bs-original-title="" title="">
+                    <label class="form-check-label my-0" for="checkbox1">Default</label>
+                  </div>
+                  <div class="form-check checkbox mb-0">
+                    <input class="form-check-input" id="checkbox2" type="checkbox" disabled="" data-bs-original-title=""
+                      title="">
+                    <label class="form-check-label my-0" for="checkbox2">Disabled</label>
+                  </div>
+                  <div class="form-check checkbox mb-0">
+                    <input class="form-check-input" id="checkbox3" type="checkbox" checked="" data-bs-original-title=""
+                      title="">
+                    <label class="form-check-label my-0" for="checkbox3">Checked</label>
+                  </div>
+                </div>
+              </div>
+              <div class="code-box-copy mt-4">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#checkbox_radio" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="checkbox_radio">&lt;div class="row"&gt;
+ &lt;div class="custom-radio-ml col-lg-3 col-md-6"&gt;
+  &lt;div class="form-check radio radio-primary"&gt;
+   &lt;input class="form-check-input" id="radio1" type="radio" name="radio1" value="option1" data-bs-original-title="" title=""&gt;
+   &lt;label class="form-check-label" for="radio1"&gt;Option&lt;span class="digits"&gt; 1&lt;/span&gt;&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="form-check radio radio-primary"&gt;
+   &lt;input class="form-check-input" id="radio3" type="radio" name="radio1" value="option1" disabled="" data-bs-original-title="" title=""&gt;
+   &lt;label class="form-check-label" for="radio3"&gt;Disabled&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="form-check radio radio-primary"&gt;
+   &lt;input class="form-check-input" id="radio4" type="radio" name="radio1" value="option1" checked="" data-bs-original-title="" title=""&gt;
+   &lt;label class="form-check-label" for="radio4"&gt;Checked&lt;/label&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="col-md-6 col-lg-3"&gt;
+ &lt;div class="form-check checkbox mb-0"&gt;
+  &lt;input class="form-check-input" id="checkbox1" type="checkbox" data-bs-original-title="" title=""&gt;
+  &lt;label class="form-check-label my-0" for="checkbox1"&gt;Default&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="form-check checkbox mb-0"&gt;
+  &lt;input class="form-check-input" id="checkbox2" type="checkbox" disabled="" data-bs-original-title="" title=""&gt;
+  &lt;label class="form-check-label my-0" for="checkbox2"&gt;Disabled&lt;/label&gt;
+ &lt;/div&gt;
+ &lt;div class="form-check checkbox mb-0"&gt;
+  &lt;input class="form-check-input" id="checkbox3" type="checkbox" checked="" data-bs-original-title="" title=""&gt;
+  &lt;label class="form-check-label my-0" for="checkbox3"&gt;Checked&lt;/label&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-4">
+            <h4 class="sub-title mb-0 title-with-link">Input group
+              <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/input-group.html"
+                target="_blank">Preview
+                link
+                <i data-feather="arrow-up-right"></i></a>
+            </h4>
+            <div class="fluid-container pt-3">
+              <form>
+                <div class="mb-3 m-form__group">
+                  <div class="form-label">Left Addon</div>
+                  <div class="input-group"><span class="input-group-text">@</span>
+                    <input class="form-control" type="text" placeholder="Email">
+                  </div>
+                </div>
+              </form>
+              <div class="code-box-copy mt-4">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#input_group" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="input_group">&lt;form&gt;
+&lt;div class="mb-3 m-form__group"&gt;
+ &lt;div class="form-label"&gt;Left Addon&lt;/div&gt;
+  &lt;div class="input-group"&gt;
+   &lt;span class="input-group-text"&gt;@&lt;/span&gt;
+   &lt;input class="form-control" type="text" placeholder="Email" data-bs-original-title="" title=""&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-5">
+            <h4 class="sub-title mb-0 title-with-link">Datepicker
+              <span class="d-flex gap-1">
+                <a class="badge badge-primary-light" href="http://www.daterangepicker.com/" target="_blank">Offical
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+                <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/datepicker.html"
+                  target="_blank">Preview
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+              </span>
+            </h4>
+            <div class="fluid-container pt-3">
+              <div class="date-picker">
+                <form class="theme-form">
+                  <div class="mb-3 row g-3">
+                    <label class="col-sm-3 text-sm-end">Default</label>
+                    <div class="col-xl-5 col-sm-9">
+                      <div class="input-group">
+                        <input class="datepicker-here form-control digits" type="text" data-language="en"
+                          data-bs-original-title="" title="">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="code-box-copy mt-3">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#datepickercode" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="datepickercode">&lt;div class="date-picker"&gt;
+&lt;form class="theme-form"&gt;
+ &lt;div class="mb-3 row g-3"&gt;
+  &lt;label class="col-sm-3 col-form-label text-sm-end"&gt;Default&lt;/label&gt;
+  &lt;div class="col-xl-5 col-sm-9"&gt;
+   &lt;div class="input-group"&gt;
+    &lt;input class="datepicker-here form-control digits" type="text" data-language="en" data-bs-original-title="" title="" /&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/form&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">To use datepicker you have to add the following script tag</h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#datepickerjs" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="datepickerjs">&lt;!-- Datepicker JS --&gt;
+&lt;script src="../assets/js/datepicker/date-picker/datepicker.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/datepicker/date-picker/datepicker.en.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/datepicker/date-picker/datepicker.custom.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">You have to add the following style css file for the datepicker
+                design</h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#datepickercss" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="datepickercss">&lt;!-- Datepicker CSS --&gt;
+&lt;link rel="stylesheet" type="text/css" href="../assets/css/vendors/date-picker.css"&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-6">
+            <h4 class="sub-title mb-0 title-with-link">Switch
+              <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/switch.html"
+                target="_blank">Preview
+                link
+                <i data-feather="arrow-up-right"></i></a>
+            </h4>
+            <div class="fluid-container pt-3">
+              <label class="switch">
+                <input type="checkbox" checked="" data-bs-original-title="" title=""><span class="switch-state"></span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" data-bs-original-title="" title=""><span class="switch-state"></span>
+              </label>
+              <div class="code-box-copy mt-4">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#switchcode" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="switchcode">&lt;label class="switch"&gt;
+ &lt;input type="checkbox" checked="" data-bs-original-title="" title=""&gt;
+ &lt;span class="switch-state"&gt;&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="switch"&gt;
+ &lt;input type="checkbox" data-bs-original-title="" title=""&gt;
+ &lt;span class="switch-state"&gt;&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-7">
+            <h4 class="sub-title mb-0 title-with-link">Touchspin
+              <span class="d-flex gap-1">
+                <a class="badge badge-primary-light" href="https://www.virtuosoft.eu/code/bootstrap-touchspin/"
+                  target="_blank">Offical
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+                <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/touchspin.html"
+                  target="_blank">Preview
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+              </span>
+            </h4>
+            <div class="fluid-container pt-3">
+              <div class="row">
+                <div class="col-xxl-4 col-md-5">
+                  <fieldset>
+                    <div class="input-group">
+                      <input class="touchspin" type="text" value="40">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="code-box-copy mt-3">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#touchspincode" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="touchspincode">&lt;fieldset&gt;
+&lt;div class="input-group"&gt;
+  &lt;input class="touchspin" type="text" value="40"&gt;
+&lt;/div&gt;
+&lt;/fieldset&gt;</code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">To use touchspin you have to add the following script files
+              </h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#touchspinjs" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="touchspinjs">&lt;!-- Touchspin JS --&gt;
+&lt;script src="../assets/js/touchspin/vendors.min.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/touchspin/touchspin.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/touchspin/input-groups.min.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-8">
+            <h4 class="sub-title mb-0 title-with-link">Select2
+              <span class="d-flex gap-1">
+                <a class="badge badge-primary-light" href="https://select2.org/" target="_blank">Offical
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+                <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/select2.html"
+                  target="_blank">Preview
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+              </span>
+            </h4>
+            <div class="fluid-container pt-3">
+              <div class="col-form-label pt-0">Default Placeholder</div>
+              <select class="js-example-placeholder-multiple col-sm-12" multiple="multiple">
+                <option value="AL">Alabama</option>
+                <option value="WY">Wyoming</option>
+                <option value="WY">Coming</option>
+                <option value="WY">Hanry Die</option>
+                <option value="WY">John Doe</option>
+              </select>
+              <div class="code-box-copy mt-3">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#select2code" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="select2code">&lt;div class="col-form-label"&gt;Default Placeholder&lt;/div&gt;
+  &lt;select class="js-example-placeholder-multiple col-sm-12" multiple="multiple"&gt;
+    &lt;option value="AL"&gt;Alabama&lt;/option&gt;
+    &lt;option value="WY"&gt;Wyoming&lt;/option&gt;
+    &lt;option value="WY"&gt;Coming&lt;/option&gt;
+    &lt;option value="WY"&gt;Hanry Die&lt;/option&gt;
+    &lt;option value="WY"&gt;John Doe&lt;/option&gt;
+  &lt;/select&gt;</code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">To use select2 you have to add the following script files</h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#select2js" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="select2js">&lt;!-- Touchspin JS --&gt;
+&lt;script src="../assets/js/select2/select2.full.min.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/select2/select2-custom.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">You have to add the following style css file for the select2
+                design</h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#select2css" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="select2css">&lt;!-- Select 2 CSS --&gt;
+&lt;link rel="stylesheet" type="text/css" href="../assets/css/vendors/select2.css"&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-9">
+            <h4 class="sub-title mb-0 title-with-link">Typeahead
+              <span class="d-flex gap-1">
+                <a class="badge badge-primary-light" href="https://github.com/twitter/typeahead.js"
+                  target="_blank">Offical
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+                <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/typeahead.html"
+                  target="_blank">Preview
+                  link
+                  <i data-feather="arrow-up-right"></i></a>
+              </span>
+            </h4>
+            <div class="fluid-container pt-3">
+              <div id="the-basics">
+                <form class="theme-form">
+                  <div>
+                    <input class="typeahead form-control" type="text" placeholder="States of USA">
+                  </div>
+                </form>
+              </div>
+              <div class="code-box-copy mt-3">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#typeaheadcode" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="typeaheadcode">&lt;div id="the-basics"&gt;
+&lt;form class="theme-form"&gt;
+  &lt;div&gt;
+    &lt;input class="typeahead form-control" type="text" placeholder="States of USA" /&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">To use typeahead you have to add the following script files
+              </h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#typeaheadjs" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="typeaheadjs">&lt;!-- Typeahead JS --&gt;
+&lt;script src="../assets/js/typeahead/handlebars.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/typeahead/typeahead.bundle.js"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/typeahead/typeahead.custom.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="section-1-10">
+            <h4 class="sub-title mb-0 title-with-link">Form wizard
+              <a class="badge badge-primary-light" href="https://admin.pixelstrap.net/riho/template/form-wizard.html"
+                target="_blank">Preview
+                link
+                <i data-feather="arrow-up-right"></i></a>
+            </h4>
+            <div class="fluid-container pt-3">
+              <form class="form-wizard" id="regForm" action="#" method="POST">
+                <div class="tab">
+                  <div class="mb-3">
+                    <label for="name">First Name</label>
+                    <input class="form-control" id="name" type="text" placeholder="Johan" required="required">
+                  </div>
+                  <div class="mb-3">
+                    <label for="lname">Last Name</label>
+                    <input class="form-control" id="lname" type="text" placeholder="Deo">
+                  </div>
+                  <div class="mb-3">
+                    <label for="contact">Contact No.</label>
+                    <input class="form-control" id="contact" type="number" placeholder="123456789">
+                  </div>
+                </div>
+                <div class="tab">
+                  <div class="mb-3 m-t-15">
+                    <label for="exampleFormControlInput1">Email address</label>
+                    <input class="form-control" id="exampleFormControlInput1" type="email"
+                      placeholder="name@example.com">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1">Confirm Password</label>
+                    <input class="form-control" id="exampleInputcPassword1" type="password" placeholder="Enter again">
+                  </div>
+                </div>
+                <div class="tab">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1">Birthday:</label>
+                    <input class="form-control" type="date">
+                  </div>
+                  <div class="mb-3">
+                    <label class="control-label">Age</label>
+                    <input class="form-control" placeholder="Age" type="text">
+                  </div>
+                  <div class="mb-3">
+                    <label class="control-label">Have Passport</label>
+                    <input class="form-control" placeholder="Yes/No" type="text">
+                  </div>
+                </div>
+                <div class="tab">
+                  <div class="mb-3">
+                    <label class="control-label">Country</label>
+                    <input class="form-control mt-1" type="text" placeholder="Country" required="required">
+                  </div>
+                  <div class="mb-3">
+                    <label class="control-label">State</label>
+                    <input class="form-control mt-1" type="text" placeholder="State" required="required">
+                  </div>
+                  <div class="mb-3">
+                    <label class="control-label">City</label>
+                    <input class="form-control mt-1" type="text" placeholder="City" required="required">
+                  </div>
+                </div>
+                <div>
+                  <div class="text-end btn-mb">
+                    <button class="btn btn-secondary" id="prevBtn" type="button"
+                      onclick="nextPrev(-1)">Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" type="button" onclick="nextPrev(1)">Next</button>
+                  </div>
+                </div>
+                <!-- Circles which indicates the steps of the form:-->
+                <div class="text-center"><span class="step"></span><span class="step"></span><span
+                    class="step"></span><span class="step"></span></div>
+                <!-- Circles which indicates the steps of the form:-->
+                <!-- Container-fluid Ends-->
+              </form>
+              <div class="code-box-copy mt-3">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#wizardcode" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="wizardcode">&lt;form class="form-wizard" id="regForm" action="#" method="POST"&gt;
+&lt;div class="tab"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="name"&gt;First Name&lt;/label&gt;
+    &lt;input class="form-control" id="name" type="text" placeholder="Johan" required="required"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="lname"&gt;Last Name&lt;/label&gt;
+    &lt;input class="form-control" id="lname" type="text" placeholder="Deo"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="contact"&gt;Contact No.&lt;/label&gt;
+    &lt;input class="form-control" id="contact" type="number" placeholder="123456789"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="tab"&gt;
+  &lt;div class="mb-3 m-t-15"&gt;
+    &lt;label for="exampleFormControlInput1"&gt;Email address&lt;/label&gt;
+    &lt;input class="form-control" id="exampleFormControlInput1" type="email" placeholder="name@example.com"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputPassword1"&gt;Password&lt;/label&gt;
+    &lt;input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputPassword1"&gt;Confirm Password&lt;/label&gt;
+    &lt;input class="form-control" id="exampleInputcPassword1" type="password" placeholder="Enter again"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="tab"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleFormControlInput1"&gt;Birthday:&lt;/label&gt;
+    &lt;input class="form-control" type="date"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="control-label"&gt;Age&lt;/label&gt;
+    &lt;input class="form-control" placeholder="Age" type="text"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="control-label"&gt;Have Passport&lt;/label&gt;
+    &lt;input class="form-control" placeholder="Yes/No" type="text"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="tab"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="control-label"&gt;Country&lt;/label&gt;
+    &lt;input class="form-control mt-1" type="text" placeholder="Country" required="required"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="control-label"&gt;State&lt;/label&gt;
+    &lt;input class="form-control mt-1" type="text" placeholder="State" required="required"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label class="control-label"&gt;City&lt;/label&gt;
+    &lt;input class="form-control mt-1" type="text" placeholder="City" required="required"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;div class="text-end btn-mb"&gt;
+    &lt;button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)"&gt;Previous&lt;/button&gt;
+    &lt;button class="btn btn-primary" id="nextBtn" type="button" onclick="nextPrev(1)"&gt;Next&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Circles which indicates the steps of the form:--&gt;
+&lt;div class="text-center"&gt;&lt;span class="step"&gt;&lt;/span&gt;&lt;span class="step"&gt;&lt;/span&gt;&lt;span class="step"&gt;&lt;/span&gt;&lt;span class="step"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;!-- Circles which indicates the steps of the form:--&gt;
+&lt;!-- Container-fluid Ends--&gt;
+&lt;/form&gt;</code></pre>
+              </div>
+              <h5 class="pt-3 pb-2 inner-sub-title mt-0">To use form wizard you have to add the following script files
+              </h5>
+              <div class="code-box-copy">
+                <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#wizardjs" title="Copy"><i
+                    class="fa fa-files-o"></i></button>
+                <pre><code class="language-html" id="wizardjs">&lt;!-- form wizard JS --&gt;
+&lt;script src="../assets/js/form-wizard/form-wizard.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left-sidebar right-part">
+        <aside>
+          <ul class="list-unstyled nav-sidebar doc-nav">
+            <li class="nav-item">
+              <div class="title">On this page</div>
+              <ul class="dropdown-nav ps-0">
+                <li class="nav-item"><a class="nav-link" href="#section-1-1" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i> Validation form</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-2" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Base input</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-3" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Checkbox & radio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-4" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Input group</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-5" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Datepicker</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-6" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Switch</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-7" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Touchspin</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-8" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Select2</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-9" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Typeahead</a></li>
+                <li class="nav-item"><a class="nav-link" href="#section-1-10" data-original-title="" title=""><i
+                      class="fa fa-angle-right me-2"></i>Form wizard</a></li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      <div class="row footer-theme partition-f">
+        <div class="col-12">
+          Copyright 2024 © Riho theme by pixelstrap
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+<!-- latest jquery-->
+<script src="../assets/js/jquery-3.5.1.min.js"></script>
+<!-- Bootstrap js-->
+<script src="../assets/js/bootstrap/popper.min.js"></script>
+<script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+<!-- feather icon js-->
+<script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+<script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+<!-- popover js-->
+<!-- code copy box js-->
+<script src="../assets/js/prism/prism.min.js"></script>
+<script src="../assets/js/clipboard/clipboard.min.js"></script>
+<script src="../assets/js/custom-card/custom-card.js"></script>
+<script src="../assets/js/tooltip-init.js"></script>
+<script src="../assets/js/form-validation-custom.js"></script>
+<script src="../assets/js/datepicker/date-picker/datepicker.js"></script>
+<script src="../assets/js/datepicker/date-picker/datepicker.en.js"></script>
+<script src="../assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+<script src="../assets/js/touchspin/vendors.min.js"></script>
+<script src="../assets/js/touchspin/touchspin.js"></script>
+<script src="../assets/js/touchspin/input-groups.min.js"></script>
+<script src="../assets/js/select2/select2.full.min.js"></script>
+<script src="../assets/js/select2/select2-custom.js"></script>
+<script src="../assets/js/typeahead/handlebars.js"></script>
+<script src="../assets/js/typeahead/typeahead.bundle.js"></script>
+<script src="../assets/js/typeahead/typeahead.custom.js"></script>
+<script src="../assets/js/form-wizard/form-wizard.js"></script>
+<script src="../assets/js/document/main.js"></script>
+<script src="../assets/js/script.js"></script>
+
+</html>

@@ -1,0 +1,71 @@
+*Project SAAS Koperasi*
+*status : Develop*
+*Nama Programmer : Pramudita*
+
+Task to do :
+-   change logic in edit plan select feature
+-   user management tenant     
+-   role and permission in tenant
+-   add plan by tenant
+-   handle exp date plan Tenant
+-   handle trial plan in central for tenant
+-   implement setting in tenant
+Task On Progress
+-   implement Gate by plan each ofvtenant
+-   handle auth tenant
+-   fix crud feature
+-   fix feature in plan
+Task Complete
+-   user management & role permissions central
+-   crud plan -> have plan pricing , plan status, and role_id
+-   handle tenant multiple databases
+-   handle  dynamic databases
+-   crud for manage tenant -> db name,domain
+-   implement logic page per tenant
+-   landing page for central
+-   crud post & pages and category for landing page
+-   setting central
+-   profile central
+-   implement change log in landing page for versioning saas and information on saas
+
+
+@62859138483542
+
+Project Cargo
+Status : Develop
+Nama Programmer : Pramudita
+
+Minggu Sebelumnya:
+Task to do :
+- inventrory in admin transaction     
+- marketing order
+- fee trancation to marketing
+- Landing Page
+- Hutang Piutang
+
+Task On Progress
+- Transaksi
+- fix issues in git and mitra
+
+Task Complete
+- Search and filter all module
+- marketing layout update
+- Export Mitra
+- Push notification
+- setting tax ppn and pph
+- list notification ui
+- formating new marking code
+- category product
+- Admin trx fixed minor
+- setting fee customer rate and sea/air
+- Pelanggan
+- Mitra
+- Marketing
+- Barang
+- warehouse in mitra
+- Setup Starter Kit
+- Master Data
+- shpping list
+- export faktur and surat jalan in shppings
+- detail and update status in detail shpping
+- Add shpping rates in mitra
