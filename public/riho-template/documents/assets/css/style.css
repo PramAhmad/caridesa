@@ -448,7 +448,7 @@
   font-weight: 500;
   padding: 10px 30px;
   border-radius: 5px;
-  background: linear-gradient(26deg, #7366ff 0%, #a26cf8 100%);
+  background: linear-gradient(26deg, oklch(50.8% 0.118 165.612) 0%, #a26cf8 100%);
   letter-spacing: 0.06rem;
 }
 .btn-gradient:hover {
@@ -4065,7 +4065,7 @@ ul.list-style li:last-child {
 
 .direct .nav-link.active {
   background-color: rgba(115, 102, 255, 0.16) !important;
-  color: #7366ff !important;
+  color: oklch(50.8% 0.118 165.612) !important;
 }
 
 .card {
@@ -4081,7 +4081,7 @@ ul.list-style li:last-child {
 }
 
 .nav-tabs .nav-link.active {
-  color: #7366ff !important;
+  color: oklch(50.8% 0.118 165.612) !important;
 }
 
 .card .card-header {
@@ -4966,7 +4966,7 @@ ul.list-style li:last-child {
   display: block;
 }
 .doc_accordion .card-header button i:active {
-  color: #7366ff;
+  color: oklch(50.8% 0.118 165.612);
 }
 .doc_accordion .card-header button.collapsed i {
   display: block;
@@ -6474,7 +6474,7 @@ body.dark-only .nav-sidebar > .nav-item .title {
   color: rgba(255, 255, 255, 0.6);
 }
 body.dark-only .toggle-code a:hover {
-  color: #7366ff;
+  color: oklch(50.8% 0.118 165.612);
 }
 body.dark-only .right-log-content .log-download-links {
   border-top: 1px solid #374558;

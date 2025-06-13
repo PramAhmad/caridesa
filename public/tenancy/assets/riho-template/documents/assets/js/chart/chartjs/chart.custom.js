@@ -3,10 +3,10 @@ var radarData = {
     datasets: [{
         label: "My First dataset",
         fillColor: "rgba(145, 46, 252, 0.4)",
-        strokeColor: "#7366ff",
-        pointColor: "#7366ff",
-        pointStrokeColor: "#7366ff",
-        pointHighlightFill: "#7366ff" ,
+        strokeColor: "oklch(50.8% 0.118 165.612)",
+        pointColor: "oklch(50.8% 0.118 165.612)",
+        pointStrokeColor: "oklch(50.8% 0.118 165.612)",
+        pointHighlightFill: "oklch(50.8% 0.118 165.612)" ,
         pointHighlightStroke: "rgba(145, 46, 252, 0.4)",
         data: [12, 3, 5, 18, 7]
     }]

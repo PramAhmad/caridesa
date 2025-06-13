@@ -147,26 +147,26 @@ A VERTICAL event
 .fc .fc-button-primary {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #7366FF;
-  background-color: var(--fc-button-bg-color, #7366FF);
-  border-color: #7366FF;
-  border-color: var(--fc-button-border-color, #7366FF);
+  background-color: oklch(50.8% 0.118 165.612);
+  background-color: var(--fc-button-bg-color, oklch(50.8% 0.118 165.612));
+  border-color: oklch(50.8% 0.118 165.612);
+  border-color: var(--fc-button-border-color, oklch(50.8% 0.118 165.612));
 }
 .fc .fc-button-primary:hover {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #7366FF;
-  background-color: var(--fc-button-hover-bg-color, #7366FF);
-  border-color: #7366FF;
-  border-color: var(--fc-button-hover-border-color, #7366FF);
+  background-color: oklch(50.8% 0.118 165.612);
+  background-color: var(--fc-button-hover-bg-color, oklch(50.8% 0.118 165.612));
+  border-color: oklch(50.8% 0.118 165.612);
+  border-color: var(--fc-button-hover-border-color, oklch(50.8% 0.118 165.612));
 }
 .fc .fc-button-primary:disabled {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #7366FF;
-  background-color: var(--fc-button-bg-color, #7366FF);
-  border-color: #7366FF;
-  border-color: var(--fc-button-border-color, #7366FF);
+  background-color: oklch(50.8% 0.118 165.612);
+  background-color: var(--fc-button-bg-color, oklch(50.8% 0.118 165.612));
+  border-color: oklch(50.8% 0.118 165.612);
+  border-color: var(--fc-button-border-color, oklch(50.8% 0.118 165.612));
 }
 .fc .fc-button-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
@@ -174,10 +174,10 @@ A VERTICAL event
 .fc .fc-button-primary:not(:disabled):active {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #7366FF;
-  background-color: var(--fc-button-active-bg-color, #7366FF);
+  background-color: oklch(50.8% 0.118 165.612);
+  background-color: var(--fc-button-active-bg-color, oklch(50.8% 0.118 165.612));
   border-color: #534686;
-  border-color: var(--fc-button-active-border-color, #7366FF);
+  border-color: var(--fc-button-active-border-color, oklch(50.8% 0.118 165.612));
 }
 .fc .fc-button-primary:not(:disabled):active:focus {
   box-shadow: 0 0 0 0.2rem rgba(76, 91, 106, 0.5);
@@ -185,10 +185,10 @@ A VERTICAL event
 .fc .fc-button-primary:not(:disabled).fc-button-active {
   color: #fff;
   color: var(--fc-button-text-color, #fff);
-  background-color: #7366FF;
-  background-color: var(--fc-button-active-bg-color, #7366FF);
+  background-color: oklch(50.8% 0.118 165.612);
+  background-color: var(--fc-button-active-bg-color, oklch(50.8% 0.118 165.612));
   border-color: #534686;
-  border-color: var(--fc-button-active-border-color, #7366FF);
+  border-color: var(--fc-button-active-border-color, oklch(50.8% 0.118 165.612));
 }
 .fc .fc-button-primary:not(:disabled).fc-button-active:focus {
   box-shadow: 0 0 0 0.2rem rgba(115, 102, 255, 0.5);
@@ -662,8 +662,8 @@ A VERTICAL event
   box-sizing: content-box;
   width: 0;
   height: 0;
-  border: 5px solid #7366FF;
-  border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #7366FF);
+  border: 5px solid oklch(50.8% 0.118 165.612);
+  border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, oklch(50.8% 0.118 165.612));
   border-radius: 5px;
   border-radius: calc(var(--fc-list-event-dot-width, 10px) / 2);
 }
@@ -1051,10 +1051,10 @@ a.fc-event:hover {
 
 .fc-h-event {
   display: block;
-  border: 1px solid #7366FF;
-  border: 1px solid var(--fc-event-border-color, #7366FF);
-  background-color: #7366FF;
-  background-color: var(--fc-event-bg-color, #7366FF);
+  border: 1px solid oklch(50.8% 0.118 165.612);
+  border: 1px solid var(--fc-event-border-color, oklch(50.8% 0.118 165.612));
+  background-color: oklch(50.8% 0.118 165.612);
+  background-color: var(--fc-event-bg-color, oklch(50.8% 0.118 165.612));
 }
 .fc-h-event .fc-event-main {
   color: #fff;
@@ -1182,18 +1182,18 @@ a.fc-event:hover {
   box-sizing: content-box;
   width: 0;
   height: 0;
-  border: 4px solid #7366FF;
-  border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid var(--fc-event-border-color, #7366FF);
+  border: 4px solid oklch(50.8% 0.118 165.612);
+  border: calc(var(--fc-daygrid-event-dot-width, 8px) / 2) solid var(--fc-event-border-color, oklch(50.8% 0.118 165.612));
   border-radius: 4px;
   border-radius: calc(var(--fc-daygrid-event-dot-width, 8px) / 2);
 }
 
 .fc-v-event {
   display: block;
-  border: 1px solid #7366FF;
-  border: 1px solid var(--fc-event-border-color, #7366FF);
-  background-color: #7366FF;
-  background-color: var(--fc-event-bg-color, #7366FF);
+  border: 1px solid oklch(50.8% 0.118 165.612);
+  border: 1px solid var(--fc-event-border-color, oklch(50.8% 0.118 165.612));
+  background-color: oklch(50.8% 0.118 165.612);
+  background-color: var(--fc-event-bg-color, oklch(50.8% 0.118 165.612));
 }
 .fc-v-event .fc-event-main {
   color: #fff;

@@ -70,19 +70,19 @@ $ct-include-alternative-responsive-containers: $ct-include-classes !default;
 // Series names and colors. This can be extended or customized as desired. Just add more series and colors.
 $ct-series-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) !default;
 $ct-series-colors: (
-  #7366ff,
+  oklch(50.8% 0.118 165.612),
   #f73164,
   #51bb25,
   #f8d62b,
   #f8d62b,
   #dc3545,
-  #7366ff,
-  #7366ff,
-  #7366ff,
-  #7366ff,
-  #7366ff,
-  #7366ff,
-  #7366ff,
-  #7366ff,
-  #7366ff
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612),
+  oklch(50.8% 0.118 165.612)
 ) !default;

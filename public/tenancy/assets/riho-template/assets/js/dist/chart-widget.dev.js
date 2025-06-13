@@ -162,7 +162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     fill: {
-      colors: ['#7366ff'],
+      colors: ['oklch(50.8% 0.118 165.612)'],
       type: 'gradient',
       gradient: {
         shade: 'light',
@@ -174,7 +174,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         stops: [0, 100]
       }
     },
-    colors: ['#7366ff'],
+    colors: ['oklch(50.8% 0.118 165.612)'],
     series: [{
       data: [70, 60, 82, 80, 60, 90, 70, 120, 50, 60, 0]
     }],
@@ -565,7 +565,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     fill: {
       opacity: 0.9,
-      colors: ['#7366ff']
+      colors: ['oklch(50.8% 0.118 165.612)']
     },
     series: [{
       data: [{
@@ -1136,7 +1136,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }
     },
-    colors: ['#7366ff'],
+    colors: ['oklch(50.8% 0.118 165.612)'],
     stroke: {
       width: 0
     },
@@ -1169,11 +1169,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       max: 100
     },
     fill: {
-      colors: ['#7366ff'],
+      colors: ['oklch(50.8% 0.118 165.612)'],
       type: 'gradient',
       gradient: {
         inverseColors: false,
-        gradientToColors: ['#7366ff']
+        gradientToColors: ['oklch(50.8% 0.118 165.612)']
       }
     }
   };

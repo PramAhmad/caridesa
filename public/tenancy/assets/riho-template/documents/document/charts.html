@@ -254,7 +254,7 @@ function drawBasic() {
     ["Copper", 10, "#a927f9"],
     ["Silver", 12, "#f8d62b"],
     ["Gold", 14, "#f73164"],
-    ["Platinum", 16, "color: #7366ff"]
+    ["Platinum", 16, "color: oklch(50.8% 0.118 165.612)"]
 ]),
 d = new google.visualization.DataView(a);
 d.setColumns([0, 1, {
@@ -331,15 +331,15 @@ c.draw(d, b)
           width: '100%',
           height: '150',
           tooltipClassname: 'chart-sparkline',
-          lineColor: '#7366ff',
+          lineColor: 'oklch(50.8% 0.118 165.612)',
           fillColor: 'transparent',
-          highlightLineColor: '#7366ff',
-          highlightSpotColor: '#7366ff',
-          targetColor: '#7366ff',
-          performanceColor: '#7366ff',
-          boxFillColor: '#7366ff',
-          medianColor: '#7366ff',
-          minSpotColor: '#7366ff'
+          highlightLineColor: 'oklch(50.8% 0.118 165.612)',
+          highlightSpotColor: 'oklch(50.8% 0.118 165.612)',
+          targetColor: 'oklch(50.8% 0.118 165.612)',
+          performanceColor: 'oklch(50.8% 0.118 165.612)',
+          boxFillColor: 'oklch(50.8% 0.118 165.612)',
+          medianColor: 'oklch(50.8% 0.118 165.612)',
+          minSpotColor: 'oklch(50.8% 0.118 165.612)'
       });
     })
   }
@@ -490,7 +490,7 @@ c.draw(d, b)
                  ykeys: ["y"],
                  labels: ["sin(x)"],
                  parseTime: !1,
-                 lineColors: ['#7366ff'],
+                 lineColors: ['oklch(50.8% 0.118 165.612)'],
                  hoverCallback: function(a, b, c, d) {
                      return c.replace("sin(x)", "1.5 + 1.5 sin(" + d.x + ")")
                  },
@@ -549,10 +549,10 @@ c.draw(d, b)
  datasets: [{
      label: "My First dataset",
      fillColor: "rgba(145, 46, 252, 0.4)",
-     strokeColor: "#7366ff",
-     pointColor: "#7366ff",
-     pointStrokeColor: "#7366ff",
-     pointHighlightFill: "#7366ff" ,
+     strokeColor: "oklch(50.8% 0.118 165.612)",
+     pointColor: "oklch(50.8% 0.118 165.612)",
+     pointStrokeColor: "oklch(50.8% 0.118 165.612)",
+     pointHighlightFill: "oklch(50.8% 0.118 165.612)" ,
      pointHighlightStroke: "rgba(145, 46, 252, 0.4)",
      data: [12, 3, 5, 18, 7]
  }]
@@ -657,7 +657,7 @@ var myRadarChart = new Chart(radarCtx).Radar(radarData, radarOptions);</code></p
             </h4>
             <div class="fluid-container pt-3">
               <div class="knob-block text-center">
-                <input class="knob" data-width="200" data-thickness=".1" data-angleoffset="90" data-fgcolor="#7366ff"
+                <input class="knob" data-width="200" data-thickness=".1" data-angleoffset="90" data-fgcolor="oklch(50.8% 0.118 165.612)"
                   data-linecap="round" value="35">
               </div>
               <div class="code-box-copy mt-3">
@@ -665,7 +665,7 @@ var myRadarChart = new Chart(radarCtx).Radar(radarData, radarOptions);</code></p
                     class="fa fa-files-o"></i></button>
                 <pre><code class="language-html" id="knobhtml">&lt;!-- Html code for display Knob chart --&gt;
 &lt;div class="knob-block text-center"&gt;
-  &lt;input class="knob" data-width="200" data-thickness=".1" data-angleoffset="90" data-fgcolor="#7366ff" data-linecap="round" value="35"&gt;
+  &lt;input class="knob" data-width="200" data-thickness=".1" data-angleoffset="90" data-fgcolor="oklch(50.8% 0.118 165.612)" data-linecap="round" value="35"&gt;
 &lt;/div&gt;</code></pre>
               </div>
               <h5 class="pt-3 pb-2 inner-sub-title mt-0">To use knob chart you have to add the following script files
@@ -806,7 +806,7 @@ var options = {
    legend: {
        horizontalAlign: 'left'
    },
-   colors:[ "#7366ff" ]
+   colors:[ "oklch(50.8% 0.118 165.612)" ]
 
 }
 

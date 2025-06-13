@@ -14,7 +14,7 @@
                     ykeys: ["y"],
                     labels: ["sin(x)"],
                     parseTime: !1,
-                    lineColors: ['#7366ff'],
+                    lineColors: ['oklch(50.8% 0.118 165.612)'],
                     hoverCallback: function(a, b, c, d) {
                         return c.replace("sin(x)", "1.5 + 1.5 sin(" + d.x + ")")
                     },

@@ -8,15 +8,15 @@
                 width: '100%',
                 height: '150',
                 tooltipClassname: 'chart-sparkline',
-                lineColor: '#7366ff',
+                lineColor: 'oklch(50.8% 0.118 165.612)',
                 fillColor: 'transparent',
-                highlightLineColor: '#7366ff',
-                highlightSpotColor: '#7366ff',
-                targetColor: '#7366ff',
-                performanceColor: '#7366ff',
-                boxFillColor: '#7366ff',
-                medianColor: '#7366ff',
-                minSpotColor: '#7366ff'
+                highlightLineColor: 'oklch(50.8% 0.118 165.612)',
+                highlightSpotColor: 'oklch(50.8% 0.118 165.612)',
+                targetColor: 'oklch(50.8% 0.118 165.612)',
+                performanceColor: 'oklch(50.8% 0.118 165.612)',
+                boxFillColor: 'oklch(50.8% 0.118 165.612)',
+                medianColor: 'oklch(50.8% 0.118 165.612)',
+                minSpotColor: 'oklch(50.8% 0.118 165.612)'
             });
       })
     }

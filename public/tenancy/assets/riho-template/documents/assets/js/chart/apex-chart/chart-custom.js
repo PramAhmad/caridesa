@@ -30,7 +30,7 @@ var options = {
     legend: {
         horizontalAlign: 'left'
     },
-    colors:[ "#7366ff" ]
+    colors:[ "oklch(50.8% 0.118 165.612)" ]
 
 }
 

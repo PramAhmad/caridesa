@@ -248,7 +248,7 @@ ul.list-style {
 .direct {
   .nav-link.active {
     background-color: rgba(115, 102, 255, 0.16) !important;
-    color: #7366ff !important;
+    color: oklch(50.8% 0.118 165.612) !important;
   }
 }
 
@@ -274,7 +274,7 @@ ul.list-style {
 
 .nav-tabs {
   .nav-link.active {
-    color: #7366ff !important;
+    color: oklch(50.8% 0.118 165.612) !important;
   }
 }
 
@@ -1385,7 +1385,7 @@ ul.list-style {
         }
 
         &:active {
-          color: #7366ff;
+          color: oklch(50.8% 0.118 165.612);
         }
       }
     }

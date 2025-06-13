@@ -2,7 +2,7 @@
     "use strict";
     if ($("#flot-categories").length > 0) {
     var a = {
-        color: '#7366ff',
+        color: 'oklch(50.8% 0.118 165.612)',
         data: [
         ["Jan", 25],
         ["Feb", 8],

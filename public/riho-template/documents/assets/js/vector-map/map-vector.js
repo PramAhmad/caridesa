@@ -11,7 +11,7 @@
             hoverColor: !1,
             regionStyle: {
                 initial: {
-                    fill: "#7366ff"
+                    fill: "oklch(50.8% 0.118 165.612)"
                 }
             },
             backgroundColor: "transparent",
