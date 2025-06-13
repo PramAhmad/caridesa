@@ -135,7 +135,7 @@
             width: 35px;
             height: 35px;
             border-radius: 50%;
-            background-color: #7366ff;
+            background-color: oklch(50.8% 0.118 165.612);
             color: white;
             display: flex;
             align-items: center;

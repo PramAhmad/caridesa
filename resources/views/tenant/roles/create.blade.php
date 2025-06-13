@@ -43,7 +43,7 @@
     }
     
     .permission-list::-webkit-scrollbar-thumb:hover {
-        background: #7366ff;
+        background: oklch(50.8% 0.118 165.612);
     }
     
     .permission-item {
@@ -61,8 +61,8 @@
     }
     
     .form-check-input:checked {
-        background-color: #7366ff;
-        border-color: #7366ff;
+        background-color: oklch(50.8% 0.118 165.612);
+        border-color: oklch(50.8% 0.118 165.612);
     }
     
     .select-all-container {
@@ -103,7 +103,7 @@
     
     .custom-input .form-control:focus,
     .custom-input .form-select:focus {
-        border-color: #7366ff;
+        border-color: oklch(50.8% 0.118 165.612);
         box-shadow: 0 0 0 0.2rem rgba(115, 102, 255, 0.15);
         background-color: #fff;
     }
