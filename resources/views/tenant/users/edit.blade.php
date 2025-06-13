@@ -263,7 +263,7 @@
             
             .custom-input .form-control:focus,
             .custom-input .form-select:focus {
-                border-color: #7366ff;
+                border-color: oklch(50.8% 0.118 165.612);
                 box-shadow: 0 0 0 0.2rem rgba(115, 102, 255, 0.15);
                 background-color: #fff;
             }
@@ -307,9 +307,9 @@
             /* Tagify Styling */
             .tagify {
                 --tags-border-color: #e2e5e8;
-                --tags-hover-border-color: #7366ff;
-                --tags-focus-border-color: #7366ff;
-                --tag-bg: #7366ff;
+                --tags-hover-border-color: oklch(50.8% 0.118 165.612);
+                --tags-focus-border-color: oklch(50.8% 0.118 165.612);
+                --tag-bg: oklch(50.8% 0.118 165.612);
                 --tag-hover: #5d52cc;
                 --tag-text-color: #fff;
                 --tag-text-color--edit: #111;
@@ -335,7 +335,7 @@
             }
             
             .tagify__tag > div::before {
-                box-shadow: 0 0 0 1.1em #7366ff inset;
+                box-shadow: 0 0 0 1.1em oklch(50.8% 0.118 165.612) inset;
             }
             
             .tagify__dropdown {
@@ -354,7 +354,7 @@
             }
             
             .tagify__dropdown__item--active {
-                background: #7366ff;
+                background: oklch(50.8% 0.118 165.612);
                 color: white;
             }
             
@@ -370,7 +370,7 @@
             }
             
             .tags-look .tagify__dropdown__item:hover {
-                background: #7366ff;
+                background: oklch(50.8% 0.118 165.612);
                 color: white;
             }
         </style>
