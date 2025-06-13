@@ -7,7 +7,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Permissions Management</h4>
+                    <h4>Kelola Izin</h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                                 <i data-feather="home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">Permissions</li>
+                        <li class="breadcrumb-item active">Kelola Izin</li>
                     </ol>
                 </div>
             </div>
@@ -29,11 +29,11 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header pb-0 card-no-border">
-                        <h4>Permissions List</h4>
-                        <span>Manage all permissions that can be assigned to roles in your tenant account.</span>
+                        <h4>Daftar Izin</h4>
+                        <span>Kelola semua izin yang dapat diberikan kepada peran di akun tenant Anda.</span>
                         <div class="header-right text-end mt-2">
-                            <a href="{{ route('tenant.permissions.create')}}" class="btn btn-primary">
-                                <i class="fa fa-plus-circle me-2"></i> Add New Permission
+                            <a href="{{ route('permissions.create')}}" class="btn btn-primary">
+                                <i class="fa fa-plus-circle me-2"></i> Tambah Izin Baru
                             </a>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}
-                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Tutup"></button>
                             </div>
                         @endif
                         
@@ -49,13 +49,13 @@
                         <ul class="nav nav-tabs" id="moduleTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="all-tab" data-bs-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">
-                                    All Permissions
+                                    Semua Izin
                                 </a>
                             </li>
                             @foreach($permissionsByModule as $module => $permissions)
                                 <li class="nav-item">
                                     <a class="nav-link" id="{{ Str::slug($module) }}-tab" data-bs-toggle="tab" href="#{{ Str::slug($module) }}" role="tab" aria-controls="{{ Str::slug($module) }}" aria-selected="false">
-                                        {{ $module ?? 'Uncategorized' }}
+                                        {{ $module ?? 'Tidak Dikategorikan' }}
                                         <span class="badge bg-primary rounded-pill ms-1">{{ $permissions->count() }}</span>
                                     </a>
                                 </li>
@@ -71,11 +71,11 @@
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Module</th>
-                                                <th>Name</th>
-                                                <th>Description</th>
-                                                <th>Created Date</th>
-                                                <th>Action</th>
+                                                <th>Modul</th>
+                                                <th>Nama</th>
+                                                <th>Deskripsi</th>
+                                                <th>Tanggal Dibuat</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -84,7 +84,7 @@
                                                 <tr>
                                                     <td>#{{ $permission->id }}</td>
                                                     <td>
-                                                        <span class="badge badge-light-primary">{{ $permission->module ?? 'Uncategorized' }}</span>
+                                                        <span class="badge badge-light-primary">{{ $permission->module ?? 'Tidak Dikategorikan' }}</span>
                                                     </td>
                                                     <td>
                                                         <div class="d-flex align-items-center">
@@ -94,20 +94,20 @@
                                                             {{ $permission->name }}
                                                         </div>
                                                     </td>
-                                                    <td>{{ $permission->description ?? 'No description' }}</td>
-                                                    <td>{{ $permission->created_at->format('Y/m/d') }}</td>
+                                                    <td>{{ $permission->description ?? 'Tidak ada deskripsi' }}</td>
+                                                    <td>{{ $permission->created_at->format('d/m/Y') }}</td>
                                                     <td>
                                                         <ul class="action">
                                                             <li class="edit">
-                                                                <a href="{{ route('tenant.permissions.edit', $permission->id) }}">
+                                                                <a href="{{ route('permissions.edit', $permission->id) }}" title="Edit">
                                                                     <i class="icon-pencil-alt"></i>
                                                                 </a>
                                                             </li>
                                                             <li class="delete">
-                                                                <a href="#" onclick="confirmDelete({{ $permission->id }})">
+                                                                <a href="#" onclick="confirmDelete({{ $permission->id }})" title="Hapus">
                                                                     <i class="icon-trash"></i>
                                                                 </a>
-                                                                <form id="delete-form-{{ $permission->id }}" action="{{ route('tenant.permissions.destroy', $permission->id) }}" method="POST" style="display: none;">
+                                                                <form id="delete-form-{{ $permission->id }}" action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display: none;">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                 </form>
@@ -130,10 +130,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Description</th>
-                                                    <th>Created Date</th>
-                                                    <th>Action</th>
+                                                    <th>Nama</th>
+                                                    <th>Deskripsi</th>
+                                                    <th>Tanggal Dibuat</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -148,17 +148,17 @@
                                                             {{ $permission->name }}
                                                         </div>
                                                     </td>
-                                                    <td>{{ $permission->description ?? 'No description' }}</td>
-                                                    <td>{{ $permission->created_at->format('Y/m/d') }}</td>
+                                                    <td>{{ $permission->description ?? 'Tidak ada deskripsi' }}</td>
+                                                    <td>{{ $permission->created_at->format('d/m/Y') }}</td>
                                                     <td>
                                                         <ul class="action">
                                                             <li class="edit">
-                                                                <a href="{{ route('tenant.permissions.edit', $permission->id) }}">
+                                                                <a href="{{ route('permissions.edit', $permission->id) }}" title="Edit">
                                                                     <i class="icon-pencil-alt"></i>
                                                                 </a>
                                                             </li>
                                                             <li class="delete">
-                                                                <a href="#" onclick="confirmDelete({{ $permission->id }})">
+                                                                <a href="#" onclick="confirmDelete({{ $permission->id }})" title="Hapus">
                                                                     <i class="icon-trash"></i>
                                                                 </a>
                                                             </li>
@@ -185,10 +185,18 @@
     <script>
         $(document).ready(function() {
             // Initialize main datatable
-            $('#permissions-table').DataTable();
+            $('#permissions-table').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+                }
+            });
             
             // Initialize module datatables
-            $('.module-table').DataTable();
+            $('.module-table').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+                }
+            });
             
             // When clicking on a tab, resize the datatables
             $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -197,7 +205,7 @@
         });
         
         function confirmDelete(permissionId) {
-            if (confirm('Are you sure you want to delete this permission?')) {
+            if (confirm('Apakah Anda yakin ingin menghapus izin ini?')) {
                 document.getElementById('delete-form-' + permissionId).submit();
             }
         }
