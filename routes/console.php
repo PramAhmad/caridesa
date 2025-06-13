@@ -1,4 +1,4 @@
-<?php
+/home/astacode/Downloads/saas_koperasi-main/resources/views/partials<?php
 
 use Illuminate\Foundation\Inspiring;
 

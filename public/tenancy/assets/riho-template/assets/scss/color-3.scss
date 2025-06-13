@@ -118,7 +118,7 @@
 @import "utils/variables";
 
 :root {
-    --theme-deafult:  #4A55A2;
+    --theme-deafult:  oklch(43.2% 0.095 166.913));
     --theme-secondary: #F0A360;
     --light-background: rgba(242, 243, 247, 0.7); 
     --body-font-color: #86909C;

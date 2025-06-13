@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Wave\Facades\Wave;
+use Wave\Http\Controllers\HomeController;
 use Wave\Page;
 
 // Documentation routes
@@ -69,4 +70,4 @@ try {
 } catch (\Illuminate\Database\QueryException $e) {
     // Handle the exception or log it if needed
 }
-Route::view('/', 'wave::welcome');
+Route::get('/', [HomeController::class, 'index'])->name('home');

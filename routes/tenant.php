@@ -28,7 +28,6 @@ Route::middleware([
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
-    Route::prefix('tenant')->name('tenant.')->group(function () {
         Route::get('/', [HomeController::class, 'home'])->name('home');
         Route::middleware('auth')->group(function() {
             Route::resource('users', UsersController::class);
@@ -36,7 +35,6 @@ Route::middleware([
             Route::resource('permissions', PermissionsController::class);
         });
       
-    });
     
     Route::get('/user', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id') . Auth::user();

@@ -40352,7 +40352,7 @@ body[class*=dark-] .for-light {
   background-color: #1D5B79;
 }
 .customizer-contain .customizer-body .color-layout[data-attr=color-3] div {
-  background-color: #4A55A2;
+  background-color: oklch(43.2% 0.095 166.913));
 }
 .customizer-contain .customizer-body .color-layout[data-attr=color-4] div {
   background-color: #167A93;
