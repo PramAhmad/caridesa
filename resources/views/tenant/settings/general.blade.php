@@ -8,7 +8,7 @@
                 <div class="col-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/tenant">
+                            <a href="/">
                                 <i data-feather="home"></i>
                             </a>
                         </li>
@@ -33,7 +33,7 @@
                 <h5 class="card-title mb-0">Pengaturan Aplikasi</h5>
             </div>
             
-            <form class="card-body" action="/tenant/settings/general" method="POST" enctype="multipart/form-data">
+            <form class="card-body" action="/settings/general" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 
@@ -56,9 +56,9 @@
                             <span class="input-group-text"><i class="fa fa-palette"></i></span>
                             <input type="color" class="form-control form-control-color" 
                                    name="primary_color" 
-                                   value="{{ old('primary_color', $settings['primary_color']->value ?? '#7366ff') }}">
+                                   value="{{ old('primary_color', $settings['primary_color']->value ?? 'oklch(50.8% 0.118 165.612)') }}">
                             <input type="text" class="form-control @error('primary_color') is-invalid @enderror" 
-                                   value="{{ old('primary_color', $settings['primary_color']->value ?? '#7366ff') }}"
+                                   value="{{ old('primary_color', $settings['primary_color']->value ?? 'oklch(50.8% 0.118 165.612)') }}"
                                    oninput="document.getElementsByName('primary_color')[0].value = this.value">
                         </div>
                         @error('primary_color')

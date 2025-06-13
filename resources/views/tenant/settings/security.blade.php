@@ -8,7 +8,7 @@
                 <div class="col-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/tenant">
+                            <a href="">
                                 <i data-feather="home"></i>
                             </a>
                         </li>
@@ -33,7 +33,7 @@
                 <h5 class="card-title mb-0">Pengaturan Kata Sandi</h5>
             </div>
             
-            <form class="card-body" action="/tenant/settings/security" method="POST">
+            <form class="card-body" action="/settings/security" method="POST">
                 @csrf
                 @method('PUT')
                 

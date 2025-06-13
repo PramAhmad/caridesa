@@ -8,7 +8,7 @@
                 <div class="col-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/tenant">
+                            <a href="">
                                 <i data-feather="home"></i>
                             </a>
                         </li>
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 text-end">
-                                <form action="/tenant/settings/backups/create" method="POST">
+                                <form action="/settings/backups/create" method="POST">
                                     @csrf
                                     <div class="d-grid gap-2">
                                         <button type="submit" class="btn btn-primary" name="only_db" value="1">
@@ -100,7 +100,7 @@
                                
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="/tenant/settings/backups/download/{{ basename($backup['name']) }}" 
+                                                <a href="/settings/backups/download/{{ basename($backup['name']) }}" 
                                                    class="btn btn-sm btn-outline-primary">
                                                     <i class="fa fa-download me-1"></i> Download
                                                 </a>
@@ -183,7 +183,7 @@
                     <p class="text-danger">This action cannot be undone.</p>
                 </div>
                 <div class="modal-footer">
-                    <form id="delete-form" action="/tenant/settings/backups/delete/" method="POST">
+                    <form id="delete-form" action="/settings/backups/delete/" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -211,7 +211,7 @@
                     <p>Are you sure you want to restore from backup <strong id="restore-backup-name"></strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <form id="restore-form" action="/tenant/settings/backups/restore/" method="POST">
+                    <form id="restore-form" action="/settings/backups/restore/" method="POST">
                         @csrf
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-warning">Yes, Restore</button>
@@ -229,7 +229,7 @@
                 const button = event.relatedTarget;
                 const backupName = button.getAttribute('data-backup-name');
                 document.getElementById('delete-backup-name').textContent = backupName;
-                document.getElementById('delete-form').action = '/tenant/settings/backups/delete/' + backupName;
+                document.getElementById('delete-form').action = '/settings/backups/delete/' + backupName;
             });
             
             // Restore modal
@@ -237,7 +237,7 @@
                 const button = event.relatedTarget;
                 const backupName = button.getAttribute('data-backup-name');
                 document.getElementById('restore-backup-name').textContent = backupName;
-                document.getElementById('restore-form').action = '/tenant/settings/backups/restore/' + backupName;
+                document.getElementById('restore-form').action = '/settings/backups/restore/' + backupName;
             });
             
             // Refresh button
