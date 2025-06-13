@@ -8,7 +8,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-6">
-                    <h4>Users Management</h4>
+                    <h4>Kelola Pengguna</h4>
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
@@ -17,7 +17,7 @@
                                 <i data-feather="home"></i>
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Pengguna</li>
                     </ol>
                 </div>
             </div>
@@ -30,11 +30,11 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header pb-0 card-no-border">
-                        <h4>Users List</h4>
-                        <span>Manage all users and their roles in your tenant account.</span>
+                        <h4>Daftar Pengguna</h4>
+                        <span>Kelola semua pengguna dan peran mereka dalam akun tenant Anda.</span>
                         <div class="header-right text-end mt-2">
-                            <a href="{{ route('tenant.users.create')}}" class="btn btn-primary">
-                                <i class="fa fa-plus-circle me-2"></i> Add New User
+                            <a href="{{ route('users.create')}}" class="btn btn-primary">
+                                <i class="fa fa-plus-circle me-2"></i> Tambah Pengguna Baru
                             </a>
                         </div>
                     </div>
@@ -42,21 +42,21 @@
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('success') }}
-                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Tutup"></button>
                             </div>
                         @endif
                         
                         <div class="table-responsive custom-scrollbar">
-                            <table class="display" id="basic-1">
+                            <table class="display" id="userTable">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Nama</th>
                                         <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Created Date</th>
+                                        <th>Peran</th>
+                                        <th>Tanggal Dibuat</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,15 +80,15 @@
                                         <td>{{ $user->created_at->format('Y/m/d') }}</td>
                                         <td>
                                             @if($user->verified)
-                                                <span class="badge rounded-pill badge-success">Active</span>
+                                                <span class="badge rounded-pill badge-success">Aktif</span>
                                             @else
-                                                <span class="badge rounded-pill badge-danger">Pending</span>
+                                                <span class="badge rounded-pill badge-danger">Menunggu</span>
                                             @endif
                                         </td>
                                         <td>
                                             <ul class="action">
                                                 <li class="edit">
-                                                    <a href="{{ route('tenant.users.edit', $user->id) }}">
+                                                    <a href="{{ route('users.edit', $user->id) }}">
                                                         <i class="icon-pencil-alt"></i>
                                                     </a>
                                                 </li>
@@ -117,11 +117,15 @@
     <script src="{{ asset('tenant/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#basic-1').DataTable();
+            $('#userTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/id.json"
+                }
+            });
         });
         
         function confirmDelete(userId) {
-            if (confirm('Are you sure you want to delete this user?')) {
+            if (confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
                 document.getElementById('delete-form-' + userId).submit();
             }
         }

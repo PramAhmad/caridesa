@@ -7,7 +7,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-6">
-                        <h4>Edit User</h4>
+                        <h4>Edit Pengguna</h4>
                     </div>
                     <div class="col-6">
                         <ol class="breadcrumb">
@@ -18,7 +18,7 @@
                             </li>
                             <li class="breadcrumb-item">
                                 <x-tenant-link route="users.index">
-                                    Users
+                                    Pengguna
                                 </x-tenant-link>
                             </li>
                             <li class="breadcrumb-item active">Edit</li>
@@ -34,21 +34,21 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit User: {{ $user->name }}</h4>
+                            <h4>Edit Pengguna: {{ $user->name }}</h4>
                             <p class="f-m-light mt-1">
-                                Update the user information. All fields with <span class="text-danger">*</span> are required.
+                                Perbarui informasi pengguna. Semua kolom yang diberi tanda <span class="text-danger">*</span> wajib diisi.
                             </p>
                         </div>
                         <div class="card-body">
                             <form class="row g-3 needs-validation custom-input position-relative" 
-                                action="{{ route('tenant.users.update', $user) }}" 
+                                action="{{ route('users.update', $user) }}" 
                                 method="POST" 
                                 novalidate>
                                 @csrf
                                 @method('PUT')
                                 
                                 <div class="col-md-6 position-relative">
-                                    <label class="form-label" for="validationTooltipName">Name <span class="text-danger">*</span></label>
+                                    <label class="form-label" for="validationTooltipName">Nama <span class="text-danger">*</span></label>
                                     <input class="form-control @error('name') is-invalid @enderror" 
                                         id="validationTooltipName" 
                                         type="text" 
@@ -56,7 +56,7 @@
                                         value="{{ old('name', $user->name) }}"
                                         placeholder="John Doe" 
                                         required>
-                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="valid-tooltip">Terlihat bagus!</div>
                                     @error('name')
                                         <div class="invalid-tooltip">{{ $message }}</div>
                                     @enderror
@@ -71,14 +71,14 @@
                                         value="{{ old('email', $user->email) }}"
                                         placeholder="user@example.com" 
                                         required>
-                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="valid-tooltip">Terlihat bagus!</div>
                                     @error('email')
                                         <div class="invalid-tooltip">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <label class="form-label" for="validationTooltipUsername">Username</label>
+                                    <label class="form-label" for="validationTooltipUsername">Nama Pengguna</label>
                                     <div class="input-group has-validation">
                                         <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
                                         <input class="form-control @error('username') is-invalid @enderror" 
@@ -88,57 +88,57 @@
                                             value="{{ old('username', $user->username) }}"
                                             placeholder="johndoe" 
                                             aria-describedby="validationTooltipUsernamePrepend">
-                                        <div class="valid-tooltip">Looks good!</div>
+                                        <div class="valid-tooltip">Terlihat bagus!</div>
                                         @error('username')
                                             <div class="invalid-tooltip">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <small class="text-muted">Leave empty to auto-generate from name</small>
+                                    <small class="text-muted">Kosongkan untuk membuat otomatis dari nama</small>
                                 </div>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <label class="form-label" for="roles-input">Roles <span class="text-danger">*</span></label>
+                                    <label class="form-label" for="roles-input">Peran <span class="text-danger">*</span></label>
                                     <input class="@error('roles') is-invalid @enderror" 
                                         name="roles" 
                                         id="roles-input" 
-                                        placeholder="Select user roles">
-                                    <div class="valid-tooltip">Looks good!</div>
+                                        placeholder="Pilih peran pengguna">
+                                    <div class="valid-tooltip">Terlihat bagus!</div>
                                     @error('roles')
                                         <div class="invalid-tooltip">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <label class="form-label" for="validationTooltipPassword">Password</label>
+                                    <label class="form-label" for="validationTooltipPassword">Kata Sandi</label>
                                     <input class="form-control @error('password') is-invalid @enderror" 
                                         id="validationTooltipPassword" 
                                         type="password" 
                                         name="password"
-                                        placeholder="Leave empty to keep current password">
-                                    <div class="valid-tooltip">Looks good!</div>
+                                        placeholder="Kosongkan untuk mempertahankan kata sandi saat ini">
+                                    <div class="valid-tooltip">Terlihat bagus!</div>
                                     @error('password')
                                         <div class="invalid-tooltip">{{ $message }}</div>
                                     @enderror
-                                    <small class="text-muted">Leave empty to keep the current password</small>
+                                    <small class="text-muted">Kosongkan untuk mempertahankan kata sandi saat ini</small>
                                 </div>
                                 
                                 <div class="col-md-6 position-relative">
-                                    <label class="form-label" for="validationTooltipPasswordConfirm">Confirm Password</label>
+                                    <label class="form-label" for="validationTooltipPasswordConfirm">Konfirmasi Kata Sandi</label>
                                     <input class="form-control" 
                                         id="validationTooltipPasswordConfirm" 
                                         type="password" 
                                         name="password_confirmation"
-                                        placeholder="Re-enter password if changing">
-                                    <div class="valid-tooltip">Passwords match!</div>
-                                    <div class="invalid-tooltip">Please confirm your password.</div>
+                                        placeholder="Masukkan ulang kata sandi jika mengubah">
+                                    <div class="valid-tooltip">Kata sandi cocok!</div>
+                                    <div class="invalid-tooltip">Silakan konfirmasi kata sandi Anda.</div>
                                 </div>
                                 
                                 <div class="col-12 mt-4 border-top pt-3">
                                     <div class="d-flex justify-content-end gap-2">
-                                        <a href="{{ route('tenant.users.index')}}" class="btn btn-light">
-                                            Cancel
+                                        <a href="{{ route('users.index')}}" class="btn btn-light">
+                                            Batal
                                         </a>
-                                        <button class="btn btn-primary" type="submit">Update User</button>
+                                        <button class="btn btn-primary" type="submit">Perbarui Pengguna</button>
                                     </div>
                                 </div>
                             </form>
@@ -231,7 +231,7 @@
                 
                 confirmPassword.addEventListener('input', function() {
                     if (password.value !== confirmPassword.value) {
-                        confirmPassword.setCustomValidity("Passwords don't match");
+                        confirmPassword.setCustomValidity("Kata sandi tidak cocok");
                     } else {
                         confirmPassword.setCustomValidity('');
                     }
@@ -239,7 +239,7 @@
                 
                 password.addEventListener('input', function() {
                     if (password.value !== confirmPassword.value && confirmPassword.value !== '') {
-                        confirmPassword.setCustomValidity("Passwords don't match");
+                        confirmPassword.setCustomValidity("Kata sandi tidak cocok");
                     } else {
                         confirmPassword.setCustomValidity('');
                     }
