@@ -86,104 +86,111 @@
                         </ul>
                     </li>
                     @endif
-                    
-                    {{-- Reports section - Only visible to users with report permissions --}}
-                    @if(auth()->user()->canAny(['view-reports', 'generate-reports', 'export-reports']))
+
+                    {{-- Theme Management - Only for users with theme management permissions --}}
+                    @can('manage-themes')
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#stroke-chart"></use>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 0 0 5.304 0l6.401-6.402M6.75 21A3.75 3.75 0 0 1 3 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 0 0 3.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008Z" />
                             </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#fill-chart"></use>
-                            </svg>
-                            <span>Reports</span>
+                            <span>Pengaturan Tema</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            @can('view-reports')
                             <li>
-                                <a href="">View Reports</a>
+                                <a href="/admin/themes">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                    </svg>
+                                    Kelola Tema
+                                </a>
+                            </li>
+                            @can('create-themes')
+                            <li>
+                                <a href="/admin/themes/create">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg>
+                                    Buat Tema
+                                </a>
                             </li>
                             @endcan
-                            
-                            @can('generate-reports')
+                            @php
+                                $activeTheme = \App\Models\Theme::where('is_active', true)->first();
+                            @endphp
+                            @if($activeTheme)
                             <li>
-                                <a href="">Generate Report</a>
+                                <a href="/admin/themes/{{ $activeTheme->id }}/edit-content">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+                                    Edit Konten
+                                </a>
                             </li>
-                            @endcan
-                            
-                            @can('export-reports')
-                            <li>
-                                <a href="">Export Reports</a>
-                            </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
-                    @endif
+                    @endcan
                     
                     {{-- System Settings - Only for users with system management permissions --}}
                     @can('manage-system-settings')
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#stroke-setting"></use>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                             </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#fill-setting"></use>
-                            </svg>
-                            <span>System Settings</span>
+
+                            <span>Pengaturan Sistem</span>
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="">General Settings</a>
+                                <a href="/settings/general">Pengaturan Umum</a>
                             </li>
                             <li>
-                                <a href="">Security Settings</a>
+                                <a href="/settings/security">Keamanan</a>
                             </li>
                             @can('manage-backups')
                             <li>
-                                <a href="">Backups</a>
+                                <a href="/settings/backups">Backups</a>
                             </li>
                             @endcan
                             @can('view-logs')
                             <li>
-                                <a href="">System Logs</a>
+                                <a href="/logs">System Logs</a>
                             </li>
                             @endcan
                         </ul>
                     </li>
                     @endcan
-                    
-                    {{-- Profile - Always visible to authenticated users --}}
+
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Account</h6>
+                        </div>
+                    </li>
+
                     @can('update-profile')
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
-                        <a href="" class="sidebar-link sidebar-title link-nav">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#stroke-user"></use>
-                            </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#fill-user"></use>
+                        <a href="/profile" class="sidebar-link sidebar-title link-nav">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" stroke-opacity="0.8" class="stroke-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                             </svg>
                             <span>Profile</span>
                         </a>
                     </li>
                     @endcan
-                    
-                    {{-- Logout link - Always visible to authenticated users --}}
+
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
-                        <a class="sidebar-link sidebar-title link-nav" href="#" 
+                        <a class="sidebar-link sidebar-title link-nav" href="#"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <svg class="stroke-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#stroke-log-out"></use>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
                             </svg>
-                            <svg class="fill-icon">
-                                <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#fill-log-out"></use>
-                            </svg>
-                            <span>Logout</span>
+                            <span>Keluar</span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
