@@ -38,5 +38,8 @@ class SeedTenantJob implements ShouldQueue
 
             $user->assignRole('superadmin');
         });
+         \Artisan::call('tenants:seed', [
+            '--tenants' => $this->tenant->id,
+        ]);
     }
 }
