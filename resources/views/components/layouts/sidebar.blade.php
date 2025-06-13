@@ -67,20 +67,20 @@
                         </a>
                         <ul class="sidebar-submenu">
                             @can('view-users')
-                            <li>
-                                <a href="{{ route('tenant.users.index') }}">Users</a>
+                            <li class="text-sm">
+                                <a href="/users">Users</a>
                             </li>
                             @endcan
                             
                             @can('view-roles')
                             <li>
-                                <a href="{{ route('tenant.roles.index') }}">Roles</a>
+                                <a href="/roles">Roles</a>
                             </li>
                             @endcan
                             
                             @can('view-permissions')
                             <li>
-                                <a href="{{ route('tenant.permissions.index') }}">Permissions</a>
+                                <a href="/permissions">Permissions</a>
                             </li>
                             @endcan
                         </ul>
