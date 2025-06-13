@@ -44,11 +44,8 @@ class RolesController extends Controller
 
         // Handle permissions from tagify input
         if (is_string($validated['permissions'])) {
-            // Tagify sends JSON string
             $permissionsData = json_decode($validated['permissions'], true);
             $permissionNames = [];
-            
-            // Handle different possible structures from tagify
             if (is_array($permissionsData)) {
                 foreach ($permissionsData as $permission) {
                     if (is_array($permission) && isset($permission['value'])) {
@@ -65,11 +62,10 @@ class RolesController extends Controller
                 $role->syncPermissions($permissionNames);
             }
         } else {
-            // Standard array input (for backward compatibility)
             $role->syncPermissions($validated['permissions']);
         }
 
-        return redirect()->route('tenant.roles.index')
+        return redirect()->route('roles.index')
             ->with('success', 'Role created successfully');
     }
 
@@ -88,8 +84,6 @@ class RolesController extends Controller
     {
         // Group permissions by module
         $permissionsByModule = Permission::orderBy('module')->get()->groupBy('module');
-        
-        // Get current role permissions
         $rolePermissions = $role->permissions->pluck('name')->toArray();
         
         return view('tenant.roles.edit', compact('role', 'permissionsByModule', 'rolePermissions'));
@@ -105,15 +99,12 @@ class RolesController extends Controller
             'permissions' => 'nullable|array',
         ]);
         
-        // Update role
         $role->update([
             'name' => $request->name,
         ]);
-        
-        // Sync permissions
         $role->syncPermissions($request->permissions ?? []);
         
-        return redirect()->route('tenant.roles.index')
+        return redirect()->route('roles.index')
             ->with('success', 'Role updated successfully');
     }
 
