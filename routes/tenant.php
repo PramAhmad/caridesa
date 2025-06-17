@@ -14,6 +14,9 @@ use App\Http\Controllers\Tenant\UsersController;
 use App\Http\Controllers\Tenant\RolesController;
 use App\Http\Controllers\Tenant\PermissionsController;
 use App\Http\Controllers\Tenant\ProfileController;
+use App\Http\Controllers\Tenant\CategoryProductController;
+use App\Http\Controllers\Tenant\ProductController;
+use App\Http\Controllers\Tenant\ThemeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +89,9 @@ Route::middleware([
     Route::get('/user', function () {
         return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id') . Auth::user();
     });
+
+    Route::resource('category-products', CategoryProductController::class);
+    Route::resource('products', ProductController::class);
 
     require __DIR__ . '/tenant-auth.php';
 });
