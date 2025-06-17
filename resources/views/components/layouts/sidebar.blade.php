@@ -132,6 +132,50 @@
                         </ul>
                     </li>
                     @endcan
+                    <!-- product management -->
+                    @can('manage-products')
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"> </i>
+                        <a class="sidebar-link sidebar-title" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-icon">
+                                <path stroke-linecap="round" stroke-line
+join="round" d="M3 12h18m-9-9v18m0-18a9 9 0 1 1 0 18 9 9 0 0 1 0-18z" />
+                            </svg>
+                            <span>Produk</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="/products">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none
+" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18m-9-9v18m0-18a9 9 0 1 1 0 18 9 9 0 0 1 0-18z" />
+                                    </svg>
+                                    Kelola Produk
+                                </a>
+                            </li>
+                            @can('create-products')
+                            <li>
+                                <a href="/products/create">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg>
+                                    Tambah Produk
+                                </a>
+                            </li>
+                            @endcan
+                            <!-- category product -->
+                            <li>
+                                <a href="/category-products">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke
+="currentColor" class="w-4 h-4 me-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12h18m-9-9v18m0-18a9 9 0 1 1 0 18 9 9 0 0 1 0-18z" />
+                                    </svg>
+                                    Kategori Produk
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    @endcan
                     
                     {{-- System Settings - Only for users with system management permissions --}}
                     @can('manage-system-settings')
