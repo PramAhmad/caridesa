@@ -46,12 +46,55 @@ class Product extends Model
     }
 
     // Accessors
-    public function getFormattedPriceAttribute()
+    /**
+     * Get stock badge CSS class
+     */
+    public function getStockBadgeClassAttribute(): string
+    {
+        return match($this->stock) {
+            ProductStockStatus::IN_STOCK => 'bg-success',
+            ProductStockStatus::LOW_STOCK => 'bg-warning',
+            ProductStockStatus::OUT_OF_STOCK => 'bg-danger',
+            ProductStockStatus::PREORDER => 'bg-info',
+            default => 'bg-secondary'
+        };
+    }
+
+    /**
+     * Get stock label
+     */
+    public function getStockLabelAttribute(): string
+    {
+        return $this->stock->label();
+    }
+
+    /**
+     * Get image URL
+     */
+    public function getImageUrlAttribute(): string
+    {
+        if ($this->image) {
+            return asset("tenancy/assets/image/products/{$this->image}");
+        }
+        return asset('tenant/images/placeholder-product.png');
+    }
+
+    /**
+     * Check if product has discount
+     */
+ 
+    /**
+     * Get formatted price
+     */
+    public function getFormattedPriceAttribute(): string
     {
         return 'Rp ' . number_format($this->price, 0, ',', '.');
     }
 
-    public function getDiscountedPriceAttribute()
+    /**
+     * Get discounted price
+     */
+    public function getDiscountedPriceAttribute(): float
     {
         if ($this->discount > 0) {
             return $this->price - ($this->price * $this->discount / 100);
@@ -59,28 +102,18 @@ class Product extends Model
         return $this->price;
     }
 
-    public function getFormattedDiscountedPriceAttribute()
+    /**
+     * Get formatted discounted price
+     */
+    public function getFormattedDiscountedPriceAttribute(): string
     {
         return 'Rp ' . number_format($this->discounted_price, 0, ',', '.');
     }
 
-    public function getImageUrlAttribute()
-    {
-        if ($this->image) {
-            return asset('tenancy/assets/image/products/' . $this->image);
-        }
-        return asset('tenant/images/default-product.png');
-    }
+    /**
+     * Get links as array
+     */
 
-    public function getStockLabelAttribute()
-    {
-        return $this->stock->label();
-    }
-
-    public function getStockBadgeClassAttribute()
-    {
-        return $this->stock->badgeClass();
-    }
 
     // Mutators
     public function setNameAttribute($value)
