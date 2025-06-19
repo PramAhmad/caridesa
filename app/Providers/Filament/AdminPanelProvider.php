@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 use Wave\Widgets;
 use Filament\Pages;
 use Filament\Panel;
@@ -31,6 +32,7 @@ use Filament\Navigation\NavigationItem;
 use App\Filament\Resources\UserResource;
 use App\Filament\Resources\RoleResource;
 use App\Filament\Resources\PlanResource;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -51,7 +53,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('central/admin')
             ->colors([
                 'primary' => Color::Blue,
             ])
