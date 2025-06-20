@@ -3,6 +3,7 @@
 namespace Wave\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomeStay;
 use App\Models\Theme;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,11 +25,13 @@ class HomeController extends Controller
         }
 
         $viewPath = "tenant.theme.{$activeTheme->slug}.index";
-        
+        $homestays = HomeStay::orderBy('created_at', 'desc')
+            ->take(9)
+            ->get();
         if (!view()->exists($viewPath)) {
             $viewPath = 'tenant.theme.default.index';
         }
-        return view($viewPath, compact('activeTheme'));
+        return view($viewPath, compact('activeTheme', 'homestays'));
     }
     public function index()
     {
