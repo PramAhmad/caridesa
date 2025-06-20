@@ -1,5 +1,4 @@
 <?php
-<?php
 
 namespace App\Http\Controllers\Tenant;
 
@@ -96,6 +95,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $request->merge(['is_active' => $request->has('is_active') == "on" ? true : false]);
         DB::beginTransaction();
         
         try {
@@ -217,6 +217,8 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+        $request->merge(['is_active' => $request->has('is_active') == "on" ? true : false]);
+
         DB::beginTransaction();
         
         try {
