@@ -39,7 +39,7 @@ class EventImage extends Model
         }
 
         if (str_starts_with($this->name, '/')) {
-            return asset('tenancy/assets' . $this->name);
+            return asset( $this->name);
         }
 
         return asset('tenancy/assets/image/events/' . $this->name);
@@ -55,7 +55,7 @@ class EventImage extends Model
         }
 
         if (str_starts_with($this->name, '/')) {
-            return public_path('tenancy/assets' . $this->name);
+            return public_path( $this->name);
         }
 
         return public_path('tenancy/assets/image/events/' . $this->name);
@@ -234,7 +234,7 @@ class EventImage extends Model
         $thumbnailName = $pathInfo['filename'] . '_thumb.' . $pathInfo['extension'];
 
         if (str_starts_with($this->name, '/')) {
-            return asset('tenancy/assets' . str_replace($pathInfo['basename'], $thumbnailName, $this->name));
+            return asset( str_replace($pathInfo['basename'], $thumbnailName, $this->name));
         }
 
         return asset('tenancy/assets/image/events/thumbs/' . $thumbnailName);
