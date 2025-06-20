@@ -16,6 +16,8 @@ class TenantDatabaseSeeder extends Seeder
         $this->call(ThemesTableSeeder::class);
         $this->call(TenantWisataPermissionSeeder::class);
         $this->call(TenantProductPermissionSeeder::class);
+        $this->call(TenantEventPermissionSeeder::class);
+        $this->call(TenantGuidePermissionSeeder::class);
         
     }
 }
