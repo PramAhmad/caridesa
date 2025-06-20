@@ -138,6 +138,44 @@ Route::middleware([
         Route::patch('homestays/{homestay}/toggle-active', [App\Http\Controllers\Tenant\HomeStayController::class, 'toggleActive'])->name('homestays.toggle-active');
         Route::delete('homestay-images/{image}', [App\Http\Controllers\Tenant\HomeStayController::class, 'deleteImage'])->name('homestay-images.destroy');
 
+        // Event Management Routes
+        Route::resource('events', App\Http\Controllers\Tenant\EventController::class)->names([
+            'index' => 'events.index',
+            'create' => 'events.create',
+            'store' => 'events.store',
+            'show' => 'events.show',
+            'edit' => 'events.edit',
+            'update' => 'events.update',
+            'destroy' => 'events.destroy',
+        ]);
+
+        // Additional event routes
+        Route::patch('events/{event}/toggle-status', [App\Http\Controllers\Tenant\EventController::class, 'toggleStatus'])->name('events.toggle-status');
+        Route::delete('event-images/{image}', [App\Http\Controllers\Tenant\EventController::class, 'deleteImage'])->name('event-images.destroy');
+        
+        // Event API routes
+        Route::get('api/events/upcoming', [App\Http\Controllers\Tenant\EventController::class, 'upcoming'])->name('api.events.upcoming');
+        Route::get('api/events/ongoing', [App\Http\Controllers\Tenant\EventController::class, 'ongoing'])->name('api.events.ongoing');
+
+        // Guide Management Routes
+        Route::resource('guides', App\Http\Controllers\Tenant\GuideController::class)->names([
+            'index' => 'guides.index',
+            'create' => 'guides.create',
+            'store' => 'guides.store',
+            'show' => 'guides.show',
+            'edit' => 'guides.edit',
+            'update' => 'guides.update',
+            'destroy' => 'guides.destroy',
+        ]);
+
+        // Additional guide routes
+        Route::patch('guides/{guide}/toggle-status', [App\Http\Controllers\Tenant\GuideController::class, 'toggleStatus'])->name('guides.toggle-status');
+        Route::delete('guide-images/{image}', [App\Http\Controllers\Tenant\GuideController::class, 'deleteImage'])->name('guide-images.destroy');
+
+        // Guide API routes
+        Route::get('api/guides/active', [App\Http\Controllers\Tenant\GuideController::class, 'getActiveGuides'])->name('api.guides.active');
+        Route::get('api/guides/price-range', [App\Http\Controllers\Tenant\GuideController::class, 'getGuidesByPriceRange'])->name('api.guides.price-range');
+
         Route::get('user', function () {
             return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id') . Auth::user();
         });
