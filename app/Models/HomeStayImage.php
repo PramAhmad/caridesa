@@ -30,7 +30,7 @@ class HomeStayImage extends Model
      */
     public function getUrlAttribute()
     {
-        return asset('tenancy/assets' . $this->name);
+        return asset( $this->name);
     }
 
     /**
@@ -38,7 +38,7 @@ class HomeStayImage extends Model
      */
     public function getFullPathAttribute()
     {
-        return public_path('tenancy/assets' . $this->name);
+        return public_path( $this->name);
     }
 
     /**
