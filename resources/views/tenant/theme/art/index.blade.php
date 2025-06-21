@@ -144,7 +144,7 @@
         </div>
 
         <!-- Products Grid -->
-        <div id="products-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-3  gap-8 mb-12">
             @php
                 $products = App\Models\Product::active()->with('category')->take(6)->get();
             @endphp
@@ -330,14 +330,10 @@
                                         </svg>
                                         {{ Str::limit($event->location, 30) }}
                                     </div>
-                                    @if($event->price > 0)
+                                    @if($event->is_active)
                                     <div class="text-amber-600 font-bold">
-                                        {{ $event->formatted_price }}
+                                        {{ $event->is_active ? 'Aktif' : 'Tidak Aktif' }}
                                     </div>
-                                    @else
-                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                                        GRATIS
-                                    </span>
                                     @endif
                                 </div>
                                 
@@ -505,7 +501,7 @@
         </div>
 
         <!-- Guide Cards Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3  gap-8 mb-12">
             @php
                 $guides = App\Models\Guide::active()->take(6)->get();
             @endphp
@@ -679,7 +675,7 @@
         </div>
 
         <!-- Destinations Classic Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="destinations-grid">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" id="destinations-grid">
             @php
                 $destinations = App\Models\Wisata::take(9)->get();
                 $heights = ['h-80', 'h-96', 'h-72', 'h-88', 'h-80', 'h-96', 'h-72', 'h-88', 'h-80'];
@@ -689,7 +685,7 @@
                 <!-- Background Image -->
                 <div class="absolute inset-0">
                     @if($destination->image_one)
-                    <img src="{{ asset('tenancy/assets' . $destination->image_one->name) }}" 
+                    <img src="{{ asset( $destination->image_one->name) }}" 
                          alt="{{ $destination->name }}"
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     @else
@@ -818,7 +814,7 @@
         </div>
 
         <!-- Homestay Grid (Fixed Layout) -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="homestay-grid">
+        <div class="grid grid-cols-1 md:grid-cols-3  gap-6 mb-12" id="homestay-grid">
             @foreach($homestays as $index => $homestay)
             @php
                 // Simulasi tipe homestay berdasarkan index
