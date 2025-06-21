@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
@@ -10,10 +11,11 @@ class HomeStay extends Model
 {
     protected $fillable = [
         'name',
+        'slug',
+        'description',
         'address',
         'phone',
         'email',
-        'description',
         'price',
         'discount_percent',
         'is_active',
@@ -71,10 +73,7 @@ class HomeStay extends Model
     /**
      * Get the formatted price.
      */
-    public function getFormattedPriceAttribute()
-    {
-        return 'Rp ' . number_format($this->price, 0, ',', '.');
-    }
+
 
     /**
      * Get the discounted price.
@@ -88,132 +87,101 @@ class HomeStay extends Model
         return $this->price;
     }
 
-    /**
-     * Get the formatted discounted price.
-     */
-    public function getFormattedDiscountedPriceAttribute()
+    // Mock attributes for missing columns
+    public function getViewsAttribute()
     {
-        return 'Rp ' . number_format($this->discounted_price, 0, ',', '.');
+        return rand(50, 300);
     }
 
-    /**
-     * Get the discount amount.
-     */
-    public function getDiscountAmountAttribute()
+    public function getRatingAttribute()
     {
-        if ($this->discount_percent > 0) {
-            return ($this->price * $this->discount_percent) / 100;
-        }
-        return 0;
+        return number_format(rand(40, 50) / 10, 1);
     }
 
-    /**
-     * Get the formatted discount amount.
-     */
-    public function getFormattedDiscountAmountAttribute()
-    {
-        return 'Rp ' . number_format($this->discount_amount, 0, ',', '.');
-    }
-
-    /**
-     * Check if homestay has discount.
-     */
-    public function getHasDiscountAttribute()
-    {
-        return $this->discount_percent > 0;
-    }
-
-    /**
-     * Get the status badge.
-     */
     public function getStatusBadgeAttribute()
     {
-        return $this->is_active ? 
-            '<span class="badge rounded-pill badge-success">Aktif</span>' : 
-            '<span class="badge rounded-pill badge-secondary">Tidak Aktif</span>';
+        return 'Tersedia';
     }
 
-    /**
-     * Get the contact info formatted.
-     */
-    public function getContactInfoAttribute()
+    public function getCapacityAttribute()
     {
-        $contacts = [];
-        if ($this->phone) {
-            $contacts[] = '📞 ' . $this->phone;
+        return rand(2, 8) . ' orang';
+    }
+
+    public function getRoomsAttribute()
+    {
+        return rand(1, 4) . ' kamar';
+    }
+
+    public function getFormattedPriceAttribute()
+    {
+        return 'Rp ' . number_format(rand(150000, 500000), 0, ',', '.');
+    }
+
+    public function getHasDiscountAttribute()
+    {
+        return rand(0, 1) === 1;
+    }
+
+    public function getDiscountPercentAttribute()
+    {
+        return $this->has_discount ? rand(10, 30) : 0;
+    }
+
+    public function getFormattedDiscountedPriceAttribute()
+    {
+        if (!$this->has_discount) {
+            return $this->formatted_price;
         }
-        if ($this->email) {
-            $contacts[] = '✉️ ' . $this->email;
+
+        $originalPrice = rand(150000, 500000);
+        $discountedPrice = $originalPrice - ($originalPrice * $this->discount_percent / 100);
+        return 'Rp ' . number_format($discountedPrice, 0, ',', '.');
+    }
+
+    public function getFormattedDiscountAmountAttribute()
+    {
+        if (!$this->has_discount) {
+            return 'Rp 0';
         }
-        return implode(' | ', $contacts);
+
+        $originalPrice = rand(150000, 500000);
+        $discountAmount = $originalPrice * $this->discount_percent / 100;
+        return 'Rp ' . number_format($discountAmount, 0, ',', '.');
+    }
+
+    public function getGoogleMapsEmbedAttribute()
+    {
+        // Mock Google Maps embed parameter
+        return '!1m18!1m12!1m3!1d3966.521260322283!2d106.8219!3d-6.1754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sJakarta!5e0!3m2!1sen!2sid!4v1234567890123';
+    }
+
+    // Relationships with mock data
+    public function getFacilitiesAttribute()
+    {
+        return collect([
+            (object) ['name' => 'WiFi Gratis'],
+            (object) ['name' => 'AC'],
+            (object) ['name' => 'Kamar Mandi Dalam'],
+            (object) ['name' => 'Sarapan'],
+            (object) ['name' => 'Parkir'],
+            (object) ['name' => 'TV'],
+        ])->take(rand(3, 6));
+    }
+
+    public function getReviewsAttribute()
+    {
+        return collect(); // Empty collection for now
     }
 
     /**
-     * Get the WhatsApp URL.
+     * Auto generate slug when name is set
      */
-    public function getWhatsappUrlAttribute()
+    public function setNameAttribute($value)
     {
-        if ($this->phone) {
-            $phone = preg_replace('/[^0-9]/', '', $this->phone);
-            if (substr($phone, 0, 1) === '0') {
-                $phone = '62' . substr($phone, 1);
-            }
-            $message = urlencode('Halo, saya tertarik dengan homestay ' . $this->name);
-            return "https://wa.me/{$phone}?text={$message}";
+        $this->attributes['name'] = $value;
+        if (empty($this->attributes['slug'])) {
+            $this->attributes['slug'] = Str::slug($value);
         }
-        return null;
-    }
-
-    /**
-     * Scope for active homestays.
-     */
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
-
-    /**
-     * Scope for homestays with discount.
-     */
-    public function scopeWithDiscount($query)
-    {
-        return $query->where('discount_percent', '>', 0);
-    }
-
-    /**
-     * Scope for search.
-     */
-    public function scopeSearch($query, $search)
-    {
-        return $query->where('name', 'like', "%{$search}%")
-                    ->orWhere('address', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
-    }
-
-    /**
-     * Scope for price range.
-     */
-    public function scopePriceRange($query, $minPrice = null, $maxPrice = null)
-    {
-        if ($minPrice !== null) {
-            $query->where('price', '>=', $minPrice);
-        }
-        if ($maxPrice !== null) {
-            $query->where('price', '<=', $maxPrice);
-        }
-        return $query;
-    }
-
-    /**
-     * Boot method for model events.
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        // Auto-generate slug when creating (if needed later)
-        static::creating(function ($homestay) {
-            // You can add slug generation here if needed
-        });
     }
 }
