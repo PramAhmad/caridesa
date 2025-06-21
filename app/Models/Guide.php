@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class Guide extends Model
 {
@@ -105,7 +106,7 @@ class Guide extends Model
      */
     public function getStatusLabelAttribute()
     {
-        return $this->is_active ? 'Aktif' : 'Nonaktif';
+        return $this->is_active ? 'Tersedia' : 'Tidak Tersedia';
     }
 
     /**
@@ -116,25 +117,78 @@ class Guide extends Model
         return $this->is_active ? 'success' : 'secondary';
     }
 
-    /**
-     * Scope for active guides
-     */
+    // Mock data methods
+    public function getViewsAttribute()
+    {
+        return rand(30, 200);
+    }
+
+    public function getRatingAttribute()
+    {
+        return number_format(rand(40, 50) / 10, 1);
+    }
+
+    public function getExperienceYearsAttribute()
+    {
+        return rand(2, 15);
+    }
+
+    public function getLanguagesAttribute()
+    {
+        $languages = [
+            ['Indonesia', 'Inggris'],
+            ['Indonesia', 'Inggris', 'Mandarin'],
+            ['Indonesia', 'Inggris', 'Jepang'],
+            ['Indonesia', 'Inggris', 'Arab'],
+            ['Indonesia'],
+        ];
+        return $languages[array_rand($languages)];
+    }
+
+    public function getSpecialtyAttribute()
+    {
+        $specialties = [
+            'Wisata Alam', 'Wisata Budaya', 'Wisata Religi', 
+            'Wisata Kuliner', 'Wisata Sejarah', 'Wisata Adventure'
+        ];
+        return $specialties[array_rand($specialties)];
+    }
+
+    public function getAvailabilityAttribute()
+    {
+        $statuses = ['Tersedia', 'Sibuk', 'Tersedia Terbatas'];
+        return $statuses[array_rand($statuses)];
+    }
+
+    public function getTourPackagesAttribute()
+    {
+        return collect([
+            (object) ['name' => 'Paket Half Day', 'duration' => '4 jam', 'price' => $this->price * 0.6],
+            (object) ['name' => 'Paket Full Day', 'duration' => '8 jam', 'price' => $this->price],
+            (object) ['name' => 'Paket 2 Hari 1 Malam', 'duration' => '2D1N', 'price' => $this->price * 1.8],
+        ]);
+    }
+
+    public function getCertificationsAttribute()
+    {
+        return collect([
+            (object) ['name' => 'Sertifikat Guide Profesional'],
+            (object) ['name' => 'Sertifikat Keselamatan Wisata'],
+            (object) ['name' => 'Sertifikat Bahasa Asing'],
+        ])->take(rand(1, 3));
+    }
+
+    // Existing scopes and methods...
     public function scopeActive($query)
     {
         return $query->where('is_active', true);
     }
 
-    /**
-     * Scope for inactive guides
-     */
     public function scopeInactive($query)
     {
         return $query->where('is_active', false);
     }
 
-    /**
-     * Scope for search
-     */
     public function scopeSearch($query, $search)
     {
         return $query->where(function($q) use ($search) {
@@ -146,27 +200,26 @@ class Guide extends Model
         });
     }
 
-    /**
-     * Scope for price range
-     */
     public function scopePriceRange($query, $minPrice, $maxPrice)
     {
         return $query->whereBetween('price', [$minPrice, $maxPrice]);
     }
 
-    /**
-     * Scope for discounted guides
-     */
     public function scopeWithDiscount($query)
     {
         return $query->where('discount_percent', '>', 0);
     }
 
-    /**
-     * Get route key name (for route model binding)
-     */
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        if (empty($this->attributes['slug'])) {
+            $this->attributes['slug'] = Str::slug($value);
+        }
     }
 }
