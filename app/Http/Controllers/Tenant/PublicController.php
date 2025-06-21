@@ -461,21 +461,29 @@ class PublicController extends Controller
     public function guideDetail(Guide $guide)
     {
         try {
+            // Pastikan guide aktif
             if (!$guide->is_active) {
-                return redirect()->route('public.guides')->with('error', 'Pemandu tidak tersedia.');
+                return redirect()->route('public.guides')->with('error', 'Guide tidak tersedia.');
             }
+            
+            // Load relasi images jika ada
+            $guide->load(['images']);
+            
+            // Debug log untuk troubleshooting
+            Log::info("Guide Detail Access - ID: {$guide->id}, Name: {$guide->name}, Slug: {$guide->slug}");
             
             // Related guides
             $relatedGuides = Guide::where('is_active', true)
                 ->where('id', '!=', $guide->id)
+                ->with(['images'])
                 ->take(4)
                 ->get();
             
             return view('tenant.public.guides.detail', compact('guide', 'relatedGuides'));
             
         } catch (Exception $e) {
-            Log::error("Error loading guide detail: ID {$guide->id}, Error: " . $e->getMessage());
-            return redirect()->route('public.guides')->with('error', 'Gagal memuat detail pemandu.');
+            Log::error("Error loading guide detail: Slug {$guide->slug}, Error: " . $e->getMessage());
+            return redirect()->route('public.guides')->with('error', 'Gagal memuat detail guide.');
         }
     }
 }
