@@ -32,7 +32,7 @@ class GuideImage extends Model
      */
     public function getUrlAttribute()
     {
-        return asset('tenancy/assets' . $this->name);
+        return asset($this->name);
     }
 
     /**
@@ -56,6 +56,6 @@ class GuideImage extends Model
      */
     public function exists()
     {
-        return file_exists(public_path('tenancy/assets' . $this->name));
+        return file_exists(public_path( $this->name));
     }
 }
