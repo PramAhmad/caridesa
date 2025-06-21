@@ -19,6 +19,7 @@ use App\Http\Controllers\Tenant\CategoryWisataController;
 use App\Http\Controllers\Tenant\ProductController;
 use App\Http\Controllers\Tenant\ThemeController;
 use App\Http\Controllers\Tenant\WisataController;
+use App\Http\Controllers\Tenant\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,19 @@ Route::middleware([
 ])->group(function () {
     
     Route::get('/', [HomeController::class, 'home'])->name('home');
+
+    // Public Routes (without auth)
+    Route::get('/products', [PublicController::class, 'products'])->name('public.products');
+    Route::get('/products/{product:slug}', [PublicController::class, 'productDetail'])->name('public.products.detail');
+    Route::get('/product/{slug}', [PublicController::class, 'productDetailBySlug'])->name('public.product.detail'); // Alternative route for compatibility
+Route::get('/wisatas', [PublicController::class, 'wisata'])->name('public.wisata');
+    Route::get('/wisata/{wisata}', [PublicController::class, 'wisataDetail'])->name('public.wisata.detail');
+    Route::get('/homestays', [PublicController::class, 'homestay'])->name('public.homestay');
+    Route::get('/homestay/{homestay}', [PublicController::class, 'homestayDetail'])->name('public.homestay.detail');
+    Route::get('/events', [PublicController::class, 'events'])->name('public.events');
+    Route::get('/events/{event}', [PublicController::class, 'eventDetail'])->name('public.events.detail');
+    Route::get('/guides', [PublicController::class, 'guides'])->name('public.guides');
+    Route::get('/guides/{guide}', [PublicController::class, 'guideDetail'])->name('public.guides.detail');
 
     // All admin routes with prefix
     Route::prefix('admin')->middleware('auth')->group(function() {
@@ -116,12 +130,13 @@ Route::middleware([
             'update' => 'wisatas.update',
             'destroy' => 'wisatas.destroy',
         ]);
+        
         // Wisata Analytics Routes
         Route::get('analytics/wisatas', [App\Http\Controllers\Tenant\WisataAnalyticsController::class, 'index'])->name('wisatas.analytics');
         Route::get('analytics/wisatas/export', [App\Http\Controllers\Tenant\WisataAnalyticsController::class, 'export'])->name('wisatas.analytics.export');
 
-        // Delete image route for wisata
-        Route::delete('wisata-images/{image}', [WisataController::class, 'deleteImage'])->name('wisata-images.destroy');
+        // FIXED: Delete image route for wisata - using specific image ID
+        Route::delete('wisatas/{wisata}/images/{image}', [WisataController::class, 'deleteImage'])->name('wisatas.delete-image');
 
         // HomeStay Management Routes
         Route::resource('homestays', App\Http\Controllers\Tenant\HomeStayController::class)->names([
