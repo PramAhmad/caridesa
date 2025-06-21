@@ -44,7 +44,7 @@ Route::middleware([
     // Public Routes (without auth)
     Route::get('/products', [PublicController::class, 'products'])->name('public.products');
     Route::get('/products/{product:slug}', [PublicController::class, 'productDetail'])->name('public.products.detail');
-    Route::get('/product/{slug}', [PublicController::class, 'productDetailBySlug'])->name('public.product.detail'); // Alternative route for compatibility
+    Route::get('/product/{slug}', [PublicController::class, 'productDetailBySlug'])->name('public.product.detail'); 
 Route::get('/wisatas', [PublicController::class, 'wisata'])->name('public.wisata');
     Route::get('/wisata/{wisata}', [PublicController::class, 'wisataDetail'])->name('public.wisata.detail');
     Route::get('/homestays', [PublicController::class, 'homestay'])->name('public.homestay');
@@ -52,7 +52,7 @@ Route::get('/wisatas', [PublicController::class, 'wisata'])->name('public.wisata
     Route::get('/events', [PublicController::class, 'events'])->name('public.events');
     Route::get('/events/{event}', [PublicController::class, 'eventDetail'])->name('public.events.detail');
     Route::get('/guides', [PublicController::class, 'guides'])->name('public.guides');
-    Route::get('/guides/{guide}', [PublicController::class, 'guideDetail'])->name('public.guides.detail');
+    Route::get('/guide/{guide:id}', [PublicController::class, 'guideDetail'])->name('public.guide.detail');
 
     // All admin routes with prefix
     Route::prefix('admin')->middleware('auth')->group(function() {
