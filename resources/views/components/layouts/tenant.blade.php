@@ -5,13 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ $title ?? 'Website Desa' }}</title>
   @vite('resources/css/app.css')
+  
+  <!-- Additional Head Content -->
+  @stack('meta')
+  @stack('styles')
 </head>
 <body class="font-sans antialiased">
-    <!-- container -->
-    <div class=" mx-auto">
+    <!-- Navbar -->
+    <x-tenant.navbar 
+        :theme="'art'" 
+        :transparent="$transparentNav ?? false"
+        :fixed="$fixedNav ?? true" 
+    />
+    
+    <!-- Main Content -->
+    <main class="{{ ($fixedNav ?? true) ? 'pt-16 lg:pt-20' : '' }}">
         {{ $slot }}
-    </div>
+    </main>
+    
+    <!-- Footer -->
+    <x-tenant.footer 
+        :theme="'art'"
+        :variant="$footerVariant ?? 'default'"
+    />
 
+    <!-- Scripts -->
+    @stack('scripts')
+    
     <script>
     // Simple animations
     document.addEventListener('DOMContentLoaded', function() {
