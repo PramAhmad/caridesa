@@ -23,14 +23,15 @@ class Product extends Model
         'is_active',
         'image',
         'links',
+        'views',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'discount' => 'decimal:2',
         'is_active' => 'boolean',
-        'links' => 'array',
         'stock' => ProductStockStatus::class,
+        'views' => 'integer',
     ];
 
     protected $dates = [
@@ -69,20 +70,41 @@ class Product extends Model
     }
 
     /**
-     * Get image URL
+     * Get image URL with proper fallback
      */
     public function getImageUrlAttribute(): string
     {
         if ($this->image) {
-            return asset("tenancy/assets/image/products/{$this->image}");
+            // Check if it's already a full URL
+            if (filter_var($this->image, FILTER_VALIDATE_URL)) {
+                return $this->image;
+            }
+            
+            // Check if file exists in storage
+            $imagePath = public_path("tenancy/assets/image/products/{$this->image}");
+            if (file_exists($imagePath)) {
+                return asset("tenancy/assets/image/products/{$this->image}");
+            }
+            
+            // Try without tenancy path
+            $imagePath2 = public_path($this->image);
+            if (file_exists($imagePath2)) {
+                return asset($this->image);
+            }
         }
-        return asset('tenant/images/placeholder-product.png');
+        
+        // Default placeholder
+        return 'https://via.placeholder.com/400x300/f59e0b/ffffff?text=No+Image';
     }
 
     /**
      * Check if product has discount
      */
- 
+    public function hasDiscount(): bool
+    {
+        return $this->discount > 0;
+    }
+
     /**
      * Get formatted price
      */
@@ -111,9 +133,27 @@ class Product extends Model
     }
 
     /**
-     * Get links as array
+     * Get links as array - Fixed version
      */
+    public function getLinksArray()
+    {
+        if (empty($this->links)) {
+            return [];
+        }
 
+        // If it's already an array, return as is
+        if (is_array($this->links)) {
+            return $this->links;
+        }
+
+        // If it's a JSON string, decode it
+        if (is_string($this->links)) {
+            $decoded = json_decode($this->links, true);
+            return is_array($decoded) ? $decoded : [];
+        }
+
+        return [];
+    }
 
     // Mutators
     public function setNameAttribute($value)
@@ -124,7 +164,20 @@ class Product extends Model
 
     public function setLinksAttribute($value)
     {
-        $this->attributes['links'] = is_array($value) ? json_encode($value) : $value;
+        if (is_array($value)) {
+            $this->attributes['links'] = json_encode($value);
+        } elseif (is_string($value)) {
+            // Check if it's already valid JSON
+            $decoded = json_decode($value, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $this->attributes['links'] = $value;
+            } else {
+                // If it's not JSON, wrap it in an array
+                $this->attributes['links'] = json_encode([$value]);
+            }
+        } else {
+            $this->attributes['links'] = json_encode([]);
+        }
     }
 
     // Scopes
@@ -156,18 +209,8 @@ class Product extends Model
         return $query->where('discount', '>', 0);
     }
 
-    public function hasDiscount()
-    {
-        return $this->discount > 0;
-    }
-
     public function isAvailable()
     {
         return $this->is_active && $this->stock !== ProductStockStatus::OUT_OF_STOCK;
-    }
-
-    public function getLinksArray()
-    {
-        return is_string($this->links) ? json_decode($this->links, true) : $this->links;
     }
 }
