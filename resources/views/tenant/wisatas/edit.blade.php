@@ -171,7 +171,7 @@
                                     <div class="existing-image-item" id="existing-image-{{ $image->id }}">
                                         <img src="{{ asset($image->name) }}" alt="Wisata {{ $wisata->name }}">
                                         <div class="existing-image-overlay">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteImage(`{{ $image->id }}`)">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteImage({{ $image->id }})">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
@@ -179,7 +179,11 @@
                                             <div class="image-counter">{{ $index + 1 }} / {{ $wisata->images->count() }}</div>
                                         </div>
                                         
-                                   
+                                        <!-- Hidden form for deleting individual images -->
+                                        <form method="POST" action="/admin/wisatas/{{ $wisata->slug }}/images/{{ $image->id }}" id="delete-image-form-{{ $image->id }}" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </div>
                                     @endforeach
                                 </div>
@@ -279,6 +283,9 @@
     
     @push('script')
     <script>
+        // Add CSRF token to meta tag
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        
         // Global variables for new images
         let selectedFiles = [];
         let fileInput = document.getElementById('validationTooltipImages');
@@ -449,7 +456,7 @@
             }, 5000);
         }
         
-        // Confirm delete existing image
+        // FIXED: Confirm delete existing image with correct URL
         function confirmDeleteImage(imageId) {
             if (confirm('Apakah Anda yakin ingin menghapus gambar ini? Tindakan ini tidak dapat dibatalkan.')) {
                 // Add loading state
@@ -457,9 +464,92 @@
                 if (imageItem) {
                     imageItem.style.opacity = '0.5';
                     imageItem.style.pointerEvents = 'none';
+                    
+                    // Show loading indicator
+                    const overlay = imageItem.querySelector('.existing-image-overlay');
+                    if (overlay) {
+                        overlay.innerHTML = '<div class="spinner-border spinner-border-sm text-light" role="status"></div>';
+                    }
                 }
                 
-                document.getElementById('delete-image-form-' + imageId).submit();
+                // First try to find and submit the form
+                const deleteForm = document.getElementById('delete-image-form-' + imageId);
+                if (deleteForm) {
+                    deleteForm.submit();
+                } else {
+                    // Use AJAX as fallback
+                    deleteImageWithAjax(imageId);
+                }
+            }
+        }
+        
+        // FIXED: Delete image with AJAX using correct URL
+        function deleteImageWithAjax(imageId) {
+            const wisataSlug = '{{ $wisata->slug }}';
+            const csrf = '{{ csrf_token() }}';
+            
+            fetch(`/admin/wisatas/${wisataSlug}/images/${imageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': csrf,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok');
+            })
+            .then(data => {
+                if (data.success) {
+                    // Remove the image element from DOM
+                    const imageItem = document.getElementById('existing-image-' + imageId);
+                    if (imageItem) {
+                        imageItem.style.transform = 'scale(0)';
+                        imageItem.style.opacity = '0';
+                        setTimeout(() => {
+                            imageItem.remove();
+                            showAlert('Gambar berhasil dihapus', 'success');
+                            
+                            // Update counter
+                            updateImageCounter();
+                        }, 300);
+                    }
+                } else {
+                    throw new Error(data.message || 'Gagal menghapus gambar');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('Gagal menghapus gambar: ' + error.message, 'danger');
+                
+                // Restore image item state
+                const imageItem = document.getElementById('existing-image-' + imageId);
+                if (imageItem) {
+                    imageItem.style.opacity = '1';
+                    imageItem.style.pointerEvents = 'auto';
+                    
+                    // Restore delete button
+                    const overlay = imageItem.querySelector('.existing-image-overlay');
+                    if (overlay) {
+                        overlay.innerHTML = `
+                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeleteImage(${imageId})">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        `;
+                    }
+                }
+            });
+        }
+        
+        // Update image counter after deletion
+        function updateImageCounter() {
+            const remainingImages = document.querySelectorAll('.existing-image-item').length;
+            const headerElement = document.querySelector('h5');
+            if (headerElement && headerElement.textContent.includes('Gambar Saat Ini')) {
+                headerElement.textContent = `🖼️ Gambar Saat Ini (${remainingImages})`;
             }
         }
         
@@ -570,7 +660,7 @@
             overflow: hidden;
             background: white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease, opacity 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .existing-image-item:hover {
@@ -581,6 +671,11 @@
             width: 100%;
             height: 150px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .existing-image-item:hover img {
+            transform: scale(1.05);
         }
         
         .existing-image-overlay {
@@ -700,6 +795,12 @@
         .image-size {
             font-size: 0.7rem;
             color: #6c757d;
+        }
+        
+        /* Loading animations */
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
         }
         
         /* Responsive adjustments */
