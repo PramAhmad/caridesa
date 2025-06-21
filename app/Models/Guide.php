@@ -52,7 +52,7 @@ class Guide extends Model
     {
         $mainImage = $this->main_image;
         if ($mainImage) {
-            return asset('tenancy/assets' . $mainImage->name);
+            return asset( $mainImage->name);
         }
         return asset('tenant/images/default-guide.jpg'); // Default image
     }
