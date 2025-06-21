@@ -139,7 +139,6 @@ class GuideController extends Controller
             ]);
 
             $validated['is_active'] = $request->has('is_active');
-            $validated['slug'] = Str::slug($validated['name']);
 
             // Create guide
             $guide = Guide::create($validated);
@@ -263,10 +262,7 @@ class GuideController extends Controller
 
             $validated['is_active'] = $request->has('is_active');
 
-            // Only update slug if name changed
-            if ($guide->name !== $validated['name']) {
-                $validated['slug'] = Str::slug($validated['name']);
-            }
+
 
             // Update guide
             $updated = $guide->update($validated);
@@ -377,11 +373,7 @@ class GuideController extends Controller
         try {
             $imageName = $image->name;
             $guideId = $image->guide_id;
-            
-            // Delete image file from filesystem
             $this->deleteImageFile($image);
-            
-            // Delete image record from database
             $deleted = $image->delete();
             
             if (!$deleted) {
