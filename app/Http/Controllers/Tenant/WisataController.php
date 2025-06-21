@@ -294,13 +294,21 @@ class WisataController extends Controller
     /**
      * Remove the specified image from wisata.
      */
-    public function deleteImage(WisataImage $image)
+    public function deleteImage(Wisata $wisata, WisataImage $image)
     {
         DB::beginTransaction();
         
         try {
+            // Verify that the image belongs to the wisata
+            if ($image->wisata_id !== $wisata->id) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gambar tidak ditemukan untuk wisata ini.'
+                ], 404);
+            }
+            
             $imageName = $image->name;
-            $wisataId = $image->wisata_id;
+            $imageId = $image->id;
             
             // Delete image file from filesystem
             $this->deleteImageFile($image);
@@ -314,13 +322,29 @@ class WisataController extends Controller
 
             DB::commit();
             
-            Log::info("Wisata image deleted successfully: Image {$imageName}, Wisata ID {$wisataId}");
+            Log::info("Wisata image deleted successfully: Image ID {$imageId}, Name {$imageName}, Wisata ID {$wisata->id}");
+
+            // Check if it's an AJAX request
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Gambar berhasil dihapus!'
+                ]);
+            }
 
             return back()->with('success', 'Gambar berhasil dihapus!');
 
         } catch (QueryException $e) {
             DB::rollBack();
             Log::error("Database error deleting wisata image: ID {$image->id}, Error: " . $e->getMessage());
+            
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gagal menghapus gambar dari database. Silakan coba lagi.'
+                ], 500);
+            }
+            
             return back()->with('error', 'Gagal menghapus gambar dari database. Silakan coba lagi.');
             
         } catch (Exception $e) {
@@ -328,6 +352,13 @@ class WisataController extends Controller
             Log::error("Error deleting wisata image: ID {$image->id}, Error: " . $e->getMessage(), [
                 'stack_trace' => $e->getTraceAsString()
             ]);
+            
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Terjadi kesalahan saat menghapus gambar: ' . $e->getMessage()
+                ], 500);
+            }
             
             return back()->with('error', 'Terjadi kesalahan saat menghapus gambar: ' . $e->getMessage());
         }
@@ -398,7 +429,7 @@ class WisataController extends Controller
     /**
      * Delete image file from filesystem
      */
-    private function deleteImageFile(WisataImage $image)
+    private function deleteImageFile($image)
     {
         try {
             $imagePath = public_path("tenancy/assets" . $image->name);
