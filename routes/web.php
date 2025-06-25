@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Wave\Facades\Wave;
 use Wave\Http\Controllers\HomeController;
 use Wave\Page;
+use App\Http\Controllers\TenantRegistrationController;
 
 // Documentation routes
 Route::view('docs/{page?}', 'docs::index')->where('page', '(.*)');
@@ -71,3 +72,9 @@ try {
     // Handle the exception or log it if needed
 }
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Tenant Registration Routes
+Route::get('/daftar-desa', [TenantRegistrationController::class, 'index'])->name('tenant.registration');
+Route::post('/daftar-desa', [TenantRegistrationController::class, 'store'])->name('tenant.registration.store');
+Route::get('/daftar-desa/success/{tenant}', [TenantRegistrationController::class, 'success'])->name('tenant.registration.success');
+Route::get('/status-pendaftaran/{tenant}', [TenantRegistrationController::class, 'status'])->name('tenant.status');
