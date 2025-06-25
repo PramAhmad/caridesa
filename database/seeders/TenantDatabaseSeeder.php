@@ -13,7 +13,6 @@ class TenantDatabaseSeeder extends Seeder
     {
         $this->call(PermissionsTenantSeeder::class);
         $this->call(RolesTenantTableSeeder::class);
-        $this->call(ThemesTableSeeder::class);
         $this->call(TenantWisataPermissionSeeder::class);
         $this->call(TenantProductPermissionSeeder::class);
         $this->call(TenantEventPermissionSeeder::class);
