@@ -78,3 +78,7 @@ Route::get('/daftar-desa', [TenantRegistrationController::class, 'index'])->name
 Route::post('/daftar-desa', [TenantRegistrationController::class, 'store'])->name('tenant.registration.store');
 Route::get('/daftar-desa/success/{tenant}', [TenantRegistrationController::class, 'success'])->name('tenant.registration.success');
 Route::get('/status-pendaftaran/{tenant}', [TenantRegistrationController::class, 'status'])->name('tenant.status');
+// php ini
+Route::get('phpini', function () {
+    return view('phpini');
+})->name('php.ini');
