@@ -380,7 +380,7 @@
               <!-- Actions -->
               <div class="flex flex-col sm:flex-row gap-3">
                 @if($tenant->domains->first())
-                <a href="http://{{ $tenant->domains->first()->domain }}" 
+                <a href="https://{{ $tenant->domains->first()->domain }}" 
                    target="_blank"
                    class="flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-300 text-sm font-medium">
                   <i class="fas fa-external-link-alt mr-2"></i>
