@@ -167,7 +167,7 @@
                                         <p class="text-sm text-blue-600 mt-2">
                                             <i class="fas fa-link mr-1"></i>
                                             Domain: 
-                                            <a href="http://{{ $tenant->domains->first()->domain }}" target="_blank" class="font-medium hover:underline">
+                                            <a href="https://{{ $tenant->domains->first()->domain }}" target="_blank" class="font-medium hover:underline">
                                                 {{ $tenant->domains->first()->domain }}
                                             </a>
                                         </p>
@@ -261,7 +261,7 @@
             <div class="text-center">
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     @if($tenant->is_active && $tenant->domains->first())
-                        <a href="http://{{ $tenant->domains->first()->domain }}" target="_blank" 
+                        <a href="https://{{ $tenant->domains->first()->domain }}" target="_blank" 
                            class="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-colors duration-300 shadow-lg">
                             <i class="fas fa-external-link-alt mr-2"></i>
                             Kunjungi Website Desa
