@@ -56,7 +56,13 @@ Route::get('/wisatas', [PublicController::class, 'wisata'])->name('public.wisata
 
     // All admin routes with prefix
     Route::prefix('admin')->middleware('auth')->group(function() {
-        
+            Route::get('/dashboard', [App\Http\Controllers\Tenant\DashboardController::class, 'index'])
+        ->name('dashboard');
+    
+    // API route for quick stats
+    Route::get('/api/dashboard/stats', [App\Http\Controllers\Tenant\DashboardController::class, 'quickStats'])
+        ->name('api.dashboard.stats');
+
         // User Management Routes
         Route::resource('users', UsersController::class);
         Route::resource('roles', RolesController::class);
