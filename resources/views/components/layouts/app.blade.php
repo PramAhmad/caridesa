@@ -10,28 +10,28 @@
     <meta name="keywords"
         content="admin template, Riho admin template, dashboard template, flat admin template, responsive admin template, web app" />
     <meta name="author" content="pixelstrap" />
-    <link rel="icon" href="{{ asset('tenant/images/favicon.png') }}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{{ asset('tenant/images/favicon.png') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ tenant_asset('tenant/images/favicon.png') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ tenant_asset('tenant/images/favicon.png') }}" type="image/x-icon" />
     <title>{{ config('app.name', 'Laravel') }}{{ isset($title) ? ' - ' . $title : '' }}</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
     @stack('css_before')
-    <link rel="stylesheet" href="{{ asset('tenant/css/font-awesome.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/icofont.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/themify.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/flag-icon.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/feather-icon.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/slick.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/slick-theme.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/scrollbar.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/animate.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/prism.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/vendors/bootstrap.css'); }}"/>
-    <link rel="stylesheet" href="{{ asset('tenant/css/style.css'); }}"/>
-    <link id="color" rel="stylesheet" href="{{ asset('tenant/css/color-3.css'); }}" media="screen" />
-    <link rel="stylesheet" href="{{ asset('tenant/css/responsive.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/font-awesome.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/icofont.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/themify.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/flag-icon.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/feather-icon.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/slick.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/slick-theme.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/scrollbar.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/animate.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/prism.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/vendors/bootstrap.css'); }}"/>
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/style.css'); }}"/>
+    <link id="color" rel="stylesheet" href="{{ tenant_asset('tenant/css/color-3.css'); }}" media="screen" />
+    <link rel="stylesheet" href="{{ tenant_asset('tenant/css/responsive.css'); }}"/>
     @stack('css')
 </head>
 
@@ -56,21 +56,21 @@
         </div>
     </div>
 
-    <script src="{{ asset('tenant/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('tenant/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('tenant/js/icons/feather-icon/feather.min.js') }}"></script>
-    <script src="{{ asset('tenant/js/icons/feather-icon/feather-icon.js') }}"></script>
-    <script src="{{ asset('tenant/js/scrollbar/simplebar.js') }}"></script>
-    <script src="{{ asset('tenant/js/scrollbar/custom.js') }}"></script>
-    <script src="{{ asset('tenant/js/config.js') }}"></script>
-    <script src="{{ asset('tenant/js/sidebar-pin.js') }}"></script>
-    <script src="{{ asset('tenant/js/slick/slick.min.js') }}"></script>
-    <script src="{{ asset('tenant/js/slick/slick.js') }}"></script>
-    <script src="{{ asset('tenant/js/header-slick.js') }}"></script>
-    <script src="{{ asset('tenant/js/prism/prism.min.js') }}"></script>
-    <script src="{{ asset('tenant/js/sidebar-menu.js') }}"></script>
-    <script src="{{ asset('tenant/js/typeahead-search/handlebars.js') }}"></script>
-    <script src="{{ asset('tenant/js/script.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/jquery.min.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/icons/feather-icon/feather.min.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/icons/feather-icon/feather-icon.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/scrollbar/simplebar.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/scrollbar/custom.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/config.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/sidebar-pin.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/slick/slick.min.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/slick/slick.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/header-slick.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/prism/prism.min.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/sidebar-menu.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/typeahead-search/handlebars.js') }}"></script>
+    <script src="{{ tenant_asset('tenant/js/script.js') }}"></script>
     @stack('script')
 </body>
 
