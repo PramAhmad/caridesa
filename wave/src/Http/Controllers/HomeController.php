@@ -5,6 +5,7 @@ namespace Wave\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\HomeStay;
 use App\Models\Theme;
+use App\Models\Tenant;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -33,8 +34,16 @@ class HomeController extends Controller
         }
         return view($viewPath, compact('activeTheme', 'homestays'));
     }
+
     public function index()
     {
-        return view('central.home');
+        // Get active tenants for display (latest 6)
+        $activeTenants = Tenant::with('domains')
+            ->where('is_active', true)
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
+
+        return view('central.home', compact('activeTenants'));
     }
 }

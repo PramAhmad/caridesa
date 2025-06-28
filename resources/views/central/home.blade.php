@@ -82,8 +82,8 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="#welcome" class="btn-primary">
-                <span class="relative z-10">Mulai Sekarang</span>
+              <a href="{{ route('tenant.registration') }}" class="btn-primary">
+                <span class="relative z-10">Daftar Desa</span>
                 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
               </a>
               
@@ -276,6 +276,152 @@
             <i class="fas fa-folder-open ml-2"></i>
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- List Tenant Section -->
+    <section id="tenant-list" class="py-20 lg:py-32 bg-white relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 bg-pattern-dots opacity-30"></div>
+      
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-gradient text-shadow">
+            Desa-Desa Terdaftar
+          </h2>
+          <p class="text-xl max-w-3xl mx-auto" style="color: #666;">
+            Daftar desa yang telah bergabung dengan platform CariDesa dan telah memiliki website
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="text-center mb-12">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="{{ route('tenant.registration') }}" class="btn-primary">
+              <i class="fas fa-plus mr-2"></i>
+              <span>Daftarkan Desa Anda</span>
+            </a>
+            
+            <a href="#cek-status" class="btn-secondary" onclick="toggleStatusChecker()">
+              <i class="fas fa-search mr-2"></i>
+              <span>Cek Status Pendaftaran</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Status Checker (Hidden by default) -->
+        <div id="status-checker" class="hidden mb-12">
+          <div class="max-w-md mx-auto bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
+            <h3 class="text-lg font-bold mb-4 text-center" style="color: #333;">
+              Cek Status Pendaftaran
+            </h3>
+            <form action="{{ route('tenant.status', '') }}" method="GET" onsubmit="return redirectToStatus(event)">
+              <div class="form-group mb-4">
+                <label class="form-label">ID Tenant</label>
+                <input type="text" 
+                       id="tenant-id-input" 
+                       class="form-input" 
+                       placeholder="Masukan ID Tenant (contoh: desa-sukamaju)"
+                       required>
+              </div>
+              <button type="submit" class="btn-primary w-full justify-center">
+                <i class="fas fa-search mr-2"></i>
+                Cek Status
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Tenant List Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          @forelse($activeTenants as $tenant)
+          <div class="tenant-card group">
+            <!-- Header -->
+            <div class="p-6 border-b border-gray-100">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #6c9a76, #23472a);">
+                    <i class="fas fa-map-marker-alt text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-lg" style="color: #333;">{{ $tenant->nama_desa }}</h3>
+                    <p class="text-sm" style="color: #666;">{{ $tenant->kecamatan }}, {{ $tenant->kota }}</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Aktif</span>
+                </div>
+              </div>
+              
+              <p class="text-sm leading-relaxed" style="color: #666;">
+                {{ Str::limit($tenant->tujuan, 100) }}
+              </p>
+            </div>
+            
+            <!-- Info -->
+            <div class="p-6">
+              <div class="space-y-3 mb-6">
+                <div class="flex items-center justify-between text-sm">
+                  <span style="color: #666;">Penanggung Jawab:</span>
+                  <span class="font-medium" style="color: #333;">{{ $tenant->nama }}</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                  <span style="color: #666;">Provinsi:</span>
+                  <span class="font-medium" style="color: #333;">{{ $tenant->provinsi }}</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                  <span style="color: #666;">Terdaftar:</span>
+                  <span class="font-medium" style="color: #333;">{{ $tenant->created_at->format('M Y') }}</span>
+                </div>
+              </div>
+              
+              <!-- Actions -->
+              <div class="flex flex-col sm:flex-row gap-3">
+                @if($tenant->domains->first())
+                <a href="http://{{ $tenant->domains->first()->domain }}" 
+                   target="_blank"
+                   class="flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-300 text-sm font-medium">
+                  <i class="fas fa-external-link-alt mr-2"></i>
+                  Kunjungi Website
+                </a>
+                @endif
+                
+                <a href="{{ route('tenant.status', $tenant->id) }}"
+                   class="flex items-center justify-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-300 text-sm font-medium">
+                  <i class="fas fa-info-circle mr-2"></i>
+                  Detail Status
+                </a>
+              </div>
+            </div>
+          </div>
+          @empty
+          <div class="col-span-full text-center py-16">
+            <div class="max-w-md mx-auto">
+              <i class="fas fa-village text-6xl mb-4" style="color: #6c9a76;"></i>
+              <h3 class="text-xl font-bold mb-2" style="color: #333;">Belum Ada Desa Terdaftar</h3>
+              <p class="mb-6" style="color: #666;">
+                Jadilah desa pertama yang bergabung dengan platform CariDesa
+              </p>
+              <a href="{{ route('tenant.registration') }}" class="btn-primary">
+                <i class="fas fa-plus mr-2"></i>
+                Daftarkan Desa Anda
+              </a>
+            </div>
+          </div>
+          @endforelse
+        </div>
+        
+        <!-- View All Button -->
+        @if($activeTenants->count() > 0)
+        <div class="text-center mt-12">
+          <a href="/tenants" class="btn-secondary">
+            <span>Lihat Semua Desa</span>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        @endif
       </div>
     </section>
 
@@ -496,6 +642,62 @@
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
       });
+
+      // JavaScript for status checker
+      function toggleStatusChecker() {
+        const checker = document.getElementById('status-checker');
+        checker.classList.toggle('hidden');
+        if (!checker.classList.contains('hidden')) {
+          checker.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      function redirectToStatus(event) {
+        event.preventDefault();
+        const tenantId = document.getElementById('tenant-id-input').value.trim();
+        if (tenantId) {
+          window.location.href = `/status-pendaftaran/${tenantId}`;
+        }
+        return false;
+      }
     </script>
+
+    <!-- Additional CSS for tenant cards -->
+    <style>
+    .tenant-card {
+      background: white;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid #f0f0f0;
+      overflow: hidden;
+    }
+
+    .tenant-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: #6c9a76;
+    }
+
+    #status-checker {
+      transition: all 0.3s ease;
+    }
+
+    #status-checker.show {
+      display: block !important;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    </style>
   </body>
 </html>
