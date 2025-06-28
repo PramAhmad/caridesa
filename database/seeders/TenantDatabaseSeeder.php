@@ -17,6 +17,12 @@ class TenantDatabaseSeeder extends Seeder
         $this->call(TenantProductPermissionSeeder::class);
         $this->call(TenantEventPermissionSeeder::class);
         $this->call(TenantGuidePermissionSeeder::class);
-        
+        $this->call(ThemeSeeder::class);
+        $this->call(PermissionTenantTableSeeder::class);
+
+        // assign all permissions to admin role
+        foreach (['admin', 'superadmin'] as $role) {
+            $this->call(TenantAssignAllPermissionsSeeder::class, ['role' => $role]);
+        }
     }
 }
