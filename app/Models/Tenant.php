@@ -34,6 +34,10 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         'is_active' => 'boolean',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     public static function getCustomColumns(): array
     {
         return [
@@ -53,13 +57,6 @@ class Tenant extends BaseTenant implements TenantWithDatabase
             'password',
             'data',
         ];
-    }
-
-    public function setPasswordAttribute($value)
-    {
-        if (!empty($value)) {
-            $this->attributes['password'] = bcrypt($value);
-        }
     }
 
     public function getTenancyDbNameAttribute()
@@ -114,27 +111,21 @@ class Tenant extends BaseTenant implements TenantWithDatabase
         return $this->is_active;
     }
 
-    // Method untuk get file path KTP
-    public function getKtpPathAttribute()
-    {
-        return $this->ktp ? storage_path('app/public/ktp/' . $this->ktp) : null;
-    }
-
-    // Method untuk get file path Surat Desa
-    public function getSuratDesaPathAttribute()
-    {
-        return $this->surat_desa ? storage_path('app/public/surat_desa/' . $this->surat_desa) : null;
-    }
-
     // Method untuk get KTP URL
     public function getKtpUrlAttribute()
     {
-        return $this->ktp ? asset('storage/ktp/' . $this->ktp) : null;
+        if ($this->ktp && file_exists(public_path('ktp/' . $this->ktp))) {
+            return asset('ktp/' . $this->ktp);
+        }
+        return null;
     }
 
     // Method untuk get Surat Desa URL
     public function getSuratDesaUrlAttribute()
     {
-        return $this->surat_desa ? asset('storage/surat_desa/' . $this->surat_desa) : null;
+        if ($this->surat_desa && file_exists(public_path('surat_desa/' . $this->surat_desa))) {
+            return asset('surat_desa/' . $this->surat_desa);
+        }
+        return null;
     }
 }

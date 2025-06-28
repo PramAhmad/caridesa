@@ -1,0 +1,26 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app-CVME7tB3.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/page/lead.js": {
+    "file": "assets/lead-Cibfgh35.js",
+    "name": "lead",
+    "src": "resources/js/page/lead.js",
+    "isEntry": true
+  },
+  "resources/js/page/role.js": {
+    "file": "assets/role-KHJh5wrI.js",
+    "name": "role",
+    "src": "resources/js/page/role.js",
+    "isEntry": true
+  },
+  "resources/js/page/user.js": {
+    "file": "assets/user-CMFLyo5t.js",
+    "name": "user",
+    "src": "resources/js/page/user.js",
+    "isEntry": true
+  }
+}

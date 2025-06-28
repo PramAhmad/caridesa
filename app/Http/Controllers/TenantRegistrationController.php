@@ -61,7 +61,7 @@ class TenantRegistrationController extends Controller
                 'kota' => $request->kota,
                 'kecamatan' => $request->kecamatan,
                 'kelurahan' => $request->kelurahan,
-                'password' => Hash::make($request->password),
+                'password' => bcrypt($request->password), // Hash password
                 'data' => [
                     'tenancy_db_name' => 'tenant_' . str_replace('-', '_', $tenantId),
                     'nama_desa' => $request->nama_desa,

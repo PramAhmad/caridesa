@@ -44,7 +44,7 @@ class SeedTenantJob implements ShouldQueue
                     $user = User::create([
                         'name'     => $this->tenant->nama,
                         'email'    => $this->tenant->email,
-                        'password' => $this->tenant->password, // Already hashed from registration
+                        'password' => $this->tenant->password, 
                         'email_verified_at' => now(),
                     ]);
 
