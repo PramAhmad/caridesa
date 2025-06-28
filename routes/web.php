@@ -80,5 +80,5 @@ Route::get('/daftar-desa/success/{tenant}', [TenantRegistrationController::class
 Route::get('/status-pendaftaran/{tenant}', [TenantRegistrationController::class, 'status'])->name('tenant.status');
 // php ini
 Route::get('phpini', function () {
-    return view('phpini');
+    return phpinfo();
 })->name('php.ini');
