@@ -30,10 +30,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (tenancy()->initialized) {
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended('admin/dashboard');
         }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended('admin/dashboard');
     }
 
     /**
