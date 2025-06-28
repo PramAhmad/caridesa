@@ -79,25 +79,92 @@ class TenantResource extends Resource
                     ])
                     ->columns(2),
 
-                Forms\Components\Section::make('Dokumen')
+                Forms\Components\Section::make('Dokumen Pendukung')
                     ->schema([
-                        Forms\Components\FileUpload::make('ktp')
+                        // KTP Preview
+                        Forms\Components\Placeholder::make('ktp_preview')
                             ->label('KTP')
-                            ->directory('ktp')
-                            ->visibility('public')
-                            ->downloadable()
-                            ->openable()
-                            ->disabled(),
+                            ->content(function ($record) {
+                                if (!$record || !$record->ktp) {
+                                    return new \Illuminate\Support\HtmlString('<p class="text-gray-500">Dokumen KTP tidak tersedia</p>');
+                                }
+                                
+                                $url = $record->ktp_url;
+                                $fileName = $record->ktp;
+                                $isImage = str_contains($fileName, '.jpg') || str_contains($fileName, '.jpeg') || str_contains($fileName, '.png');
+                                
+                                return new \Illuminate\Support\HtmlString(
+                                    '<div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <h4 class="text-sm font-semibold text-gray-900">KTP - ' . $record->nama . '</h4>
+                                            <div class="flex items-center space-x-2">
+                                                <a href="' . $url . '" target="_blank" class="inline-flex items-center px-3 py-1 text-xs font-medium text-blue-700 bg-blue-100 rounded-full hover:bg-blue-200 transition-colors">
+                                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                    </svg>
+                                                    Buka
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center bg-white rounded border-2 border-dashed border-gray-300 p-6">' .
+                                            ($isImage ? 
+                                                '<img src="' . $url . '" alt="KTP" class="max-w-full max-h-48 mx-auto rounded shadow">' :
+                                                '<div class="flex flex-col items-center">
+                                                    <svg class="w-16 h-16 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                                    </svg>
+                                                    <p class="text-sm text-gray-600 mb-2">' . $fileName . '</p>
+                                                    <p class="text-xs text-gray-500">File PDF</p>
+                                                </div>'
+                                            ) .
+                                        '</div>
+                                    </div>'
+                                );
+                            }),
 
-                        Forms\Components\FileUpload::make('surat_desa')
+                        // Surat Desa Preview
+                        Forms\Components\Placeholder::make('surat_desa_preview')
                             ->label('Surat Desa')
-                            ->directory('surat_desa')
-                            ->visibility('public')
-                            ->downloadable()
-                            ->openable()
-                            ->disabled(),
+                            ->content(function ($record) {
+                                if (!$record || !$record->surat_desa) {
+                                    return new \Illuminate\Support\HtmlString('<p class="text-gray-500">Dokumen Surat Desa tidak tersedia</p>');
+                                }
+                                
+                                $url = $record->surat_desa_url;
+                                $fileName = $record->surat_desa;
+                                $isImage = str_contains($fileName, '.jpg') || str_contains($fileName, '.jpeg') || str_contains($fileName, '.png');
+                                
+                                return new \Illuminate\Support\HtmlString(
+                                    '<div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <h4 class="text-sm font-semibold text-gray-900">Surat Desa - ' . $record->nama . '</h4>
+                                            <div class="flex items-center space-x-2">
+                                                <a href="' . $url . '" target="_blank" class="inline-flex items-center px-3 py-1 text-xs font-medium text-blue-700 bg-blue-100 rounded-full hover:bg-blue-200 transition-colors">
+                                                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                                    </svg>
+                                                    Buka
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center bg-white rounded border-2 border-dashed border-gray-300 p-6">' .
+                                            ($isImage ? 
+                                                '<img src="' . $url . '" alt="Surat Desa" class="max-w-full max-h-48 mx-auto rounded shadow">' :
+                                                '<div class="flex flex-col items-center">
+                                                    <svg class="w-16 h-16 text-red-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                                    </svg>
+                                                    <p class="text-sm text-gray-600 mb-2">' . $fileName . '</p>
+                                                    <p class="text-xs text-gray-500">File PDF</p>
+                                                </div>'
+                                            ) .
+                                        '</div>
+                                    </div>'
+                                );
+                            }),
                     ])
-                    ->columns(2),
+                    ->columns(1)
+                    ->visible(fn ($record) => $record && ($record->ktp || $record->surat_desa)),
 
                 Forms\Components\Section::make('Status Approval')
                     ->schema([
@@ -174,6 +241,12 @@ class TenantResource extends Resource
                     ->trueColor('success')
                     ->falseColor('danger'),
 
+                // Preview Dokumen Column
+                Tables\Columns\ViewColumn::make('documents')
+                    ->label('Dokumen')
+                    ->view('filament.columns.document-status')
+                    ->alignCenter(),
+
                 Tables\Columns\TextColumn::make('domains.domain')
                     ->label('Domain')
                     ->searchable()
@@ -207,6 +280,16 @@ class TenantResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make()
                     ->label('Detail'),
+
+                // Quick Preview Action
+                Tables\Actions\Action::make('preview_documents')
+                    ->label('Preview Dokumen')
+                    ->icon('heroicon-o-document-magnifying-glass')
+                    ->color('info')
+                    ->modalHeading(fn ($record) => 'Dokumen - ' . $record->nama_desa)
+                    ->modalContent(fn ($record) => view('filament.modals.document-preview-modal', compact('record')))
+                    ->modalWidth('7xl')
+                    ->visible(fn ($record) => $record->ktp || $record->surat_desa),
 
                 Tables\Actions\Action::make('approve')
                     ->label('Approve')
@@ -331,7 +414,7 @@ class TenantResource extends Resource
 
             Notification::make()
                 ->title('Tenant ditolak')
-                ->body("Tenant {$record->data['nama_desa']} telah ditolak.")
+                ->body("Tenant {$record->nama_desa} telah ditolak.")
                 ->warning()
                 ->send();
 
