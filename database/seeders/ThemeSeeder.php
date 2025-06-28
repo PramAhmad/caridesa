@@ -15,7 +15,6 @@ class ThemeSeeder extends Seeder
                 'name' => 'Soft Theme',
                 'slug' => 'soft',
                 'description' => 'Theme dengan desain lembut dan gradasi warna',
-                'is_active' => true
             ],
             [
                 'name' => 'Modern Theme',
@@ -30,7 +29,9 @@ class ThemeSeeder extends Seeder
             [
                 'name' => 'Art Theme',
                 'slug' => 'art',
-                'description' => 'Theme dengan desain artistik dan kreatif'
+                'description' => 'Theme dengan desain artistik dan kreatif',
+                'is_active' => true
+
             ]
         ];
 
