@@ -3,7 +3,7 @@
     <div>
         <div class="logo-wrapper">
             <a href="/" class="logo-link">
-                <img class="img-fluid" src="{{ asset('tenant/images/logo/ddap-logo-white.webp') }}" alt="" style="max-height: 40px"/>
+                <img class="img-fluid" src="{{ asset('tenant/images/logo/CariDesa.png') }}" alt="" style="max-height: 40px"/>
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
             <div class="toggle-sidebar">
@@ -12,7 +12,7 @@
         </div>
         <div class="logo-icon-wrapper">
             <a href="/" class="logo-icon-link">
-                <img class="img-fluid" src="{{ asset('tenant/images/logo/ddap-logo-icon.webp') }}" alt="" style="max-height: 40px" />
+                <img class="img-fluid" src="{{ asset('tenant/images/logo/CariDesa.png') }}" alt="" style="max-height: 40px" />
             </a>
         </div>
         <nav class="sidebar-main">
