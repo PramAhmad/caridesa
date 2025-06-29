@@ -203,81 +203,276 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="desa" class="py-20 lg:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #efefef, #f0fdf4);">
-      <!-- Background Elements -->
-      <div class="absolute top-0 left-0 w-full h-full opacity-10">
-        <div class="absolute top-20 left-20 w-64 h-64 rounded-full blur-3xl animate-float" style="background: linear-gradient(135deg, #6c9a76, #23472a);"></div>
-        <div class="absolute bottom-20 right-20 w-80 h-80 rounded-full blur-3xl animate-float-delay" style="background: linear-gradient(135deg, #23472a, #6c9a76);"></div>
-      </div>
-      
-      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-          <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-gradient text-shadow">
-            Portofolio Website Desa
-          </h2>
-          <p class="text-xl max-w-3xl mx-auto" style="color: #666;">
-            Lihat hasil karya website desa yang telah kami buat dengan desain modern dan fungsional
-          </p>
-        </div>
+<section id="desa" class="py-20 lg:py-32 relative overflow-hidden" style="background: linear-gradient(135deg, #efefef, #f0fdf4);">
+  <!-- Background Elements -->
+  <div class="absolute top-0 left-0 w-full h-full opacity-10">
+    <div class="absolute top-20 left-20 w-64 h-64 rounded-full blur-3xl animate-float" style="background: linear-gradient(135deg, #6c9a76, #23472a);"></div>
+    <div class="absolute bottom-20 right-20 w-80 h-80 rounded-full blur-3xl animate-float-delay" style="background: linear-gradient(135deg, #23472a, #6c9a76);"></div>
+  </div>
+  
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-gradient text-shadow">
+        Fitur Lengkap Website Desa
+      </h2>
+      <p class="text-xl max-w-3xl mx-auto" style="color: #666;">
+        Platform all-in-one untuk mengelola seluruh aspek digital desa Anda dengan mudah dan profesional
+      </p>
+    </div>
 
-        <!-- Portfolio Cards Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          @for($i = 1; $i <= 4; $i++)
-          <div class="portfolio-card group">
-            <!-- Image -->
-            <div class="portfolio-image">
-              <img src="{{ asset('img/project/' . $i . '.jpg') }}" alt="Website Desa {{ $i }}" />
-              <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);"></div>
-              
-              <!-- Status Badge -->
-              <div class="portfolio-badge">
-                <i class="fas fa-check-circle mr-1"></i>
-                Live
-              </div>
+    <!-- Main Features Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      
+      <!-- Theme Management -->
+      <div class="feature-card group">
+        <div class="feature-icon-container theme">
+          <i class="fas fa-palette text-3xl text-white"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-3" style="color: #333;">Pengaturan Tema</h3>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #666;">
+            Kelola tampilan website dengan berbagai tema yang dapat disesuaikan. Edit konten secara dinamis tanpa coding.
+          </p>
+          <div class="feature-tags">
+            <span class="feature-tag">Custom Design</span>
+            <span class="feature-tag">Live Editor</span>
+            <span class="feature-tag">Responsive</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Management -->
+      <div class="feature-card group">
+        <div class="feature-icon-container event">
+          <i class="fas fa-calendar-alt text-3xl text-white"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-3" style="color: #333;">Kelola Acara</h3>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #666;">
+            Manajemen acara desa lengkap dengan kalender, analytics, dan sistem booking online yang terintegrasi.
+          </p>
+          <div class="feature-tags">
+            <span class="feature-tag">Kalender Event</span>
+            <span class="feature-tag">Booking System</span>
+            <span class="feature-tag">Analytics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide Management -->
+      <div class="feature-card group">
+        <div class="feature-icon-container guide">
+          <i class="fas fa-user-tie text-3xl text-white"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-3" style="color: #333;">Kelola Pemandu</h3>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #666;">
+            Sistem manajemen tour guide dengan booking, review, keuangan, dan kalender jadwal yang komprehensif.
+          </p>
+          <div class="feature-tags">
+            <span class="feature-tag">Guide Booking</span>
+            <span class="feature-tag">Rating System</span>
+            <span class="feature-tag">Finance Track</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Management -->
+      <div class="feature-card group">
+        <div class="feature-icon-container product">
+          <i class="fas fa-shopping-bag text-3xl text-white"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-3" style="color: #333;">Kelola Produk UMKM</h3>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #666;">
+            Platform e-commerce lengkap untuk produk UMKM desa dengan kategori, inventory, dan sistem penjualan online.
+          </p>
+          <div class="feature-tags">
+            <span class="feature-tag">Catalog Online</span>
+            <span class="feature-tag">Inventory</span>
+            <span class="feature-tag">E-commerce</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tourism Management -->
+      <div class="feature-card group">
+        <div class="feature-icon-container tourism">
+          <i class="fas fa-mountain text-3xl text-white"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-3" style="color: #333;">Kelola Wisata</h3>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #666;">
+            Promosi destinasi wisata desa dengan sistem booking, review, analytics, dan galeri foto yang menarik.
+          </p>
+          <div class="feature-tags">
+            <span class="feature-tag">Tourism Booking</span>
+            <span class="feature-tag">Photo Gallery</span>
+            <span class="feature-tag">Reviews</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Homestay Management -->
+      <div class="feature-card group">
+        <div class="feature-icon-container homestay">
+          <i class="fas fa-home text-3xl text-white"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-3" style="color: #333;">Kelola Homestay</h3>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #666;">
+            Manajemen penginapan desa dengan sistem reservasi, analytics okupansi, dan review dari tamu.
+          </p>
+          <div class="feature-tags">
+            <span class="feature-tag">Reservation</span>
+            <span class="feature-tag">Occupancy</span>
+            <span class="feature-tag">Guest Reviews</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Advanced Features -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-bold text-center mb-8" style="color: #333;">Fitur Lanjutan</h3>
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- User Management -->
+        <div class="advanced-feature-card">
+          <div class="flex items-start space-x-4">
+            <div class="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 advanced-feature-icon-blue">
+              <i class="fas fa-users-cog text-2xl text-white"></i>
             </div>
-            
-            <!-- Content -->
-            <div class="p-6 relative z-10">
-              <h3 class="text-xl font-bold mb-3 transition-colors duration-300" style="color: #333;">
-                Website Desa {{ $i == 1 ? 'Sukamaju' : ($i == 2 ? 'Makmur Sejahtera' : ($i == 3 ? 'Wisata Alam' : 'Digital Village')) }}
-              </h3>
-              <p class="mb-4 leading-relaxed" style="color: #666;">
-                Website desa modern dengan fitur lengkap termasuk profil desa, 
-                informasi UMKM, dan sistem pelayanan online yang user-friendly.
+            <div class="flex-1">
+              <h4 class="text-lg font-bold mb-2" style="color: #333;">User Management</h4>
+              <p class="text-sm mb-3 leading-relaxed" style="color: #666;">
+                Sistem manajemen pengguna dengan roles dan permissions yang fleksibel. Kontrol akses berbasis peran untuk keamanan optimal.
               </p>
-              
-              <!-- Features -->
-              <div class="flex items-center space-x-4 mb-6 text-sm" style="color: #999;">
-                <div class="flex items-center">
-                  <i class="fas fa-calendar mr-1"></i>
-                  <span>2024</span>
-                </div>
-                <div class="flex items-center">
-                  <i class="fas fa-code mr-1"></i>
-                  <span>Laravel</span>
-                </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Role Management</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Permissions</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">User Profiles</span>
               </div>
-              
-              <!-- Action Button -->
-              <a href="#" class="btn-primary w-full justify-center">
-                <span>Lihat Website</span>
-                <i class="fas fa-external-link-alt ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
-              </a>
             </div>
           </div>
-          @endfor
+        </div>
+
+        <!-- System Settings -->
+        <div class="advanced-feature-card">
+          <div class="flex items-start space-x-4">
+            <div class="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 advanced-feature-icon-purple">
+              <i class="fas fa-cogs text-2xl text-white"></i>
+            </div>
+            <div class="flex-1">
+              <h4 class="text-lg font-bold mb-2" style="color: #333;">Pengaturan Sistem</h4>
+              <p class="text-sm mb-3 leading-relaxed" style="color: #666;">
+                Konfigurasi sistem lengkap dengan pengaturan keamanan, backup otomatis, dan monitoring aktivitas sistem.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Security</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Auto Backup</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">System Logs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Integration Showcase -->
+    <div class="bg-white rounded-3xl p-8 lg:p-12 shadow-xl border border-gray-100">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl font-bold mb-4" style="color: #333;">Semua Terintegrasi Dalam Satu Dashboard</h3>
+        <p class="text-lg max-w-2xl mx-auto" style="color: #666;">
+          Kelola seluruh aspek digital desa Anda dari satu tempat dengan interface yang user-friendly dan responsif
+        </p>
+      </div>
+      
+      <!-- Dashboard Preview -->
+      <div class="relative">
+        <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 shadow-2xl">
+          <!-- Mock Dashboard Header -->
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-3">
+              <img src="{{ asset('img/CariDesa - no bg.png') }}" alt="CariDesa" class="w-8 h-8" />
+              <span class="text-white text-lg font-bold">Dashboard Desa</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+              <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+              <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+          </div>
+          
+          <!-- Mock Dashboard Content -->
+          <div class="grid md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-blue-100 text-sm">Total Wisatawan</p>
+                  <p class="text-2xl font-bold">2,847</p>
+                </div>
+                <i class="fas fa-users text-blue-200 text-2xl"></i>
+              </div>
+            </div>
+            <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4 text-white">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-green-100 text-sm">Produk UMKM</p>
+                  <p class="text-2xl font-bold">156</p>
+                </div>
+                <i class="fas fa-shopping-bag text-green-200 text-2xl"></i>
+              </div>
+            </div>
+            <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-purple-100 text-sm">Acara Aktif</p>
+                  <p class="text-2xl font-bold">12</p>
+                </div>
+                <i class="fas fa-calendar text-purple-200 text-2xl"></i>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Mock Chart Area -->
+          <div class="bg-gray-700 rounded-lg h-32 flex items-center justify-center">
+            <p class="text-gray-400">📊 Analytics & Reports</p>
+          </div>
         </div>
         
-        <!-- View All Button -->
-        <div class="text-center mt-12">
-          <a href="#" class="btn-secondary">
-            <span>Lihat Semua Portofolio</span>
-            <i class="fas fa-folder-open ml-2"></i>
-          </a>
+        <!-- Floating Feature Icons -->
+        <div class="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+          <i class="fas fa-heart text-white"></i>
+        </div>
+        <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+          <i class="fas fa-rocket text-white"></i>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="text-center mt-16">
+      <h3 class="text-2xl font-bold mb-4" style="color: #333;">Siap Memulai?</h3>
+      <p class="text-lg mb-8 max-w-2xl mx-auto" style="color: #666;">
+        Bergabunglah dengan puluhan desa yang telah merasakan manfaat digitalisasi dengan platform CariDesa
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="{{ route('tenant.registration') }}" class="btn-primary">
+          <i class="fas fa-rocket mr-2"></i>
+          <span>Mulai Sekarang</span>
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <i class="fas fa-phone mr-2"></i>
+          <span>Konsultasi Gratis</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- List Tenant Section -->
     <section id="tenant-list" class="py-20 lg:py-32 bg-white relative overflow-hidden">
@@ -696,6 +891,161 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    /* New styles for Features Showcase Section */
+    #desa {
+      background: linear-gradient(135deg, #efefef, #f0fdf4);
+    }
+
+    .feature-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border: 1px solid #f0f0f0;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px rgba(108, 154, 118, 0.15);
+      border-color: #6c9a76;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #6c9a76, #23472a);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon-container {
+      width: 80px;
+      height: 80px;
+      border-radius: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem auto 1rem;
+    }
+
+    /* Semua icon menggunakan gradasi hijau */
+    .feature-icon-container.theme {
+      background: linear-gradient(135deg, #6c9a76, #23472a);
+    }
+
+    .feature-icon-container.event {
+      background: linear-gradient(135deg, #52c41a, #389e0d);
+    }
+
+    .feature-icon-container.guide {
+      background: linear-gradient(135deg, #73d13d, #52c41a);
+    }
+
+    .feature-icon-container.product {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .feature-icon-container.tourism {
+      background: linear-gradient(135deg, #16a085, #138d75);
+    }
+
+    .feature-icon-container.homestay {
+      background: linear-gradient(135deg, #6c9a76, #2d5016);
+    }
+
+    .feature-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .feature-tag {
+      padding: 0.25rem 0.75rem;
+      background: #f6ffed;
+      color: #389e0d;
+      border: 1px solid #b7eb8f;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-tag {
+      background: #d9f7be;
+      color: #135200;
+      border-color: #52c41a;
+    }
+
+    .advanced-feature-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f0f0f0;
+      transition: all 0.3s ease;
+    }
+
+    .advanced-feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(108, 154, 118, 0.1);
+      border-color: #6c9a76;
+    }
+
+    /* Update advanced features dengan warna hijau */
+    .advanced-feature-icon-blue {
+      background: linear-gradient(135deg, #52c41a, #389e0d) !important;
+    }
+
+    .advanced-feature-icon-purple {
+      background: linear-gradient(135deg, #73d13d, #52c41a) !important;
+    }
+
+    /* Animation keyframes tetap sama */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes float-delay {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-float-delay {
+      animation: float-delay 8s ease-in-out infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .feature-icon-container {
+        width: 60px;
+        height: 60px;
+        margin: 1.5rem auto 1rem;
+      }
+      
+      .feature-icon-container i {
+        font-size: 1.5rem !important;
+      }
+      
+      .advanced-feature-card {
+        padding: 1.5rem;
       }
     }
     </style>
