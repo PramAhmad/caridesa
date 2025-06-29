@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TenantFrontendController;
 use Illuminate\Support\Facades\Route;
 use Wave\Facades\Wave;
@@ -80,7 +81,9 @@ Route::post('/daftar-desa', [TenantRegistrationController::class, 'store'])->nam
 Route::get('/daftar-desa/success/{tenant}', [TenantRegistrationController::class, 'success'])->name('tenant.registration.success');
 Route::get('/status-pendaftaran/{tenant}', [TenantRegistrationController::class, 'status'])->name('tenant.status');
 Route::get('/tenants', [TenantFrontendController::class, 'index'])->name('tenants.index');
-// php ini
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('phpini', function () {
     return phpinfo();
 })->name('php.ini');
+
+// Contact Route
