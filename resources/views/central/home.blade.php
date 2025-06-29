@@ -640,28 +640,59 @@
                 Diskusikan jika anda membutuhkan bantuan dalam pembuatan website desa.
               </p>
               
-              <form class="space-y-6">
+              <form id="contact-form" class="space-y-6">
+                @csrf
                 <div class="grid md:grid-cols-2 gap-6">
                   <div class="form-group">
-                    <label class="form-label">Nama</label>
-                    <input type="text" class="form-input" />
+                    <label class="form-label">Nama <span class="text-red-500">*</span></label>
+                    <input type="text" name="name" class="form-input" placeholder="Masukkan nama lengkap Anda" required />
+                    <div class="error-message" id="name-error"></div>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-input" />
+                    <label class="form-label">Email <span class="text-red-500">*</span></label>
+                    <input type="email" name="email" class="form-input" placeholder="nama@email.com" required />
+                    <div class="error-message" id="email-error"></div>
                   </div>
                 </div>
                
                 
                 <div class="form-group">
-                  <label class="form-label">Pesan</label>
-                  <textarea rows="6" class="form-input form-textarea" placeholder="Masukan Pesan Anda..."></textarea>
+                  <label class="form-label">Pesan <span class="text-red-500">*</span></label>
+                  <textarea rows="6" name="message" class="form-input form-textarea" placeholder="Ceritakan kebutuhan website desa Anda..." required></textarea>
+                  <div class="error-message" id="message-error"></div>
+                  <div class="text-sm text-gray-500 mt-1">
+                    <span id="char-count">0</span>/1000 karakter
+                  </div>
                 </div>
                 
-                <button type="submit" class="form-button">
-                  Kirim Konsultasi
+                <button type="submit" class="form-button" id="submit-btn">
+                  <span class="btn-text">
+                    <i class="fas fa-paper-plane mr-2"></i>
+                    Kirim Konsultasi
+                  </span>
+                  <span class="btn-loading hidden">
+                    <i class="fas fa-spinner fa-spin mr-2"></i>
+                    Mengirim...
+                  </span>
                 </button>
               </form>
+
+              <!-- Success/Error Messages -->
+              <div id="form-messages" class="mt-6 hidden">
+                <div id="success-message" class="hidden p-4 bg-green-100 border border-green-300 text-green-700 rounded-lg">
+                  <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span id="success-text"></span>
+                  </div>
+                </div>
+                
+                <div id="error-message" class="hidden p-4 bg-red-100 border border-red-300 text-red-700 rounded-lg">
+                  <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span id="error-text"></span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -855,6 +886,161 @@
         }
         return false;
       }
+
+      // Contact Form Handler
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+    const formMessages = document.getElementById('form-messages');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    const messageTextarea = document.querySelector('textarea[name="message"]');
+    const charCount = document.getElementById('char-count');
+
+    // Character counter
+    if (messageTextarea && charCount) {
+        messageTextarea.addEventListener('input', function() {
+            const count = this.value.length;
+            charCount.textContent = count;
+            
+            if (count > 1000) {
+                charCount.style.color = '#ef4444';
+                this.style.borderColor = '#ef4444';
+            } else {
+                charCount.style.color = '#6b7280';
+                this.style.borderColor = '#d1d5db';
+            }
+        });
+    }
+
+    // Form submission
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Clear previous errors
+        clearErrors();
+        
+        // Show loading state
+        setLoading(true);
+        
+        // Get form data
+        const formData = new FormData(this);
+        
+        try {
+            const response = await fetch('/contact', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || 
+                                   document.querySelector('input[name="_token"]')?.value
+                }
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                showSuccess(data.message);
+                contactForm.reset();
+                if (charCount) charCount.textContent = '0';
+                
+                // Auto-hide success message after 10 seconds
+                setTimeout(() => {
+                    hideMessages();
+                }, 10000);
+                
+            } else {
+                if (data.errors) {
+                    showErrors(data.errors);
+                } else {
+                    showError(data.message || 'Terjadi kesalahan sistem.');
+                }
+            }
+
+        } catch (error) {
+            console.error('Contact form error:', error);
+            showError('Terjadi kesalahan koneksi. Silakan coba lagi atau hubungi kami melalui WhatsApp.');
+        } finally {
+            setLoading(false);
+        }
+    });
+
+    function setLoading(loading) {
+        if (loading) {
+            submitBtn.disabled = true;
+            btnText.classList.add('hidden');
+            btnLoading.classList.remove('hidden');
+        } else {
+            submitBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            btnLoading.classList.add('hidden');
+        }
+    }
+
+    function showSuccess(message) {
+        formMessages.classList.remove('hidden');
+        successMessage.classList.remove('hidden');
+        errorMessage.classList.add('hidden');
+        document.getElementById('success-text').textContent = message;
+        
+        // Scroll to message
+        formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function showError(message) {
+        formMessages.classList.remove('hidden');
+        errorMessage.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        document.getElementById('error-text').textContent = message;
+        
+        // Scroll to message
+        formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function showErrors(errors) {
+        // Clear previous errors
+        clearErrors();
+        
+        // Show field-specific errors
+        for (const [field, messages] of Object.entries(errors)) {
+            const errorElement = document.getElementById(`${field}-error`);
+            if (errorElement) {
+                errorElement.textContent = messages[0];
+                errorElement.style.display = 'block';
+                
+                // Highlight field
+                const fieldInput = document.querySelector(`[name="${field}"]`);
+                if (fieldInput) {
+                    fieldInput.style.borderColor = '#ef4444';
+                }
+            }
+        }
+        
+        // Show general error
+        showError('Mohon periksa kembali form Anda.');
+    }
+
+    function clearErrors() {
+        // Clear error messages
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.textContent = '';
+            el.style.display = 'none';
+        });
+        
+        // Reset field borders
+        document.querySelectorAll('.form-input').forEach(el => {
+            el.style.borderColor = '#d1d5db';
+        });
+    }
+
+    function hideMessages() {
+        formMessages.classList.add('hidden');
+        successMessage.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+    }
+});
     </script>
 
     <!-- Additional CSS for tenant cards -->
