@@ -18,6 +18,8 @@ class Themes extends Page
     protected static ?int $navigationSort = 8;
 
     protected static string $view = 'filament.pages.themes';
+    protected static ?string $navigationGroup = 'Page Settings';
+
 
     public function mount(){
         $this->themes_folder = config('themes.folder', resource_path('themes'));

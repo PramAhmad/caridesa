@@ -20,6 +20,7 @@ class PermissionResource extends Resource
     protected static ?string $navigationIcon = 'phosphor-shield-check-duotone';
 
     protected static ?int $navigationSort = 3;
+    protected static ?string $navigationGroup = 'Page Settings';
 
     public static function form(Form $form): Form
     {

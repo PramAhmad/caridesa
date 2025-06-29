@@ -24,6 +24,7 @@ class PostResource extends Resource
     protected static ?string $navigationIcon = 'phosphor-pencil-line-duotone';
 
     protected static ?int $navigationSort = 3;
+    protected static ?string $navigationGroup = 'Content Management';
 
     public static function form(Form $form): Form
     {

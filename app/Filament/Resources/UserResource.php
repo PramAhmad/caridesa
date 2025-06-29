@@ -23,6 +23,7 @@ class UserResource extends Resource
     protected static ?string $navigationIcon = 'phosphor-users-duotone';
 
     protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = 'Page Settings';
 
     public static function form(Form $form): Form
     {

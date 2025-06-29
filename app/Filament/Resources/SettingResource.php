@@ -20,6 +20,8 @@ class SettingResource extends Resource
     protected static ?string $navigationIcon = 'phosphor-gear-fine-duotone';
 
     protected static ?int $navigationSort = 9;
+    protected static ?string $navigationGroup = 'Page Settings';
+
 
     public static function form(Form $form): Form
     {

@@ -14,6 +14,8 @@ class Media extends Page
     protected static string $view = 'wave::media.index';
     
     protected static ?int $navigationSort = 5;
+    protected static ?string $navigationGroup = 'Page Settings';
+
  
     public function getMaxContentWidth(): MaxWidth
     {

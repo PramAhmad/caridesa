@@ -20,6 +20,8 @@ class RoleResource extends Resource
     protected static ?string $navigationIcon = 'phosphor-address-book-duotone';
 
     protected static ?int $navigationSort = 2;
+    protected static ?string $navigationGroup = 'Page Settings';
+
 
     public static function form(Form $form): Form
     {

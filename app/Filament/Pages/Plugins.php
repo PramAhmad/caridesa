@@ -15,6 +15,8 @@ class Plugins extends Page
     protected static string $view = 'filament.pages.plugins';
 
     protected static ?int $navigationSort = 9;
+    protected static ?string $navigationGroup = 'Page Settings';
+
 
     public $plugins = [];
 

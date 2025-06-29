@@ -23,6 +23,8 @@ class PageResource extends Resource
     protected static ?string $navigationIcon = 'phosphor-files-duotone';
 
     protected static ?int $navigationSort = 5;
+    protected static ?string $navigationGroup = 'Content Management';
+
 
     public static function form(Form $form): Form
     {

@@ -22,6 +22,8 @@ class PlanResource extends Resource
     protected static ?string $navigationIcon = 'phosphor-credit-card-duotone';
 
     protected static ?int $navigationSort = 3;
+    protected static ?string $navigationGroup = 'Content Management';
+
 
     public static function form(Form $form): Form
     {
