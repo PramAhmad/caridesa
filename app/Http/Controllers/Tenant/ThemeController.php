@@ -39,7 +39,7 @@ class ThemeController extends Controller
         // Handle preview image upload
         if ($request->hasFile('preview_image')) {
             $file = $request->file('preview_image');
-            $uploadPath = public_path("tenancy/assets/image/themes");
+            $uploadPath = public_path("image/themes");
             if (!File::exists($uploadPath)) {
                 File::makeDirectory($uploadPath, 0755, true);
             }
@@ -74,12 +74,12 @@ class ThemeController extends Controller
         if ($request->hasFile('preview_image')) {
             $file = $request->file('preview_image');
             if ($theme->preview_image) {
-                $oldImagePath = public_path("tenancy/assets/image/themes/{$theme->preview_image}");
+                $oldImagePath = public_path("image/themes/{$theme->preview_image}");
                 if (File::exists($oldImagePath)) {
                     File::delete($oldImagePath);
                 }
             }
-            $uploadPath = public_path("tenancy/assets/image/themes");
+            $uploadPath = public_path("image/themes");
             if (!File::exists($uploadPath)) {
                 File::makeDirectory($uploadPath, 0755, true);
             }
@@ -103,7 +103,7 @@ class ThemeController extends Controller
 
         // Delete theme image if exists
         if ($theme->preview_image) {
-            $imagePath = public_path("tenancy/assets/image/themes/{$theme->preview_image}");
+            $imagePath = public_path("image/themes/{$theme->preview_image}");
             if (File::exists($imagePath)) {
                 File::delete($imagePath);
             }
@@ -146,13 +146,13 @@ class ThemeController extends Controller
                 if (is_numeric($id)) {
                     $existingContent = ThemeContent::find($id);
                     if ($existingContent && $existingContent->image) {
-                        $oldImagePath = public_path("tenancy/assets/image/themes/{$existingContent->image}");
+                        $oldImagePath = public_path("image/themes/{$existingContent->image}");
                         if (File::exists($oldImagePath)) {
                             File::delete($oldImagePath);
                         }
                     }
                 }
-                $uploadPath = public_path("tenancy/assets/image/themes");
+                $uploadPath = public_path("image/themes");
                 if (!File::exists($uploadPath)) {
                     File::makeDirectory($uploadPath, 0755, true);
                 }
