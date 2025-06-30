@@ -11,7 +11,6 @@ class HomeStay extends Model
 {
     protected $fillable = [
         'name',
-        'slug',
         'description',
         'address',
         'phone',
