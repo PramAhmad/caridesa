@@ -491,7 +491,7 @@ class GuideController extends Controller
     private function handleImageUpload($images, $guideId)
     {
         try {
-            $uploadPath = public_path("tenancy/assets/image/guides");
+            $uploadPath = public_path("image/guides");
             
             // Create directory if not exists
             if (!File::exists($uploadPath)) {
@@ -553,7 +553,7 @@ class GuideController extends Controller
     private function deleteImageFile(GuideImage $image)
     {
         try {
-            $imagePath = public_path("tenancy/assets" . $image->name);
+            $imagePath = public_path(" . $image->name);
             
             if (File::exists($imagePath)) {
                 $deleted = File::delete($imagePath);
