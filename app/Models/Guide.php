@@ -12,7 +12,6 @@ class Guide extends Model
 
     protected $fillable = [
         'name',
-        'slug',
         'address',
         'phone',
         'email',
@@ -212,14 +211,7 @@ class Guide extends Model
 
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $value;
-        if (empty($this->attributes['slug'])) {
-            $this->attributes['slug'] = Str::slug($value);
-        }
-    }
 }
