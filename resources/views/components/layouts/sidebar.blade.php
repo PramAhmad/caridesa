@@ -3,7 +3,7 @@
     <div>
         <div class="logo-wrapper">
             <a href="/" class="logo-link">
-                <img class="img-fluid" src="{{ asset('tenant/images/logo/CariDesa.png') }}" alt="" style="max-height: 40px"/>
+                <img class="img-fluid" src="{{ asset('tenant/images/logo/logo-text.png') }}" alt="" style="max-height: 40px"/>
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
             <div class="toggle-sidebar">
@@ -12,7 +12,7 @@
         </div>
         <div class="logo-icon-wrapper">
             <a href="/" class="logo-icon-link">
-                <img class="img-fluid" src="{{ asset('tenant/images/logo/CariDesa.png') }}" alt="" style="max-height: 40px" />
+                <img class="img-fluid" src="{{ asset('tenant/images/logo/logo-text.png') }}" alt="" style="max-height: 40px" />
             </a>
         </div>
         <nav class="sidebar-main">
@@ -40,7 +40,7 @@
                     @can('view-dashboard')
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
-                        <a class="sidebar-link sidebar-title link-nav" href="/">
+                        <a class="sidebar-link sidebar-title link-nav" href="/admin/dashboard">
                             <svg class="stroke-icon">
                                 <use href="{{ asset('tenant/svg/icon-sprite.svg') }}#stroke-home"></use>
                             </svg>
