@@ -600,7 +600,7 @@
                                 Chat
                             </span>
                         </button>
-                        <button class="bg-white border-2 border-amber-300 text-amber-700 hover:bg-amber-50 py-3 px-4 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg text-sm">
+                        <a href="/guide/{{ $guide->id }}" class="bg-white border-2 border-amber-300 text-amber-700 hover:bg-amber-50 py-3 px-4 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg text-sm">
                             <span class="flex items-center justify-center">
                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -608,7 +608,7 @@
                                 </svg>
                                 Detail
                             </span>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -743,7 +743,7 @@
                         </div>
                         
                         <!-- Action Button -->
-                        <button class="w-full bg-gradient-to-r from-amber-500/90 to-orange-500/90 hover:from-amber-600 hover:to-orange-600 backdrop-blur-sm text-white py-3 px-4 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-white/20">
+                        <a href="/wisata/{{ $destination->id }}" class="w-full bg-gradient-to-r from-amber-500/90 to-orange-500/90 hover:from-amber-600 hover:to-orange-600 backdrop-blur-sm text-white py-3 px-4 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-white/20">
                             <span class="flex items-center justify-center">
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -763,7 +763,7 @@
 
         <!-- View All Destinations Button -->
         <div class="text-center">
-            <a href="/wisata" class="inline-flex items-center bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-700 hover:to-red-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
+            <a href="/wisatas" class="inline-flex items-center bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-700 hover:to-red-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                 </svg>
@@ -978,8 +978,8 @@
                             </span>
                         </button>
                         @endif
-                        
-                        <button class="bg-white border-2 border-amber-300 text-amber-700 hover:bg-amber-50 py-3 px-4 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg text-sm">
+
+                        <a href="/homestays/{{ $homestay->id }}" class="bg-white border-2 border-amber-300 text-amber-700 hover:bg-amber-50 py-3 px-4 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg text-sm">
                             <span class="flex items-center justify-center">
                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -987,7 +987,7 @@
                                 </svg>
                                 Detail
                             </span>
-                        </button>
+            </a>
                     </div>
                 </div>
 
@@ -1006,7 +1006,7 @@
 
         <!-- View All Homestays Button -->
         <div class="text-center">
-            <a href="/homestay" class="inline-flex items-center bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-700 hover:to-red-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
+            <a href="/homestays" class="inline-flex items-center bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-700 hover:to-red-700 text-white px-10 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v4H8V5z"></path>
