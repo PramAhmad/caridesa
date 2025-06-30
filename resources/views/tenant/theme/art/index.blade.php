@@ -66,20 +66,19 @@
                     
                     <!-- Right Visual -->
                     <div class="animate-on-scroll">
-                        @if($hero->image)
+                       @if($hero->image)
                             <div class="relative">
                                 <div class="border-8 border-amber-200 rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
                                     <img src="{{ asset('image/themes/' . $hero->image) }}"
                                          alt="{{ $hero->title }}" 
-                                         class="w-full h-96 object-cover">
+                                         class="w-full h-96 object-cover"
+                                         onerror="this.parentElement.innerHTML='<div class=\'w-full h-96 bg-gradient-to-br from-amber-400 to-red-500 flex items-center justify-center\'><div class=\'text-center text-white\'><svg class=\'w-16 h-16 mx-auto mb-4\' fill=\'currentColor\' viewBox=\'0 0 20 20\'><path d=\'M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z\'/></svg><h4 class=\'text-xl font-bold\'>{{ $hero->title }}</h4></div></div>'">
                                 </div>
-                                <!-- Cultural ornament corner -->
                                 <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
                                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </div>
-                                <!-- Traditional pattern overlay -->
                                 <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg transform rotate-45 opacity-80"></div>
                             </div>
                         @else
