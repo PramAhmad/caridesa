@@ -3,7 +3,7 @@
     <div>
         <div class="logo-wrapper">
             <a href="/" class="logo-link">
-                <img class="img-fluid" src="{{ asset('tenant/images/logo/logo-text.png') }}" alt="" style="max-height: 40px"/>
+                <img class="img-fluid" src="{{ asset('tenant/images/logo/logo-text-2.png') }}" alt="" style="max-height: 60px; background-color: white; border-radius: 1rem; padding-right:10px; padding-left: 10px; padding-top:3px; padding-bottom: 3px;"/>
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
             <div class="toggle-sidebar">
@@ -12,7 +12,7 @@
         </div>
         <div class="logo-icon-wrapper">
             <a href="/" class="logo-icon-link">
-                <img class="img-fluid" src="{{ asset('tenant/images/logo/logo-text.png') }}" alt="" style="max-height: 40px" />
+                <img class="img-fluid" src="{{ asset('tenant/images/logo/logo-text-2.png') }}" alt="" style="max-height: 40px" />
             </a>
         </div>
         <nav class="sidebar-main">
