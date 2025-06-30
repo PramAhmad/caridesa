@@ -31,14 +31,24 @@ class ThemeSeeder extends Seeder
                 'slug' => 'art',
                 'description' => 'Theme dengan desain artistik dan kreatif',
                 'is_active' => true
-
             ]
         ];
 
         foreach ($themes as $themeData) {
-            $theme = Theme::create($themeData);
+            // Check if theme already exists by slug
+            $existingTheme = Theme::where('slug', $themeData['slug'])->first();
             
-            // Create default content for each theme
+            if ($existingTheme) {
+                // Theme already exists, skip creation
+                $this->command->info("Theme '{$themeData['name']}' already exists, skipping...");
+                continue;
+            }
+
+            // Create new theme
+            $theme = Theme::create($themeData);
+            $this->command->info("Created theme: {$theme->name}");
+            
+            // Create default content for the new theme
             $contents = [
                 [
                     'section' => 'hero',
@@ -54,18 +64,66 @@ class ThemeSeeder extends Seeder
                     'section' => 'services',
                     'title' => 'Layanan Kami',
                     'content' => 'Kami menyediakan berbagai layanan teknologi untuk membantu bisnis Anda berkembang.'
+                ],
+                [
+                    'section' => 'products',
+                    'title' => 'Produk Kami',
+                    'content' => 'Berbagai produk unggulan yang telah terbukti kualitasnya dan dipercaya oleh banyak pelanggan.'
+                ],
+                [
+                    'section' => 'contact',
+                    'title' => 'Hubungi Kami',
+                    'content' => 'Tim kami siap membantu Anda 24/7. Jangan ragu untuk menghubungi kami kapan saja.'
                 ]
             ];
 
             foreach ($contents as $index => $contentData) {
-                ThemeContent::create([
-                    'theme_id' => $theme->id,
-                    'section' => $contentData['section'],
-                    'title' => $contentData['title'],
-                    'content' => $contentData['content'],
-                    'order' => $index + 1,
-                    'is_active' => true
-                ]);
+                // Check if content already exists for this theme and section
+                $existingContent = ThemeContent::where('theme_id', $theme->id)
+                    ->where('section', $contentData['section'])
+                    ->first();
+
+                if (!$existingContent) {
+                    ThemeContent::create([
+                        'theme_id' => $theme->id,
+                        'section' => $contentData['section'],
+                        'title' => $contentData['title'],
+                        'content' => $contentData['content'],
+                        'order' => $index + 1,
+                        'is_active' => true
+                    ]);
+                    $this->command->info("  - Created content: {$contentData['section']}");
+                } else {
+                    $this->command->info("  - Content '{$contentData['section']}' already exists, skipping...");
+                }
+            }
+        }
+
+        // Ensure only one theme is active at a time
+        $this->ensureOnlyOneActiveTheme();
+    }
+
+    /**
+     * Ensure only one theme is active
+     */
+    private function ensureOnlyOneActiveTheme()
+    {
+        $activeThemes = Theme::where('is_active', true)->get();
+        
+        if ($activeThemes->count() > 1) {
+            // Deactivate all themes first
+            Theme::query()->update(['is_active' => false]);
+            
+            // Activate the first one (or you can set logic to activate a specific one)
+            $activeThemes->first()->update(['is_active' => true]);
+            
+            $this->command->info("Multiple active themes found. Set '{$activeThemes->first()->name}' as the only active theme.");
+        } elseif ($activeThemes->count() === 0) {
+            // No active theme, activate the first available theme
+            $firstTheme = Theme::first();
+            if ($firstTheme) {
+                $firstTheme->update(['is_active' => true]);
+                $this->command->info("No active theme found. Activated '{$firstTheme->name}' as default.");
             }
         }
     }
