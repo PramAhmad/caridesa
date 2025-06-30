@@ -21,6 +21,6 @@ class TenantDatabaseSeeder extends Seeder
         $this->call(ThemeSeeder::class);
         $this->call(PermissionTenantTableSeeder::class);
 
-            $this->call(TenantAssignAllPermissionsSeeder::class, ['role' => 'admin']);
+            $this->call(TenantAssignAllPermissionsSeeder::class);
     }
 }

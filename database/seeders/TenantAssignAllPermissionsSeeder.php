@@ -12,7 +12,7 @@ class TenantAssignAllPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = $this->command->option('role') ?? 'admin';
+        $role = 'admin';
 
         $permissions = \Spatie\Permission\Models\Permission::all();
 
