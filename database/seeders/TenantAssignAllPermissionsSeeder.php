@@ -14,10 +14,8 @@ class TenantAssignAllPermissionsSeeder extends Seeder
     {
         $role = $this->command->option('role') ?? 'admin';
 
-        // Get all permissions
         $permissions = \Spatie\Permission\Models\Permission::all();
 
-        // Assign all permissions to the specified role
         $roleModel = \Spatie\Permission\Models\Role::findByName($role);
         if ($roleModel) {
             $roleModel->syncPermissions($permissions);
