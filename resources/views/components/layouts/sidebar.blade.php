@@ -501,6 +501,15 @@
                         </ul>
                     </li>
                     @endcanany
+                    <!-- Contactt module -->
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title" href="/admin/contacts">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25h18M3 12h18m-7.5 3.75h7.5M3 15.75h7.5" />
+                            </svg>
+                            <span>Kontak</span>
+                        </a>
+                    </li>
 
                     {{-- System Settings - Only for users with system management permissions --}}
                     @can('manage-system-settings')

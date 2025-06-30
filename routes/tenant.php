@@ -40,6 +40,7 @@ Route::middleware([
 ])->group(function () {
     
     Route::get('/', [HomeController::class, 'home'])->name('home');
+    Route::post('/contact', [App\Http\Controllers\Tenant\ContactController::class, 'store'])->name('tenant.contact.store');
 
     // Public Routes (without auth)
     Route::get('/products', [PublicController::class, 'products'])->name('public.products');
@@ -177,6 +178,9 @@ Route::get('/wisatas', [PublicController::class, 'wisata'])->name('public.wisata
         // Event API routes
         Route::get('api/events/upcoming', [App\Http\Controllers\Tenant\EventController::class, 'upcoming'])->name('api.events.upcoming');
         Route::get('api/events/ongoing', [App\Http\Controllers\Tenant\EventController::class, 'ongoing'])->name('api.events.ongoing');
+        Route::get('contacts', [App\Http\Controllers\Tenant\ContactController::class, 'index'])->name('tenant.contacts.index');
+        Route::get('contacts/{contact}', [App\Http\Controllers\Tenant\ContactController::class, 'show'])->name('tenant.contacts.show');
+        Route::delete('contacts/{contact}', [App\Http\Controllers\Tenant\ContactController::class, 'destroy'])->name('tenant.contacts.destroy');
 
         // Guide Management Routes
         Route::resource('guides', App\Http\Controllers\Tenant\GuideController::class)->names([
