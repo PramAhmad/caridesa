@@ -284,7 +284,7 @@
     @push('script')
     <script>
         // Add CSRF token to meta tag
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const csrfToken = `{{ csrf_token() }}`;
         
         // Global variables for new images
         let selectedFiles = [];
