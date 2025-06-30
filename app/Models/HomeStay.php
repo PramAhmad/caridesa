@@ -173,14 +173,4 @@ class HomeStay extends Model
         return collect(); // Empty collection for now
     }
 
-    /**
-     * Auto generate slug when name is set
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $value;
-        if (empty($this->attributes['slug'])) {
-            $this->attributes['slug'] = Str::slug($value);
-        }
-    }
 }
