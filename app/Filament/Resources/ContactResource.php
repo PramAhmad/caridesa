@@ -103,25 +103,6 @@ class ContactResource extends Resource
                     ->label('Recent (Last 7 days)')
                     ->query(fn (Builder $query): Builder => $query->where('created_at', '>=', now()->subDays(7))),
                 
-                Tables\Filters\Filter::make('this_month')
-                    ->label('This Month')
-                    ->query(fn (Builder $query): Builder => $query->whereMonth('created_at', now()->month)),
-                
-                Tables\Filters\SelectFilter::make('email_domain')
-                    ->label('Email Domain')
-                    ->options(function () {
-                        return Contact::selectRaw('SUBSTRING_INDEX(email, "@", -1) as domain')
-                            ->distinct()
-                            ->pluck('domain', 'domain')
-                            ->filter()
-                            ->take(10);
-                    })
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query->when(
-                            $data['value'],
-                            fn (Builder $query, $domain): Builder => $query->where('email', 'like', "%@{$domain}")
-                        );
-                    }),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
