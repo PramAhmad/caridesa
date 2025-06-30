@@ -373,7 +373,7 @@ class HomeStayController extends Controller
     private function handleImageUpload($images, $homestayId)
     {
         try {
-            $uploadPath = public_path("tenancy/assets/image/homestays");
+            $uploadPath = public_path("image/homestays");
             
             // Create directory if not exists
             if (!File::exists($uploadPath)) {
@@ -426,7 +426,7 @@ class HomeStayController extends Controller
     private function deleteImageFile(HomeStayImage $image)
     {
         try {
-            $imagePath = public_path("tenancy/assets" . $image->name);
+            $imagePath = public_path( $image->name);
             
             if (File::exists($imagePath)) {
                 $deleted = File::delete($imagePath);
