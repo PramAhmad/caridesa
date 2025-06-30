@@ -172,19 +172,23 @@ class TenantResource extends Resource
                             ->label('Status Aktif')
                             ->helperText('Aktifkan tenant setelah verifikasi dokumen')
                             ->live()
-                            ->afterStateUpdated(function ($state, $record) {
-                                if ($record && $state) {
-                                    // Buat domain terlebih dahulu
-                                    self::createDomainForTenant($record);
-                                    
-                                    // Kemudian jalankan seeding
-                                    SeedTenantJob::dispatch($record);
-                                    
-                                    Notification::make()
-                                        ->title('Tenant diaktifkan')
-                                        ->body('Domain telah dibuat dan proses seeding dimulai.')
-                                        ->success()
-                                        ->send();
+                            ->afterStateUpdated(function ($state, $record, $set) {
+                                if ($record && $state && !$record->is_active) {
+                                    try {
+                                        $success = self::approveTenant($record);
+                                        
+                                        if (!$success) {
+                                            $set('is_active', false);
+                                        }
+                                    } catch (\Exception $e) {
+                                        $set('is_active', false);
+                                        
+                                        Notification::make()
+                                            ->title('Error')
+                                            ->body('Gagal mengaktifkan tenant: ' . $e->getMessage())
+                                            ->danger()
+                                            ->send();
+                                    }
                                 }
                             }),
 
@@ -367,34 +371,69 @@ class TenantResource extends Resource
     public static function approveTenant($record)
     {
         try {
-            // Update status aktif
+            \DB::beginTransaction();
+            
+            $existingDomain = Domain::where('tenant_id', $record->id)->first();
+            
+            if (!$existingDomain) {
+                $domainName = self::generateDomainName($record->kelurahan);
+                $domainExists = Domain::where('domain', $domainName)->exists();
+                
+                if ($domainExists) {
+                    $domainName = self::generateDomainName($record->kelurahan . '-' . $record->id);
+                }
+                
+                // Create domain
+                Domain::create([
+                    'domain' => $domainName,
+                    'tenant_id' => $record->id,
+                ]);
+                
+                // Log domain creation
+                \Log::info("Domain created for tenant {$record->id}: {$domainName}");
+            }
+
+            // Update tenant status
             $record->update([
                 'is_active' => true,
                 'data' => array_merge($record->data ?? [], [
                     'approved_at' => now()->toISOString(),
-                    'approved_by' => auth()->user()->name ?? 'Admin',
-                    'status' => 'approved'
+                    'approved_by' => auth()->user()?->name ?? 'Admin',
+                    'status' => 'approved',
+                    'domain_created' => $existingDomain ? $existingDomain->domain : $domainName
                 ])
             ]);
 
-            // Buat domain
-            self::createDomainForTenant($record);
+            // Dispatch seeding job with delay to ensure domain is ready
+            SeedTenantJob::dispatch($record)->delay(now()->addSeconds(5));
 
-            // Jalankan seeding job
-            SeedTenantJob::dispatch($record);
+            \DB::commit();
 
             Notification::make()
                 ->title('Tenant berhasil diapprove')
-                ->body("Tenant {$record->nama_desa} telah diaktifkan, domain dibuat, dan proses seeding dimulai.")
+                ->body("Tenant {$record->nama_desa} telah diaktifkan. Domain: " . ($existingDomain ? $existingDomain->domain : $domainName))
                 ->success()
+                ->duration(5000)
                 ->send();
 
+            return true;
+
         } catch (\Exception $e) {
+            \DB::rollBack();
+            
+            \Log::error('Tenant approval error: ' . $e->getMessage(), [
+                'tenant_id' => $record->id,
+                'trace' => $e->getTraceAsString()
+            ]);
+
             Notification::make()
-                ->title('Error')
+                ->title('Error Approval')
                 ->body('Gagal approve tenant: ' . $e->getMessage())
                 ->danger()
+                ->duration(8000)
                 ->send();
+
+            return false;
         }
     }
 
@@ -445,25 +484,16 @@ class TenantResource extends Resource
     // Method untuk generate domain name yang clean
     public static function generateDomainName($input)
     {
-        // Convert ke lowercase
         $domain = strtolower($input);
-        
-        // Replace spasi dan karakter khusus dengan dash
         $domain = preg_replace('/[^a-z0-9\-]/', '-', $domain);
-        
-        // Remove multiple dashes
         $domain = preg_replace('/\-+/', '-', $domain);
-        
-        // Remove leading/trailing dashes
         $domain = trim($domain, '-');
         
-        // Pastikan tidak kosong
         if (empty($domain)) {
             dd('Domain name cannot be empty. Please provide a valid kelurahan name.');
         }
         
 
-        // Pastikan tidak terlalu panjang (max 63 karakter untuk subdomain)
         if (strlen($domain) > 50) {
             $domain = substr($domain, 0, 50);
             $domain = rtrim($domain, '-');

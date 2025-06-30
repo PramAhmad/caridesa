@@ -5,6 +5,8 @@ namespace App\Filament\Resources\TenantResource\Pages;
 use App\Filament\Resources\TenantResource;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Actions;
+use Filament\Notifications\Notification;
+use Stancl\Tenancy\Contracts\Domain;
 
 class ViewTenant extends ViewRecord
 {
@@ -20,14 +22,51 @@ class ViewTenant extends ViewRecord
                 ->visible(fn () => !$this->record->is_active)
                 ->requiresConfirmation()
                 ->modalHeading('Approve Tenant')
-                ->modalDescription('Apakah Anda yakin ingin meng-approve tenant ini? Domain akan dibuat otomatis.')
+                ->modalDescription(fn () => 
+                    "Apakah Anda yakin ingin meng-approve tenant '{$this->record->nama_desa}'? " .
+                    "Domain akan dibuat dengan nama: " . 
+                    TenantResource::generateDomainName($this->record->kelurahan)
+                )
                 ->action(function () {
-                    TenantResource::approveTenant($this->record);
-                    $this->redirect(static::getResource()::getUrl('index'));
+                    $success = TenantResource::approveTenant($this->record);
+                    
+                    if ($success) {
+                        $this->record->refresh();
+                        return $this->redirect(
+                            static::getResource()::getUrl('index'),
+                            navigate: false
+                        );
+                    }
                 }),
 
             Actions\EditAction::make(),
-            Actions\DeleteAction::make(),
+            
+            Actions\DeleteAction::make()
+                ->requiresConfirmation()
+                ->modalHeading('Hapus Tenant')
+                ->modalDescription('Apakah Anda yakin ingin menghapus tenant ini? Tindakan ini tidak dapat dibatalkan.')
+                ->action(function () {
+                    try {
+                        Domain::where('tenant_id', $this->record->id)->delete();
+                        
+                        // Delete tenant
+                        $this->record->delete();
+                        
+                        Notification::make()
+                            ->title('Tenant berhasil dihapus')
+                            ->success()
+                            ->send();
+                            
+                        return $this->redirect(static::getResource()::getUrl('index'));
+                        
+                    } catch (\Exception $e) {
+                        Notification::make()
+                            ->title('Error')
+                            ->body('Gagal menghapus tenant: ' . $e->getMessage())
+                            ->danger()
+                            ->send();
+                    }
+                }),
         ];
     }
 }
