@@ -491,7 +491,7 @@ class EventController extends Controller
     private function handleImageUpload($images, $eventId)
     {
         try {
-            $uploadPath = public_path("tenancy/assets/image/events");
+            $uploadPath = public_path("image/events");
             
             // Create directory if not exists
             if (!File::exists($uploadPath)) {
