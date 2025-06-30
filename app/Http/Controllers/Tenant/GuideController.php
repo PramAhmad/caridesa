@@ -553,7 +553,7 @@ class GuideController extends Controller
     private function deleteImageFile(GuideImage $image)
     {
         try {
-            $imagePath = public_path(" . $image->name);
+            $imagePath = public_path( $image->name);
             
             if (File::exists($imagePath)) {
                 $deleted = File::delete($imagePath);
