@@ -138,7 +138,7 @@
                                                            accept="image/*">
                                                     @if($content && $content->image)
                                                         <div class="mt-2">
-                                                            <img src="{{ tenant_asset('image/themes/' . $content->image) }}" alt="Current image" class="img-thumbnail" style="max-height: 100px;">
+                                                            <img src="{{ asset('image/themes/' . $content->image) }}" alt="Current image" class="img-thumbnail" style="max-height: 100px;">
                                                         </div>
                                                     @endif
                                                 </div>

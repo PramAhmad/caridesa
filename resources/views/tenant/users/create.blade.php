@@ -11,16 +11,16 @@
                 </div>
                 <div class="col-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <x-tenant-link route="home.tenant">
-                                <i data-feather="home"></i>
-                            </x-tenant-link>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <x-tenant-link route="users.index">
-                                Pengguna
-                            </x-tenant-link>
-                        </li>
+                         <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <!-- admin/dashboard -->
+                                 <a href="admin/dashboard">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="admin/users">Pengguna</a>
+                            </li>
+                            <li class="breadcrumb-item active">Edit</li>
+                        </ol>
                         <li class="breadcrumb-item active">Tambah</li>
                     </ol>
                 </div>

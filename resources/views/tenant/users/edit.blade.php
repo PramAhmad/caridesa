@@ -12,14 +12,11 @@
                     <div class="col-6">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <x-tenant-link route="home.tenant">
-                                    <i data-feather="home"></i>
-                                </x-tenant-link>
+                                <!-- admin/dashboard -->
+                                 <a href="admin/dashboard">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <x-tenant-link route="users.index">
-                                    Pengguna
-                                </x-tenant-link>
+                                <a href="admin/users">Pengguna</a>
                             </li>
                             <li class="breadcrumb-item active">Edit</li>
                         </ol>
