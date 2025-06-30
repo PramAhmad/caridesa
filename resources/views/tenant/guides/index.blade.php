@@ -168,12 +168,12 @@
                                         <td>
                                             <ul class="action">
                                                 <li class="view">
-                                                    <a href="/admin/guides/{{ $guide->slug }}" title="Lihat Detail">
+                                                    <a href="/admin/guides/{{ $guide->id }}" title="Lihat Detail">
                                                         <i class="icon-eye"></i>
                                                     </a>
                                                 </li>
                                                 <li class="edit">
-                                                    <a href="/admin/guides/{{ $guide->slug }}/edit" title="Edit">
+                                                    <a href="/admin/guides/{{ $guide->id }}/edit" title="Edit">
                                                         <i class="icon-pencil-alt"></i>
                                                     </a>
                                                 </li>
@@ -182,7 +182,7 @@
                                                         <i class="icon-toggle"></i>
                                                     </a>
                                                     <form id="toggle-form-{{ $guide->id }}" 
-                                                          action="/admin/guides/{{ $guide->slug }}/toggle-status" 
+                                                          action="/admin/guides/{{ $guide->id }}/toggle-status" 
                                                           method="POST" style="display: none;">
                                                         @csrf
                                                         @method('PATCH')
@@ -193,7 +193,7 @@
                                                         <i class="icon-trash"></i>
                                                     </a>
                                                     <form id="delete-form-{{ $guide->id }}" 
-                                                          action="/admin/guides/{{ $guide->slug }}" 
+                                                          action="/admin/guides/{{ $guide->id }}" 
                                                           method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
