@@ -16,6 +16,7 @@ class TenantDatabaseSeeder extends Seeder
         $this->call(TenantWisataPermissionSeeder::class);
         $this->call(TenantProductPermissionSeeder::class);
         $this->call(TenantEventPermissionSeeder::class);
+        $this->call(TenantHomestayPermissionSeeder::class);
         $this->call(TenantGuidePermissionSeeder::class);
         $this->call(ThemeSeeder::class);
         $this->call(PermissionTenantTableSeeder::class);
