@@ -370,7 +370,7 @@ class WisataController extends Controller
     private function handleImageUpload($images, $wisataId)
     {
         try {
-            $uploadPath = public_path("tenancy/assets/image/wisatas");
+            $uploadPath = public_path("image/wisatas");
             
             // Create directory if not exists
             if (!File::exists($uploadPath)) {
@@ -432,7 +432,7 @@ class WisataController extends Controller
     private function deleteImageFile($image)
     {
         try {
-            $imagePath = public_path("tenancy/assets" . $image->name);
+            $imagePath = public_path($image->name);
             
             if (File::exists($imagePath)) {
                 $deleted = File::delete($imagePath);
