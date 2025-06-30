@@ -93,7 +93,7 @@ class ProductController extends Controller
         // Handle image upload
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $uploadPath = public_path("tenancy/assets/image/products");
+            $uploadPath = public_path("image/products");
             
             if (!File::exists($uploadPath)) {
                 File::makeDirectory($uploadPath, 0755, true);
@@ -165,14 +165,14 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             // Delete old image
             if ($product->image) {
-                $oldImagePath = public_path("tenancy/assets/image/products/{$product->image}");
+                $oldImagePath = public_path("image/products/{$product->image}");
                 if (File::exists($oldImagePath)) {
                     File::delete($oldImagePath);
                 }
             }
             
             $file = $request->file('image');
-            $uploadPath = public_path("tenancy/assets/image/products");
+            $uploadPath = public_path("image/products");
             
             if (!File::exists($uploadPath)) {
                 File::makeDirectory($uploadPath, 0755, true);
@@ -196,7 +196,7 @@ class ProductController extends Controller
     {
         // Delete product image if exists
         if ($product->image) {
-            $imagePath = public_path("tenancy/assets/image/products/{$product->image}");
+            $imagePath = public_path("image/products/{$product->image}");
             if (File::exists($imagePath)) {
                 File::delete($imagePath);
             }
