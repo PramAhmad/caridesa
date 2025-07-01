@@ -65,7 +65,8 @@ class SeedTenantJob implements ShouldQueue
             Artisan::call('tenants:seed', [
                 '--tenants' => [$this->tenant->id],
             ]);
-
+            Artisan::call('optimize:clear');
+            Artisan::call('tenants:seed');
             Log::info('Tenant seeding completed for: ' . $this->tenant->id);
 
         } catch (\Exception $e) {
