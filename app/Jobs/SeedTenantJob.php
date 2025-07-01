@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Console\Command;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -65,10 +66,12 @@ class SeedTenantJob implements ShouldQueue
             Artisan::call('tenants:seed', [
                 '--tenants' => [$this->tenant->id],
             ]);
-            Artisan::call('optimize:clear');
+            Log::info('Tenant seeders executed for: ' . $this->tenant->id);
+            
+            
             Artisan::call('tenants:seed');
             Log::info('Tenant seeding completed for: ' . $this->tenant->id);
-
+            exec('nohup sudo php artisan optimize:clear > /dev/null &');
         } catch (\Exception $e) {
             Log::error('Tenant seeding failed for ' . $this->tenant->id . ': ' . $e->getMessage());
             Log::error($e->getTraceAsString());
