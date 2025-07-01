@@ -4,7 +4,7 @@
  * These are some default authentication settings
  */
 return [
-    'redirect_after_auth' => '/',
+    'redirect_after_auth' => '/central/admin',
     'registration_enabled' => true,
     'registration_show_password_same_screen' => true,
     'registration_include_name_field' => false,
