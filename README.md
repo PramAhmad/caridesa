@@ -82,7 +82,7 @@ Visit `http://localhost:8000` in your browser.
 ## Default Login
 
 **Super Admin:**
-- URL: `http://localhost:8000/admin`
+- URL: `http://localhost:8000/auth/login`
 - Email: `admin@admin.com`
 - Password: `password`
 
@@ -104,7 +104,7 @@ Untuk membuat tenant baru:
    ```
 
 2. **Approval Tenant** - Masuk ke admin central dan approve tenant:
-   - Login ke `http://your-app-url/admin`
+   - Login ke `http://your-app-url/auth/login` dengan akun super admin
    - Masuk ke menu **Tenants**
    - Pilih tenant yang akan di-approve
    - Klik tombol **Approve**
@@ -120,12 +120,12 @@ Untuk membuat tenant baru:
 ### 2. Access Tenant Dashboard
 Setelah tenant dibuat dan di-approve, akses dashboard tenant melalui:
 ```
-http://{subdomain}.your-app-url/admin
+http://{subdomain}.your-app-url/login
 ```
 
 **Contoh:**
 ```
-http://desa-sukamaju.localhost:8000/admin
+http://desa-sukamaju.localhost:8000/login
 ```
 
 ### 3. Tenant Features
