@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class TenantAssignAllPermissionsSeeder extends Seeder
 {
@@ -12,16 +14,35 @@ class TenantAssignAllPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = 'admin';
+        try {
+            app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+            $roleName = 'admin';
+            $permissions = Permission::all();
+            if ($permissions->isEmpty()) {
+                $this->command->error("No permissions found. Please run PermissionSeeder first.");
+                return;
+            }
 
-        $permissions = \Spatie\Permission\Models\Permission::all();
+            $role = Role::firstOrCreate(['name' => $roleName]);
+            
+            if ($role->wasRecentlyCreated) {
+                $this->command->info("Created new role: {$roleName}");
+            } else {
+                $this->command->info("Found existing role: {$roleName}");
+            }
 
-        $roleModel = \Spatie\Permission\Models\Role::findByName($role);
-        if ($roleModel) {
-            $roleModel->syncPermissions($permissions);
-            $this->command->info("All permissions assigned to the {$role} role.");
-        } else {
-            $this->command->error("Role {$role} not found.");
+            $role->syncPermissions($permissions);
+            
+            $this->command->info("Successfully assigned {$permissions->count()} permissions to the {$roleName} role.");
+            
+            $this->command->info("Permissions assigned:");
+            foreach ($permissions as $permission) {
+                $this->command->line("  - {$permission->name}");
+            }
+            
+        } catch (\Exception $e) {
+            $this->command->error("Error assigning permissions: " . $e->getMessage());
+            throw $e;
         }
     }
 }
