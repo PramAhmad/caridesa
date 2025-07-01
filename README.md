@@ -7,7 +7,7 @@ Kami menyediakan solusi website lengkap untuk desa-desa di Indonesia. Dengan fit
 > 😂 **Fun Project Notice**  <br>
 > Ini adalah fun project dan masih dalam tahap development. Sampai saat ini masih banyak issues! 😅  <br>
 > Sangat membantu jika kalian melakukan pull request untuk memperbaiki bug atau menambahkan fitur baru.  <br>
-> Atau setidaknya laporkan bug yang kalian temukan di [Issues](https://github.com/yourusername/cari_desa/issues).  <br>
+> Atau setidaknya laporkan bug yang kalian temukan di [Issues](https://github.com/pramahmad/cari_desa/issues).  <br>
 **Mau bantu fix? Pull request are welcome! 🚀**
 
 
