@@ -1,6 +1,15 @@
 # 🏘️ Cari Desa
 
-Platform pariwisata desa berbasis multi-tenant yang memungkinan setiap desa memiliki website sendiri untuk mempromosikan wisata, produk lokal, dan budaya desa.
+Platform Website Desa
+Kami menyediakan solusi website lengkap untuk desa-desa di Indonesia. Dengan fitur pengelolaan UMKM, promosi wisata, dan sistem informasi desa yang mudah digunakan dan profesional. berbasis multi-tenant yang memungkinan setiap desa memiliki website sendiri untuk mempromosikan wisata, produk lokal, dan budaya desa.
+
+
+> 😂 **Fun Project Notice**  <br>
+> Ini adalah fun project dan masih dalam tahap development. Sampai saat ini masih banyak issues! 😅  <br>
+> Sangat membantu jika kalian melakukan pull request untuk memperbaiki bug atau menambahkan fitur baru.  <br>
+> Atau setidaknya laporkan bug yang kalian temukan di [Issues](https://github.com/yourusername/cari_desa/issues).  <br>
+**Mau bantu fix? Pull request are welcome! 🚀**
+
 
 Berikut adalah dokumentasi dari development Cari desa
 
