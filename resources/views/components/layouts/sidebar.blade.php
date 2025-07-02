@@ -36,8 +36,13 @@
                         </div>
                     </li>
 
-                    {{-- Dashboard - Visible to anyone with view-dashboard permission --}}
-                    @can('view-dashboard')
+                    @php
+                        // Check if user is admin or superadmin
+                        $isAdmin = auth()->user()->hasRole(['admin', 'superadmin']);
+                    @endphp
+
+                    {{-- Dashboard - Visible to admins or users with view-dashboard permission --}}
+                    @if($isAdmin || auth()->user()->can('view-dashboard'))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a class="sidebar-link sidebar-title link-nav" href="/admin/dashboard">
@@ -50,10 +55,10 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    @endcan
+                    @endif
 
-                    {{-- Theme Management - Only for users with theme management permissions --}}
-                    @can('manage-themes')
+                    {{-- Theme Management - Admins or users with theme management permissions --}}
+                    @if($isAdmin || auth()->user()->can('manage-themes'))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -71,7 +76,7 @@
                                     Kelola Tema
                                 </a>
                             </li>
-                            @can('create-themes')
+                            @if($isAdmin || auth()->user()->can('create-themes'))
                             <li>
                                 <a href="/admin/themes/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -80,7 +85,7 @@
                                     Buat Tema
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             @php
                                 $activeTheme = \App\Models\Theme::where('is_active', true)->first();
                             @endphp
@@ -96,10 +101,10 @@
                             @endif
                         </ul>
                     </li>
-                    @endcan
+                    @endif
 
-                    {{-- Event Management - Only for users with event management permissions --}}
-                    @canany(['manage-events', 'view-events', 'view-event-analytics', 'view-event-calendar'])
+                    {{-- Event Management - Admins or users with event management permissions --}}
+                    @if($isAdmin || auth()->user()->canAny(['manage-events', 'view-events', 'view-event-analytics', 'view-event-calendar']))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -109,7 +114,7 @@
                             <span>Kelola Acara</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            @can('view-events')
+                            @if($isAdmin || auth()->user()->can('view-events'))
                             <li>
                                 <a href="/admin/events">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -118,9 +123,9 @@
                                     Daftar Acara
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('create-events')
+                            @if($isAdmin || auth()->user()->can('create-events'))
                             <li>
                                 <a href="/admin/events/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -129,9 +134,9 @@
                                     Tambah Acara
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-event-calendar')
+                            @if($isAdmin || auth()->user()->can('view-event-calendar'))
                             <li>
                                 <a href="/admin/events/calendar">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -140,9 +145,9 @@
                                     Kalender Acara
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-upcoming-events')
+                            @if($isAdmin || auth()->user()->can('view-upcoming-events'))
                             <li>
                                 <a href="/admin/events?status=upcoming">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -151,9 +156,9 @@
                                     Acara Mendatang
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-ongoing-events')
+                            @if($isAdmin || auth()->user()->can('view-ongoing-events'))
                             <li>
                                 <a href="/admin/events?status=ongoing">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -162,9 +167,9 @@
                                     Acara Berlangsung
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-event-analytics')
+                            @if($isAdmin || auth()->user()->can('view-event-analytics'))
                             <li>
                                 <a href="/admin/events/analytics">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -173,13 +178,13 @@
                                     Analytics Acara
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
-                    @endcanany
+                    @endif
 
-                    {{-- Guide Management - Only for users with guide management permissions --}}
-                    @canany(['manage-guides', 'view-guides', 'view-guide-analytics', 'view-guide-bookings'])
+                    {{-- Guide Management - Admins or users with guide management permissions --}}
+                    @if($isAdmin || auth()->user()->canAny(['manage-guides', 'view-guides', 'view-guide-analytics', 'view-guide-bookings']))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -189,7 +194,7 @@
                             <span>Kelola Pemandu</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            @can('view-guides')
+                            @if($isAdmin || auth()->user()->can('view-guides'))
                             <li>
                                 <a href="/admin/guides">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -198,9 +203,9 @@
                                     Daftar Pemandu
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('create-guides')
+                            @if($isAdmin || auth()->user()->can('create-guides'))
                             <li>
                                 <a href="/admin/guides/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -209,9 +214,9 @@
                                     Tambah Pemandu
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-guide-bookings')
+                            @if($isAdmin || auth()->user()->can('view-guide-bookings'))
                             <li>
                                 <a href="/admin/guides/bookings">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -220,9 +225,9 @@
                                     Booking Pemandu
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-booking-calendar')
+                            @if($isAdmin || auth()->user()->can('view-booking-calendar'))
                             <li>
                                 <a href="/admin/guides/calendar">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -231,9 +236,9 @@
                                     Kalender Booking
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-guide-reviews')
+                            @if($isAdmin || auth()->user()->can('view-guide-reviews'))
                             <li>
                                 <a href="/admin/guides/reviews">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -242,9 +247,9 @@
                                     Review Pemandu
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-guide-analytics')
+                            @if($isAdmin || auth()->user()->can('view-guide-analytics'))
                             <li>
                                 <a href="/admin/guides/analytics">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -253,9 +258,9 @@
                                     Analytics Pemandu
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-guide-finances')
+                            @if($isAdmin || auth()->user()->can('view-guide-finances'))
                             <li>
                                 <a href="/admin/guides/finances">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -264,9 +269,9 @@
                                     Keuangan Pemandu
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('manage-guide-pricing')
+                            @if($isAdmin || auth()->user()->can('manage-guide-pricing'))
                             <li>
                                 <a href="/admin/guides/pricing">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -276,13 +281,13 @@
                                     Kelola Harga
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
-                    @endcanany
+                    @endif
 
-                    {{-- Product Management - Only for users with product management permissions --}}
-                    @canany(['manage-products', 'view-products', 'manage-categories', 'view-categories'])
+                    {{-- Product Management - Admins or users with product management permissions --}}
+                    @if($isAdmin || auth()->user()->canAny(['manage-products', 'view-products', 'manage-categories', 'view-categories']))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -292,7 +297,7 @@
                             <span>Kelola Produk</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            @can('view-products')
+                            @if($isAdmin || auth()->user()->can('view-products'))
                             <li>
                                 <a href="/admin/products">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -301,9 +306,9 @@
                                     Daftar Produk
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('create-products')
+                            @if($isAdmin || auth()->user()->can('create-products'))
                             <li>
                                 <a href="/admin/products/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -312,9 +317,9 @@
                                     Tambah Produk
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-categories')
+                            @if($isAdmin || auth()->user()->can('view-categories'))
                             <li>
                                 <a href="/admin/category-products">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -324,9 +329,9 @@
                                     Kategori Produk
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('create-categories')
+                            @if($isAdmin || auth()->user()->can('create-categories'))
                             <li>
                                 <a href="/admin/category-products/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -335,13 +340,13 @@
                                     Tambah Kategori
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
-                    @endcanany
+                    @endif
 
-                    {{-- Wisata Management - Only for users with wisata management permissions --}}
-                    @canany(['manage-wisatas', 'view-wisatas', 'manage-category-wisatas', 'view-category-wisatas'])
+                    {{-- Wisata Management - Admins or users with wisata management permissions --}}
+                    @if($isAdmin || auth()->user()->canAny(['manage-wisatas', 'view-wisatas', 'manage-category-wisatas', 'view-category-wisatas']))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -352,7 +357,7 @@
                             <span>Kelola Wisata</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            @can('view-category-wisatas')
+                            @if($isAdmin || auth()->user()->can('view-category-wisatas'))
                             <li>
                                 <a href="/admin/category-wisatas">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -362,9 +367,9 @@
                                     Kategori Wisata
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('create-category-wisatas')
+                            @if($isAdmin || auth()->user()->can('create-category-wisatas'))
                             <li>
                                 <a href="/admin/category-wisatas/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -373,9 +378,9 @@
                                     Tambah Kategori Wisata
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-wisatas')
+                            @if($isAdmin || auth()->user()->can('view-wisatas'))
                             <li>
                                 <a href="/admin/wisatas">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -384,9 +389,9 @@
                                     Daftar Wisata
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('create-wisatas')
+                            @if($isAdmin || auth()->user()->can('create-wisatas'))
                             <li>
                                 <a href="/admin/wisatas/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -395,9 +400,9 @@
                                     Tambah Wisata
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-wisata-analytics')
+                            @if($isAdmin || auth()->user()->can('view-wisata-analytics'))
                             <li>
                                 <a href="/admin/analytics/wisatas">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -406,35 +411,13 @@
                                     Analytics Wisata
                                 </a>
                             </li>
-                            @endcan
-                            
-                            @can('view-wisata-bookings')
-                            <li>
-                                <a href="/admin/bookings">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-                                    </svg>
-                                    Booking Wisata
-                                </a>
-                            </li>
-                            @endcan
-                            
-                            @can('view-wisata-reviews')
-                            <li>
-                                <a href="/admin/reviews">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-                                    </svg>
-                                    Review Wisata
-                                </a>
-                            </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
-                    @endcanany
+                    @endif
 
-                    {{-- HomeStay Management - Only for users with homestay management permissions --}}
-                    @canany(['manage-homestays', 'view-homestays', 'view-homestay-analytics'])
+                    {{-- HomeStay Management - Admins or users with homestay management permissions --}}
+                    @if($isAdmin || auth()->user()->canAny(['manage-homestays', 'view-homestays', 'view-homestay-analytics']))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -444,7 +427,7 @@
                             <span>Kelola Homestay</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            @can('view-homestays')
+                            @if($isAdmin || auth()->user()->can('view-homestays'))
                             <li>
                                 <a href="/admin/homestays">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -453,9 +436,9 @@
                                     Daftar Homestay
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('create-homestays')
+                            @if($isAdmin || auth()->user()->can('create-homestays'))
                             <li>
                                 <a href="/admin/homestays/create">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -464,9 +447,9 @@
                                     Tambah Homestay
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-homestay-analytics')
+                            @if($isAdmin || auth()->user()->can('view-homestay-analytics'))
                             <li>
                                 <a href="/admin/homestays/analytics">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -475,9 +458,9 @@
                                     Analytics
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-homestay-bookings')
+                            @if($isAdmin || auth()->user()->can('view-homestay-bookings'))
                             <li>
                                 <a href="/admin/homestays/bookings">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -486,9 +469,9 @@
                                     Booking
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-homestay-reviews')
+                            @if($isAdmin || auth()->user()->can('view-homestay-reviews'))
                             <li>
                                 <a href="/admin/homestays/reviews">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 me-2">
@@ -497,11 +480,12 @@
                                     Reviews
                                 </a>
                             </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
-                    @endcanany
-                    <!-- Contactt module -->
+                    @endif
+
+                    <!-- Contact module - Always visible to admins -->
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title" href="/admin/contacts">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-icon">
@@ -511,8 +495,8 @@
                         </a>
                     </li>
 
-                    {{-- System Settings - Only for users with system management permissions --}}
-                    @can('manage-system-settings')
+                    {{-- System Settings - Admins or users with system management permissions --}}
+                    @if($isAdmin || auth()->user()->can('manage-system-settings'))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -528,21 +512,22 @@
                             <li>
                                 <a href="/admin/settings/security">Keamanan</a>
                             </li>
-                            @can('manage-backups')
+                            @if($isAdmin || auth()->user()->can('manage-backups'))
                             <li>
                                 <a href="/admin/settings/backups">Backups</a>
                             </li>
-                            @endcan
-                            @can('view-logs')
+                            @endif
+                            @if($isAdmin || auth()->user()->can('view-logs'))
                             <li>
                                 <a href="/admin/logs">System Logs</a>
                             </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
-                    @endcan
-                         {{-- User Management Menu - Only visible to users with specific permissions --}}
-                    @if(auth()->user()->canAny(['view-users', 'view-roles', 'view-permissions']))
+                    @endif
+
+                    {{-- User Management Menu - Admins or users with specific permissions --}}
+                    @if($isAdmin || auth()->user()->canAny(['view-users', 'view-roles', 'view-permissions']))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"> </i>
                         <a class="sidebar-link sidebar-title" href="#">
@@ -555,23 +540,23 @@
                             <span>User Management</span>
                         </a>
                         <ul class="sidebar-submenu">
-                            @can('view-users')
+                            @if($isAdmin || auth()->user()->can('view-users'))
                             <li class="text-sm">
                                 <a href="/admin/users">Users</a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-roles')
+                            @if($isAdmin || auth()->user()->can('view-roles'))
                             <li>
                                 <a href="/admin/roles">Roles</a>
                             </li>
-                            @endcan
+                            @endif
                             
-                            @can('view-permissions')
+                            @if($isAdmin || auth()->user()->can('view-permissions'))
                             <li>
                                 <a href="/admin/permissions">Permissions</a>
                             </li>
-                            @endcan
+                            @endif
                         </ul>
                     </li>
                     @endif
@@ -582,17 +567,15 @@
                         </div>
                     </li>
 
-                    @can('update-profile')
+                    @if($isAdmin || auth()->user()->can('update-profile'))
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
                         <a href="/admin/profile" class="sidebar-link sidebar-title link-nav">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" stroke-opacity="0.8" class="stroke-icon">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                            </svg>
-                            <span>Profile</span>
                         </a>
                     </li>
-                    @endcan
+                    @endif
 
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i>
