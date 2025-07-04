@@ -305,11 +305,6 @@ class TenantResource extends Resource
                     ->modalDescription('Apakah Anda yakin ingin meng-approve tenant ini? Domain akan dibuat otomatis.')
                     ->action(function ($record) {
                         self::approveTenant($record);
-                          echo '<script>
-                                setTimeout(function() {
-                                    window.location.reload();
-                                }, 3000);
-                            </script>';
 
                         
                     }),
